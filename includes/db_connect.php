@@ -1,14 +1,15 @@
 <?php
-$host = "localhost";
-$username = "root"; // default username untuk Laragon
-$password = ""; // default password untuk Laragon biasanya kosong
-$database = "prestasi_bd";
+$serverName = "LAPTOP-8EBEE6AE"; //serverName\instanceName
 
-// Membuat koneksi
-$conn = mysqli_connect($host, $username, $password, $database);
+// Since UID and PWD are not specified in the $connectionInfo array,
+// The connection will be attempted using Windows Authentication.
+$connectionInfo = array( "Database"=>"TSQL");
+$conn = sqlsrv_connect( $serverName, $connectionInfo);
 
-// Memeriksa koneksi
-if (!$conn) {
-    die("Koneksi gagal: " . mysqli_connect_error());
-}
+// if( $conn ) {
+//      echo "Connection established.<br />";
+// }else{
+//      echo "Connection could not be established.<br />";
+//      die( print_r( sqlsrv_errors(), true));
+// }
 ?>
