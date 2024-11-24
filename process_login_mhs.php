@@ -22,6 +22,21 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if ($result) {
             // User ditemukan, set session
             $_SESSION['username'] = $username;
+            
+            // Ambil NIM mahasiswa berdasarkan username
+            $sql_mahasiswa = "SELECT NIM FROM mahasiswa WHERE id_user = ?";
+            $stmt_mahasiswa = sqlsrv_prepare($conn, $sql_mahasiswa, array($result['id_user']));
+            
+            if ($stmt_mahasiswa) {
+                sqlsrv_execute($stmt_mahasiswa);
+                $mahasiswa = sqlsrv_fetch_array($stmt_mahasiswa, SQLSRV_FETCH_ASSOC);
+                
+                if ($mahasiswa) {
+                    // Simpan NIM dalam session
+                    $_SESSION['nim'] = $mahasiswa['NIM'];
+                }
+            }
+            
             header("Location: dashboard_mhs.php"); // Arahkan ke halaman dashboard
             exit();
         } else {

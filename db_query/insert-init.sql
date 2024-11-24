@@ -23,20 +23,6 @@ INSERT INTO dosen (NIP, nama_dosen, email, no_telp, id_admin) VALUES
 ('D002', 'Meyti Eka Apriyani S.T., M.T', 'meyti@mail.com', '081234567893', 'A001'),
 ('D003', 'Bagas Satya Dian Nugraha S.T., M.T', 'bagas@mail.com', '081234567894', 'A001');
 
--- Kompetisi (belum divalidasi)
-INSERT INTO kompetisi (id_kompetisi, judul_kompetisi, tingkat_kompetisi, tempat_kompetisi, tanggal_kompetisi, role, NIM, NIP) VALUES
-('K001', 'Hackathon 2024', 'Nasional', 'Jakarta', '2024-12-01', 'Peserta', 'M001', 'D001'),
-('K002', 'IoT Championship', 'Regional', 'Surabaya', '2024-12-15', 'Peserta', 'M002', 'D002');
-
--- Prestasi (yang sudah divalidasi)
-INSERT INTO prestasi_non_akademik (id_prestasi_nonakademik, judul_kompetisi, tingkat_kompetisi, tempat_kompetisi, tanggal_kompetisi, role, NIM, NIP, id_kompetisi, id_admin) VALUES
-('P001', 'Hackathon 2024', 'Nasional', 'Jakarta', '2024-12-01', 'Peserta', 'M001', 'D001', 'K001', 'A001');
-
--- Hapus data dari tabel `prestasi_non_akademik`
-DELETE FROM prestasi_non_akademik WHERE id_kompetisi IN ('K001', 'K002');
-
--- Hapus data dari tabel `kompetisi`
-DELETE FROM kompetisi WHERE id_kompetisi IN ('K001', 'K002');
 
 -- Tambahkan data ke tabel `kompetisi` (dengan kolom valid)
 INSERT INTO kompetisi (id_kompetisi, judul_kompetisi, tingkat_kompetisi, tempat_kompetisi, tanggal_kompetisi, role, NIM, NIP, valid) VALUES
