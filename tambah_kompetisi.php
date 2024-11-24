@@ -5,6 +5,19 @@ $kompetisi_data = include 'tambah_kompetisi_backend.php'; // Mengambil data komp
 // Jika ada error atau success
 $success = isset($_GET['success']);
 $error = isset($_GET['error']);
+
+// Query untuk mengambil data dosen
+$sql_dosen = "SELECT NIP, nama_dosen FROM dosen ORDER BY nama_dosen";
+$stmt_dosen = sqlsrv_query($conn, $sql_dosen);
+
+if ($stmt_dosen === false) {
+    die(print_r(sqlsrv_errors(), true));
+}
+
+$dosen_list = [];
+while ($row = sqlsrv_fetch_array($stmt_dosen, SQLSRV_FETCH_ASSOC)) {
+    $dosen_list[] = $row;
+}
 ?>
 
 <!DOCTYPE html>
@@ -204,7 +217,17 @@ $error = isset($_GET['error']);
                     <label for="role">Role:</label>
                     <input type="text" class="form-control" id="role" name="role" required>
                 </div>
-
+                <div class="form-group mt-3">
+                    <label for="nip_dosen">Dosen Pendamping:</label>
+                    <select class="form-control" id="nip_dosen" name="nip_dosen" required>
+                        <option value="">Pilih Dosen Pendamping</option>
+                        <?php foreach ($dosen_list as $dosen): ?>
+                            <option value="<?php echo htmlspecialchars($dosen['NIP']); ?>">
+                                <?php echo htmlspecialchars($dosen['nama_dosen']); ?>
+                            </option>
+                        <?php endforeach; ?>
+                    </select>
+                </div>
                 <div class="form-group mt-3">
                     <label for="file_surat_tugas">Surat Tugas:</label>
                     <input type="file" class="form-control-file" id="file_surat_tugas" name="file_surat_tugas" accept=".pdf,.doc,.docx,.jpg,.png" required>
