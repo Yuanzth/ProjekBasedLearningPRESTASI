@@ -1,12 +1,29 @@
 <?php
-require_once 'fetch_user_data.php'; // Memanggil file fetch_user_data.php
+session_start();
+include 'prestasi_backend.php'; // Memanggil backend untuk mendapatkan data
+
+// Cek apakah user sudah login
+if (!isset($_SESSION['username'])) {
+    header("Location: login_mhs.php");
+    exit();
+}
+
+// Mendapatkan data prestasi dari backend
+$prestasiData = prestasi_backend();
+
+// Cek apakah data berhasil diambil
+if (empty($prestasiData)) {
+    echo "Data prestasi tidak tersedia.";
+    exit();
+}
 ?>
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard Mahasiswa</title>
+    <title>Prestasi Semua</title>
     <!-- Bootstrap CSS CDN -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
@@ -131,7 +148,7 @@ require_once 'fetch_user_data.php'; // Memanggil file fetch_user_data.php
     <div class="sidebar" id="sidebar">
         <h4 class="p-3">Menu</h4>
         <ul>
-            <li><a href="#">Dashboard</a></li>
+            <li><a href="dashboard_mhs.php">Dashboard</a></li>
             <li><a href="#">Manage Akun</a></li>
             <li><a href="#">Prestasi</a></li>
             <li><a href="logout_mhs.php">Logout</a></li>
@@ -158,33 +175,39 @@ require_once 'fetch_user_data.php'; // Memanggil file fetch_user_data.php
                 </div>
             </div>
         </nav>
-        
-        <!-- Selamat Datang -->
-        <div class="container mt-4">
-            <h1>Selamat Datang, <?php echo htmlspecialchars($userData['nama']); ?>!</h1>
-            <p>Ini Dashboard Mahasiswa Anda. Program Studi: <b><?php echo htmlspecialchars($userData['program_studi']); ?></b></p>
-        </div>
 
-        <!-- Menu di Tengah -->
-        <div class="menu-container">
-            <a href="tambah_kompetisi.php" class="menu-item menu-tambah">
-                Tambah Kompetisi
-                <p style="font-size: 12px; margin-top: 10px;">Menu untuk menambahkan record kompetisi yang akan divalidasi admin nantinya</p>
-            </a>
-            <a href="cek_status_validasi.php" class="menu-item menu-cek-status">
-                Cek Status Validasi
-                <p style="font-size: 12px; margin-top: 10px;">Menu untuk mengecek status validasi kompetisi yang sudah/belum/tidak divalidasi admin</p>
-            </a>
-            <a href="prestasi_saya.php" class="menu-item menu-prestasi-saya">
-                Prestasi Saya
-                <p style="font-size: 12px; margin-top: 10px;">Menu untuk mengecek prestasi yang sudah saya capai</p>
-            </a>
-            <a href="prestasi_semua.php" class="menu-item menu-prestasi-semua">
-                Prestasi Semua
-                <p style="font-size: 12px; margin-top: 10px;">Menu untuk melihat prestasi dari keseluruhan mahasiswa</p>
-            </a>
-        </div>
+        <!-- Tabel Prestasi Semua -->
+        <div class="container mt-4">
+        <h1>Prestasi Semua</h1>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>No.</th>
+                    <th>Nama Mahasiswa</th>
+                    <th>Judul Kompetisi</th>
+                    <th>Tingkat Kompetisi</th>
+                    <th>Tempat Kompetisi</th>
+                    <th>Tanggal Kompetisi</th>
+                    <th>Dosen Pendamping</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($prestasiData as $no => $row): ?>
+                    <tr>
+                        <td><?php echo $no + 1; ?></td>
+                        <td><?php echo htmlspecialchars($row['mahasiswa'] ?? ''); ?></td> <!-- Mengakses mahasiswa dengan alias 'mahasiswa' -->
+                        <td><?php echo htmlspecialchars($row['judul_kompetisi']); ?></td>
+                        <td><?php echo htmlspecialchars($row['tingkat_kompetisi']); ?></td>
+                        <td><?php echo htmlspecialchars($row['tempat_kompetisi']); ?></td>
+                        <td><?php echo htmlspecialchars($row['tanggal_kompetisi']->format('d-m-Y')); ?></td> <!-- Format tanggal -->
+                        <td><?php echo htmlspecialchars($row['dosen'] ?? ''); ?></td> <!-- Mengakses dosen dengan alias 'dosen' -->
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
     </div>
+
+
 
     <!-- Bootstrap JS and dependencies -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

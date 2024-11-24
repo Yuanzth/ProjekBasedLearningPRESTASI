@@ -31,3 +31,18 @@ INSERT INTO kompetisi (id_kompetisi, judul_kompetisi, tingkat_kompetisi, tempat_
 -- Prestasi (yang sudah divalidasi)
 INSERT INTO prestasi_non_akademik (id_prestasi_nonakademik, judul_kompetisi, tingkat_kompetisi, tempat_kompetisi, tanggal_kompetisi, role, NIM, NIP, id_kompetisi, id_admin) VALUES
 ('P001', 'Hackathon 2024', 'Nasional', 'Jakarta', '2024-12-01', 'Peserta', 'M001', 'D001', 'K001', 'A001');
+
+-- Hapus data dari tabel `prestasi_non_akademik`
+DELETE FROM prestasi_non_akademik WHERE id_kompetisi IN ('K001', 'K002');
+
+-- Hapus data dari tabel `kompetisi`
+DELETE FROM kompetisi WHERE id_kompetisi IN ('K001', 'K002');
+
+-- Tambahkan data ke tabel `kompetisi` (dengan kolom valid)
+INSERT INTO kompetisi (id_kompetisi, judul_kompetisi, tingkat_kompetisi, tempat_kompetisi, tanggal_kompetisi, role, NIM, NIP, valid) VALUES
+('K001', 'Hackathon 2024', 'Nasional', 'Jakarta', '2024-12-01', 'Peserta', 'M001', 'D001', 'Y'), -- Sudah divalidasi
+('K002', 'IoT Championship', 'Regional', 'Surabaya', '2024-12-15', 'Peserta', 'M002', 'D002', 'N'); -- Belum divalidasi
+
+-- Tambahkan data ke tabel `prestasi_non_akademik`
+INSERT INTO prestasi_non_akademik (id_prestasi_nonakademik, judul_kompetisi, tingkat_kompetisi, tempat_kompetisi, tanggal_kompetisi, role, NIM, NIP, id_kompetisi, id_admin) VALUES
+('P001', 'Hackathon 2024', 'Nasional', 'Jakarta', '2024-12-01', 'Peserta', 'M001', 'D001', 'K001', 'A001'); -- Valid (sudah masuk prestasi)

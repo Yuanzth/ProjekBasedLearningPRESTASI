@@ -65,6 +65,9 @@ CREATE TABLE kompetisi (
     FOREIGN KEY (NIP) REFERENCES dosen(NIP)
 );
 
+ALTER TABLE kompetisi
+ADD valid CHAR(1) CHECK (valid IN ('Y', 'N', 'X')) DEFAULT 'N';
+
 -- Tabel 6: prestasi_non_akademik
 CREATE TABLE prestasi_non_akademik (
     id_prestasi_nonakademik VARCHAR(10) PRIMARY KEY,
