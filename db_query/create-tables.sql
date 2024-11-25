@@ -51,7 +51,8 @@ CREATE TABLE dosen (
 
 -- Tabel 5: kompetisi
 CREATE TABLE kompetisi (
-    id_kompetisi VARCHAR(10) PRIMARY KEY,
+    kompetisi_counter INT IDENTITY(1,1) PRIMARY KEY, -- Auto increment
+    id_kompetisi VARCHAR(10) UNIQUE, -- ID kompetisi dalam format K001 - K999
     judul_kompetisi VARCHAR(50) NOT NULL,
     tingkat_kompetisi VARCHAR(20) NOT NULL,
     tempat_kompetisi VARCHAR(50),
@@ -61,12 +62,28 @@ CREATE TABLE kompetisi (
     role VARCHAR(10),
     NIM VARCHAR(10),
     NIP VARCHAR(20),
+    valid CHAR(1) CHECK (valid IN ('Y', 'N', 'X')) DEFAULT 'N',
     FOREIGN KEY (NIM) REFERENCES mahasiswa(NIM),
     FOREIGN KEY (NIP) REFERENCES dosen(NIP)
 );
 
-ALTER TABLE kompetisi
-ADD valid CHAR(1) CHECK (valid IN ('Y', 'N', 'X')) DEFAULT 'N';
+-- Trigger untuk mengisi id_kompetisi secara otomatis
+DROP TRIGGER IF EXISTS trg_update_id_kompetisi;
+-- Membuat trigger baru
+CREATE TRIGGER trg_update_id_kompetisi
+ON kompetisi
+AFTER INSERT
+AS
+BEGIN
+    -- Update id_kompetisi setelah INSERT
+    UPDATE k
+    SET k.id_kompetisi = 'K' + RIGHT('000' + CAST(k.kompetisi_counter AS VARCHAR(3)), 3)
+    FROM kompetisi k
+    INNER JOIN inserted i ON k.kompetisi_counter = i.kompetisi_counter;
+END;
+
+
+
 
 -- Tabel 6: prestasi_non_akademik
 CREATE TABLE prestasi_non_akademik (
