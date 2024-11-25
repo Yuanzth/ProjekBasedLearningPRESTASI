@@ -20,37 +20,28 @@ body{
 
   .navbar-nav{
     background-color: #122246;
-    padding: 5px;
     border-radius: 20px;
   }
   
   .navbar-nav .nav-link {
-    font-weight: 500px;
+    font-weight: 400;
     font-size: 20px;
     margin-right: 10px;
     margin-left: 10px;
     align-content: center;
     color: white;
   }
-  .navbar-nav .btn{
-    font-weight: 500px;
-    font-size: 20px;
-    margin-right: 10px;
-    margin-left: 10px;
-    color: white;
-  }
   
-  .navbar-nav .nav-link:hover {
-    color: #007bff; /* Warna biru saat hover */
-  }
-  
-  .navbar-nav .form-control {
-    border-radius: 20px; /* Membuat search input lebih estetik */
-  }
-  
-  .navbar-nav .btn-primary {
-    border-radius: 20px;
-    font-size: 0.9rem;
-    padding: 5px 15px;
-  }
-  
+.navbar-nav .nav-link:hover {
+  color: #007bff; /* Warna biru saat hover */
+}
+
+.navbar-nav .icon{
+  font-weight: 400;
+  font-size: 20px;
+  margin-right: 10px;
+  margin-left: 10px;
+  color: white;
+  align-content: center;
+  padding: 5px;
+}
