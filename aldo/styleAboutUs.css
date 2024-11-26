@@ -18,19 +18,19 @@ body {
 .navbar-nav {
     background-color: #122246;
     border-radius: 25px;
+}
+.navbar-nav .btn {
     font-size: 20px;
     font-weight: 400;
     margin-left: 10px;
     margin-right: 10px;
-}
-.navbar-nav .btn {
     color: white;
 }
 .navbar-nav .nav-link {
-    /* font-size: 20px;
+    font-size: 20px;
     font-weight: 400;
     margin-left: 10px;
-    margin-right: 10px; */
+    margin-right: 10px;
     color: white;
 }
 .navbar-nav .nav-link:hover {
