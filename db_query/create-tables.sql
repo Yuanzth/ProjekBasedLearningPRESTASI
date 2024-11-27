@@ -52,7 +52,7 @@ CREATE TABLE dosen (
 -- Tabel 5: kompetisi
 CREATE TABLE kompetisi (
     kompetisi_counter INT IDENTITY(1,1) PRIMARY KEY, -- Auto increment
-    id_kompetisi VARCHAR(10) UNIQUE, -- ID kompetisi dalam format K001 - K999
+    id_kompetisi VARCHAR(10) UNIQUE NULL, -- ID kompetisi dalam format K001 - K999
     judul_kompetisi VARCHAR(50) NOT NULL,
     tingkat_kompetisi VARCHAR(20) NOT NULL,
     tempat_kompetisi VARCHAR(50),
@@ -66,20 +66,28 @@ CREATE TABLE kompetisi (
     FOREIGN KEY (NIM) REFERENCES mahasiswa(NIM),
     FOREIGN KEY (NIP) REFERENCES dosen(NIP)
 );
+ALTER TABLE kompetisi ALTER COLUMN id_kompetisi VARCHAR(10) NULL;
 
--- Trigger untuk mengisi id_kompetisi secara otomatis
-DROP TRIGGER IF EXISTS trg_update_id_kompetisi;
+
+IF EXISTS (SELECT * FROM sys.triggers WHERE name = 'trg_update_id_kompetisi')
+BEGIN
+    DROP TRIGGER trg_update_id_kompetisi;
+END
+GO
+
 -- Membuat trigger baru
-CREATE TRIGGER trg_update_id_kompetisi
+CREATE OR ALTER TRIGGER trg_update_id_kompetisi
 ON kompetisi
 AFTER INSERT
 AS
 BEGIN
-    -- Update id_kompetisi setelah INSERT
+    SET NOCOUNT ON;
+    
     UPDATE k
     SET k.id_kompetisi = 'K' + RIGHT('000' + CAST(k.kompetisi_counter AS VARCHAR(3)), 3)
     FROM kompetisi k
-    INNER JOIN inserted i ON k.kompetisi_counter = i.kompetisi_counter;
+    INNER JOIN inserted i ON k.kompetisi_counter = i.kompetisi_counter
+    WHERE k.id_kompetisi IS NULL;
 END;
 
 
