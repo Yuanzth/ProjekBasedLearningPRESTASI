@@ -17,13 +17,29 @@ body {
 .container {
     background-color: transparent;
     backdrop-filter: blur(20px);
-    border-radius: 30px;
+    border-radius: 20px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
     position: relative;
     overflow: hidden;
     width: 790px;
     max-height: 100%;
     min-height: 400px;
+    padding: 0;
+}
+.container .btn {
+    position: absolute;
+    font-size: 25px;
+    top: 0;
+    right: 0;
+    overflow: hidden;
+    background-color: transparent;
+    border: none;
+    color: white;
+    transition: all 0.2s ease-in-out;
+    z-index: 21;
+}
+.container.active .btn {
+    color: black;
 }
 .container form {
     display: flex;
@@ -37,13 +53,12 @@ body {
 .input-group {
     border-bottom: 2px solid black;
     margin: 20px;
-    /* padding: 10px 15px; */
 }
 .input-group i {
     position: absolute;
     font-size: 20px;
     right: 0px;
-    top: -20%;
+    top: -35%;
 }
 .input-group label {
     position: absolute;
@@ -56,7 +71,7 @@ body {
     transition: .3s;
 }
 .input-group input {
-    width: 95%;
+    width: 93%;
     height: 90%;
     background: transparent;
     border: none;
@@ -140,7 +155,7 @@ body {
     overflow: hidden;
     transition: all 0.6s ease-in-out;
     border-radius: 50px 0 0 50px;
-    z-index: 1000;
+    z-index: 20;
 }
 .container.active .toggle-container {
     transform: translateX(-100%);

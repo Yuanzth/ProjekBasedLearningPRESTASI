@@ -8,14 +8,21 @@
 body {
     background-color: #362FD930;
 }
+/* navigasi bar */
+.navbar { /* mengatur style navigation bar */
+    background-color: #C9C1C161;
+}
 .navbar-toggler{ /* mengatur style tombol menu saat layar diperkecil */
     background-color: #122246;
     border-radius: 25px;
 }
-.navbar {
-    background-color: #C9C1C161;
-}
 .navbar-nav { /* mengatur style navigasi pada navbar */
     background-color: #122246;
     border-radius: 25px;
+}
+.navbar-nav i {
+    font-size: 17px;
+}
+.sticky-top {
+    background: #000;
 }
