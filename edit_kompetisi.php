@@ -1,27 +1,32 @@
 <?php
-include 'includes/db_connect.php'; // Koneksi database
+session_start();
+include 'includes/db_connect.php'; // Koneksi ke database
 
-if (!isset($_GET['id'])) {
-    // Redirect jika tidak ada ID
-    header("Location: tambah_kompetisi.php");
-    exit;
+// Ambil ID kompetisi yang akan diedit
+$id_kompetisi = $_GET['id'];
+
+// Query untuk mengambil data kompetisi berdasarkan ID
+$sql_kompetisi = "SELECT * FROM kompetisi WHERE id_kompetisi = ?";
+$stmt_kompetisi = sqlsrv_query($conn, $sql_kompetisi, array($id_kompetisi));
+
+if ($stmt_kompetisi === false) {
+    die(print_r(sqlsrv_errors(), true));
 }
 
-$id = $_GET['id'];
+$kompetisi = sqlsrv_fetch_array($stmt_kompetisi, SQLSRV_FETCH_ASSOC);
 
-// Ambil data kompetisi berdasarkan ID
-$sql = "SELECT * FROM prestasi_non_akademik WHERE id_prestasi_nonakademik = ?";
-$stmt = sqlsrv_prepare($conn, $sql, array($id));
-sqlsrv_execute($stmt);
-$data = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC);
+// Query untuk mengambil data dosen
+$sql_dosen = "SELECT NIP, nama_dosen FROM dosen ORDER BY nama_dosen";
+$stmt_dosen = sqlsrv_query($conn, $sql_dosen);
 
-if (!$data) {
-    // Redirect jika data tidak ditemukan
-    header("Location: tambah_kompetisi.php?notfound=1");
-    exit;
+if ($stmt_dosen === false) {
+    die(print_r(sqlsrv_errors(), true));
 }
 
-// Jika data ditemukan, tampilkan form untuk edit
+$dosen_list = [];
+while ($row = sqlsrv_fetch_array($stmt_dosen, SQLSRV_FETCH_ASSOC)) {
+    $dosen_list[] = $row;
+}
 ?>
 <!DOCTYPE html>
 <html lang="id">
@@ -180,58 +185,74 @@ if (!$data) {
                 </div>
             </div>
         </nav>
-<div class="container mt-5">
-    <h1>Edit Kompetisi</h1>
+    <div class="container mt-5">
+        <h1>Edit Kompetisi</h1>
 
-    <form action="edit_kompetisi_backend.php" method="POST" enctype="multipart/form-data">
-        <input type="hidden" name="id_prestasi_nonakademik" value="<?php echo $data['id_prestasi_nonakademik']; ?>">
+        <?php if (isset($_GET['success'])): ?>
+            <p class="text-success">Data kompetisi berhasil diperbarui!</p>
+        <?php elseif (isset($_GET['error'])): ?>
+            <p class="text-danger">Terjadi kesalahan saat memperbarui data kompetisi.</p>
+        <?php endif; ?>
 
-        <div class="form-group">
-            <label for="judul_kompetisi">Judul Kompetisi</label>
-            <input type="text" class="form-control" id="judul_kompetisi" name="judul_kompetisi"
-                   value="<?php echo htmlspecialchars($data['judul_kompetisi']); ?>" required>
-        </div>
+        <form action="process_edit_kompetisi.php" method="post" enctype="multipart/form-data">
+            <input type="hidden" name="id_kompetisi" value="<?php echo $kompetisi['id_kompetisi']; ?>">
 
-        <div class="form-group">
-            <label for="tingkat_kompetisi">Tingkat Kompetisi</label>
-            <input type="text" class="form-control" id="tingkat_kompetisi" name="tingkat_kompetisi"
-                   value="<?php echo htmlspecialchars($data['tingkat_kompetisi']); ?>" required>
-        </div>
+            <div class="form-group">
+                <label for="judul_kompetisi">Judul Kompetisi:</label>
+                <input type="text" class="form-control" id="judul_kompetisi" name="judul_kompetisi" value="<?php echo htmlspecialchars($kompetisi['judul_kompetisi']); ?>" required>
+            </div>
 
-        <div class="form-group">
-            <label for="tempat_kompetisi">Tempat Kompetisi</label>
-            <input type="text" class="form-control" id="tempat_kompetisi" name="tempat_kompetisi"
-                   value="<?php echo htmlspecialchars($data['tempat_kompetisi']); ?>">
-        </div>
+            <div class="form-group mt-3">
+                <label for="tingkat_kompetisi">Tingkat Kompetisi:</label>
+                <select class="form-control" id="tingkat_kompetisi" name="tingkat_kompetisi" required>
+                    <option value="Lokal" <?php echo ($kompetisi['tingkat_kompetisi'] == 'Lokal') ? 'selected' : ''; ?>>Lokal</option>
+                    <option value="Nasional" <?php echo ($kompetisi['tingkat_kompetisi'] == 'Nasional') ? 'selected' : ''; ?>>Nasional</option>
+                    <option value="Internasional" <?php echo ($kompetisi['tingkat_kompetisi'] == 'Internasional') ? 'selected' : ''; ?>>Internasional</option>
+                </select>
+            </div>
 
-        <div class="form-group">
-            <label for="tanggal_kompetisi">Tanggal Kompetisi</label>
-            <input type="date" class="form-control" id="tanggal_kompetisi" name="tanggal_kompetisi"
-                   value="<?php echo $data['tanggal_kompetisi']->format('Y-m-d'); ?>" required>
-        </div>
+            <div class="form-group mt-3">
+                <label for="tempat_kompetisi">Tempat Kompetisi:</label>
+                <input type="text" class="form-control" id="tempat_kompetisi" name="tempat_kompetisi" value="<?php echo htmlspecialchars($kompetisi['tempat_kompetisi']); ?>" required>
+            </div>
 
-        <div class="form-group">
-            <label for="file_surat_tugas">File Surat Tugas</label>
-            <input type="file" class="form-control" id="file_surat_tugas" name="file_surat_tugas">
-        </div>
+            <div class="form-group mt-3">
+                <label for="tanggal_kompetisi">Tanggal Kompetisi:</label>
+                <input type="date" class="form-control" id="tanggal_kompetisi" name="tanggal_kompetisi" value="<?php echo $kompetisi['tanggal_kompetisi']->format('Y-m-d'); ?>" required>
+            </div>
 
-        <div class="form-group">
-            <label for="file_sertifikat">File Sertifikat</label>
-            <input type="file" class="form-control" id="file_sertifikat" name="file_sertifikat">
-        </div>
+            <div class="form-group mt-3">
+                <label for="role">Role:</label>
+                <input type="text" class="form-control" id="role" name="role" value="<?php echo htmlspecialchars($kompetisi['role']); ?>" required>
+            </div>
 
-        <div class="form-group">
-            <label for="role">Role</label>
-            <input type="text" class="form-control" id="role" name="role"
-                   value="<?php echo htmlspecialchars($data['role']); ?>">
-        </div>
+            <div class="form-group mt-3">
+                <label for="NIP">Dosen Pendamping:</label>
+                <select class="form-control" id="NIP" name="NIP" required>
+                    <option value="">Pilih Dosen Pendamping</option>
+                    <?php foreach ($dosen_list as $dosen): ?>
+                        <option value="<?php echo htmlspecialchars($dosen['NIP']); ?>" <?php echo ($kompetisi['NIP'] == $dosen['NIP']) ? 'selected' : ''; ?>>
+                            <?php echo htmlspecialchars($dosen['nama_dosen']); ?>
+                        </option>
+                    <?php endforeach; ?>
+                </select>
+            </div>
 
-        <button type="submit" class="btn btn-success">Update Kompetisi</button>
-        <a href="tambah_kompetisi.php" class="btn btn-secondary">Kembali</a>
-    </form>
-</div>
-<!-- Bootstrap JS and dependencies -->
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+            <div class="form-group mt-3">
+                <label for="file_surat_tugas">Surat Tugas:</label>
+                <input type="file" class="form-control-file" id="file_surat_tugas" name="file_surat_tugas" accept=".pdf,.doc,.docx,.jpg,.png">
+            </div>
+
+            <div class="form-group mt-3">
+                <label for="file_sertifikat">Sertifikat:</label>
+                <input type="file" class="form-control-file" id="file_sertifikat" name="file_sertifikat" accept=".pdf,.doc,.docx,.jpg,.png">
+            </div>
+
+            <button type="submit" class="btn btn-primary mt-4">Update Kompetisi</button>
+        </form>
+    </div>
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 

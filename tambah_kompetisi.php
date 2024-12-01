@@ -242,7 +242,17 @@ while ($row = sqlsrv_fetch_array($stmt_dosen, SQLSRV_FETCH_ASSOC)) {
             </form>
         </div>
 
+        <?php if (isset($_GET['delete']) && $_GET['delete'] == 'success'): ?>
+            <div class="alert alert-success">Data kompetisi berhasil dihapus!</div>
+        <?php elseif (isset($_GET['delete']) && $_GET['delete'] == 'error'): ?>
+            <div class="alert alert-danger">Gagal menghapus data kompetisi.</div>
+        <?php endif; ?>
 
+        <?php if (isset($_GET['update']) && $_GET['update'] == 'success'): ?>
+            <div class="alert alert-success">Data kompetisi berhasil diperbarui!</div>
+        <?php elseif (isset($_GET['update']) && $_GET['update'] == 'error'): ?>
+            <div class="alert alert-danger">Gagal memperbarui data kompetisi.</div>
+        <?php endif; ?>
 
         <!-- Tabel Kompetisi Belum Divalidasi -->
         <h2 class="mt-5">Data Kompetisi Belum Divalidasi</h2>
@@ -255,13 +265,14 @@ while ($row = sqlsrv_fetch_array($stmt_dosen, SQLSRV_FETCH_ASSOC)) {
                     <th>Tempat Kompetisi</th>
                     <th>Tanggal Kompetisi</th>
                     <th>Role</th>
+                    <th>Dosen Pendamping</th> <!-- Kolom baru untuk dosen -->
                     <th>Aksi</th>
                 </tr>
             </thead>
             <tbody>
                 <?php if (empty($kompetisi_data)): ?>
                     <tr>
-                        <td colspan="7" class="text-center">Tidak ada data kompetisi yang belum divalidasi.</td>
+                        <td colspan="8" class="text-center">Tidak ada data kompetisi yang belum divalidasi.</td>
                     </tr>
                 <?php else: ?>
                     <?php foreach ($kompetisi_data as $index => $kompetisi): ?>
@@ -272,6 +283,16 @@ while ($row = sqlsrv_fetch_array($stmt_dosen, SQLSRV_FETCH_ASSOC)) {
                             <td><?php echo htmlspecialchars($kompetisi['tempat_kompetisi']); ?></td>
                             <td><?php echo $kompetisi['tanggal_kompetisi']->format('d-m-Y'); ?></td>
                             <td><?php echo htmlspecialchars($kompetisi['role']); ?></td>
+                            <td>
+                                <!-- Menampilkan nama dosen pendamping berdasarkan NIP -->
+                                <?php
+                                $nip_dosen = $kompetisi['NIP'];
+                                $sql_dosen_nama = "SELECT nama_dosen FROM dosen WHERE NIP = ?";
+                                $stmt_dosen_nama = sqlsrv_query($conn, $sql_dosen_nama, array($nip_dosen));
+                                $dosen = sqlsrv_fetch_array($stmt_dosen_nama, SQLSRV_FETCH_ASSOC);
+                                echo htmlspecialchars($dosen['nama_dosen']);
+                                ?>
+                            </td>
                             <td>
                                 <a href="edit_kompetisi.php?id=<?php echo $kompetisi['id_kompetisi']; ?>" class="btn btn-warning btn-sm">Edit</a>
                                 <a href="hapus_kompetisi.php?id=<?php echo $kompetisi['id_kompetisi']; ?>" class="btn btn-danger btn-sm" onclick="return confirm('Hapus kompetisi ini?')">Hapus</a>
@@ -312,14 +333,3 @@ while ($row = sqlsrv_fetch_array($stmt_dosen, SQLSRV_FETCH_ASSOC)) {
     </script>
 </body>
 </html>
-<?php if (isset($_GET['delete']) && $_GET['delete'] == 'success'): ?>
-    <div class="alert alert-success">Data kompetisi berhasil dihapus!</div>
-<?php elseif (isset($_GET['delete']) && $_GET['delete'] == 'error'): ?>
-    <div class="alert alert-danger">Gagal menghapus data kompetisi.</div>
-<?php endif; ?>
-
-<?php if (isset($_GET['update']) && $_GET['update'] == 'success'): ?>
-    <div class="alert alert-success">Data kompetisi berhasil diperbarui!</div>
-<?php elseif (isset($_GET['update']) && $_GET['update'] == 'error'): ?>
-    <div class="alert alert-danger">Gagal memperbarui data kompetisi.</div>
-<?php endif; ?>
