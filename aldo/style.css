@@ -10,7 +10,7 @@ body {
 }
 /* navigasi bar */
 .navbar { /* mengatur style navigation bar */
-    background-color: #C9C1C161;
+    background-color: #c9c1c17f;
 }
 .navbar-toggler{ /* mengatur style tombol menu saat layar diperkecil */
     background-color: #122246;
@@ -23,6 +23,10 @@ body {
 .navbar-nav i {
     font-size: 17px;
 }
-.sticky-top {
-    background: #000;
+/* main */
+main {
+    padding: 10px 0;
+    margin: 15px;
+    background-color: #ffffff9d;
+    border-radius: 10px;
 }
