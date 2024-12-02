@@ -40,11 +40,11 @@
                 <h3 class="text-center">Login Admin</h3>
                 <form action="process_login_admin.php" method="POST">
                     <div class="form-group">
-                        <label for="id_admin">ID Admin</label>
+                        <label for="id_admin">Nama Pengguna</label>
                         <input type="text" class="form-control" id="id_admin" name="id_admin" required>
                     </div>
                     <div class="form-group">
-                        <label for="password">Password</label>
+                        <label for="password">Kata Sandi</label>
                         <input type="password" class="form-control" id="password" name="password" required>
                     </div>
                     <button type="submit" class="btn btn-primary btn-block">Login</button>
