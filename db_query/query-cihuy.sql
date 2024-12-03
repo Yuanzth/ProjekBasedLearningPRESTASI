@@ -41,7 +41,6 @@ CREATE TABLE tb_mahasiswa (
 
 
 -- Tabel 4: dosen
-
 CREATE TABLE tb_dosen (
 	id_dosen INT IDENTITY(1,1) PRIMARY KEY, -- Auto increment
     NIP VARCHAR(20),
@@ -92,3 +91,37 @@ CREATE TABLE history (
     id_user VARCHAR(10) NOT NULL,
     FOREIGN KEY (id_user) REFERENCES [user](id_user)
 );
+
+
+-- stored proceudre
+DROP PROCEDURE sp_login_admin;
+CREATE PROCEDURE sp_login_admin
+    @username NVARCHAR(30)
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    -- Cari pengguna berdasarkan username
+    SELECT id_user, username, password_hash, privilege
+    FROM tb_user
+    WHERE username = @username AND privilege = 'A';
+END
+
+-- Insert Data
+-- 1. Tambah user admin di tabel tb_user 
+INSERT INTO tb_user (username, password_hash, privilege)
+VALUES ('admin', 
+        HASHBYTES('SHA2_256', 'admin123'), 
+        'A');
+-- 2. Menambahkan admin ke tabel tb_admin
+DECLARE @id_user INT;
+SET @id_user = SCOPE_IDENTITY();  -- Ambil id_user yang baru saja dimasukkan
+
+INSERT INTO tb_admin (id_user, nama)
+VALUES (@id_user, 'Administrator');
+
+
+
+-- Select Data 
+SELECT * FROM tb_user;
+SELECT * FROM tb_admin;
