@@ -38,18 +38,29 @@ if (empty($prestasiData)) {
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item px-2">
-                            <a class="nav-link" href="index.html">
-                                <i class="bi bi-house-door" style="font-size: 17px;"></i>
+                            <a class="nav-link" href="mahasiswa.html">
+                                <i class="bi bi-house-door"></i>
                             </a>
                         </li>
                         <li class="nav-item px-2 d-flex align-items-center">
-                            <a class="nav-link" href="prestasi.php">Prestasi</a>
+                            <div class="dropdown">
+                                <button class="btn nav-link" type="button" data-bs-toggle="dropdown" aria-expanded="false">Prestasi</button>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="mhs_semua_prestasi.php">Semua Prestasi</a></li>
+                                    <li><a class="dropdown-item" href="#">Prestasi Saya</a></li>
+                                </ul>
+                            </div>
                         </li>
                         <li class="nav-item px-2 d-flex align-items-center">
-                            <a class="nav-link" href="about.html">About Us</a>
+                            <a class="nav-link" href="#">Kompetisi</a>
+                        </li>
+                        <li class="nav-item px-2 d-flex align-items-center">
+                            <a class="nav-link" href="mhs_about.html">About Us</a>
                         </li>
                         <li class="nav-item d-flex align-items-center px-2">
-                            <a href="login.html" class="nav-link">Login</a>
+                            <a href="#" class="nav-link">
+                                <i class="bi bi-person-circle"></i>
+                            </a>
                         </li>
                     </ul>
                 </div>
