@@ -63,7 +63,7 @@ $prestasiData = prestasi_saya_backend($nim);
                             <button class="btn nav-link dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-person-circle"></i></button>
                             <ul class="dropdown-menu dropdown-menu-end">
                                 <li><a class="dropdown-item nav-link" href="#">Profil</a></li>
-                                <li><a class="dropdown-item nav-link" href="#">LogOut</a></li>
+                                <li><a class="dropdown-item nav-link" href="logout.php">LogOut</a></li>
                             </ul>
                         </li>
                     </ul>
