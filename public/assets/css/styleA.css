@@ -1,0 +1,45 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+body {
+    background-image: url(http://localhost/project/public/assets/img/ts.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+/* navigasi bar */
+.navbar { /* mengatur style navigation bar */
+    background-color: #c9c1c17f;
+}
+.navbar-toggler{ /* mengatur style tombol menu saat layar diperkecil */
+    background-color: #122246;
+    border-radius: 25px;
+}
+.navbar-nav { /* mengatur style navigasi pada navbar */
+    background-color: #122246;
+    border-radius: 25px;
+}
+.navbar-nav i {
+    font-size: 17px;
+}
+/* main */
+main {
+    padding: 10px 0;
+    margin: 15px;
+    background-color: #ffffffac;
+    border-radius: 10px;
+}
+.row p {
+    margin: 0;
+}
+.col-12 {
+    cursor: default;
+    background-color: #fff;
+    margin: 10px;
+    padding: 15px;
+    border-radius: 15px;
+    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.6);
+}
