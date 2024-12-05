@@ -1,3 +1,24 @@
+<?php
+session_start();
+$kompetisi_data = include 'tambah_kompetisi_backend.php'; // Mengambil data kompetisi
+
+// Jika ada error atau success
+$success = isset($_GET['success']);
+$error = isset($_GET['error']);
+
+// Query untuk mengambil data dosen
+$sql_dosen = "SELECT NIP, nama_dosen FROM dosen ORDER BY nama_dosen";
+$stmt_dosen = sqlsrv_query($conn, $sql_dosen);
+
+if ($stmt_dosen === false) {
+    die(print_r(sqlsrv_errors(), true));
+}
+
+$dosen_list = [];
+while ($row = sqlsrv_fetch_array($stmt_dosen, SQLSRV_FETCH_ASSOC)) {
+    $dosen_list[] = $row;
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
