@@ -8,12 +8,13 @@
 body {
     background-color: #362FD930;
 }
+/* navigasi bar */
+.navbar { /* mengatur style navigation bar */
+    background-color: #c9c1c17f;
+}
 .navbar-toggler{ /* mengatur style tombol menu saat layar diperkecil */
     background-color: #122246;
     border-radius: 25px;
-}
-.navbar {
-    background-color: #C9C1C161;
 }
 .navbar-nav { /* mengatur style navigasi pada navbar */
     background-color: #122246;
@@ -21,4 +22,17 @@ body {
 }
 .navbar-nav i {
     font-size: 17px;
+}
+.dropdown-menu {
+    background-color: #122246;
+}
+.dropdown-item:hover {
+    background-color: transparent;
+}
+/* main */
+main {
+    padding: 10px 0;
+    margin: 15px;
+    background-color: #ffffff9d;
+    border-radius: 10px;
 }

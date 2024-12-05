@@ -1,15 +1,18 @@
 <?php
 session_start();
-include 'prestasi_backend.php'; // Memanggil backend untuk mendapatkan data
+include 'prestasi_saya_backend.php'; // Memanggil backend untuk mendapatkan data
 
-// Mendapatkan data prestasi dari backend
-$prestasiData = prestasi_backend();
-
-// Cek apakah data berhasil diambil
-if (empty($prestasiData)) {
-    echo "Data prestasi tidak tersedia.";
+// Cek apakah user sudah login
+if (!isset($_SESSION['nim'])) {
+    header("Location: login_mhs.php");
     exit();
 }
+
+// Mendapatkan NIM mahasiswa yang login
+$nim = $_SESSION['nim'];  // Pastikan session nim berisi NIM mahasiswa
+
+// Mendapatkan data prestasi mahasiswa
+$prestasiData = prestasi_saya_backend($nim);
 ?>
 
 <!DOCTYPE html>
@@ -20,7 +23,7 @@ if (empty($prestasiData)) {
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-        <link rel="stylesheet" href="styleSP.css">
+        <link rel="stylesheet" href="stylePS.css">
         <title>Prestasi | PRESMA</title>
     </head>
     <body>
@@ -69,41 +72,8 @@ if (empty($prestasiData)) {
         </header>
         <main>
             <div class="container-fluid my-4">
-                <h4 class="d-flex justify-content-center mb-3">Semua Prestasi Mahasiswa</h4>
-                <!-- baris pencarian -->
-                <form action="" class="row"  method="post" enctype="multipart/form-data">
-                    <div class="col-12 px-4">
-                        <div class="input-group mb-3">
-                            <span class="input-group-text"><i class="bi bi-search"></i></span>
-                            <input type="text" class="form-control" placeholder="Ketik kata kunci">
-                        </div>
-                    </div>
-                    <div class="col-12 col-md-6 px-4">
-                        <div class="input-group mb-3">
-                            <label class="input-group-text" for="inputGroupSelect01">Urutkan</label>
-                            <select class="form-select" id="inputGroupSelect01">
-                                <option selected>Pilih...</option>
-                                <option value="1">Terlama</option>
-                                <option value="2">Terbaru</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-12 col-md-6 px-4">
-                        <div class="input-group mb-3">
-                            <label class="input-group-text" for="inputGroupSelect01">Tingkat Kompetisi</label>
-                            <select class="form-select" id="inputGroupSelect02">
-                                <option selected>Pilih...</option>
-                                <option value="1">Lokal</option>
-                                <option value="2">Nasional</option>
-                                <option value="3">Internasional</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col d-flex justify-content-center align-items-center px-4">
-                        <button type="submit" class="btn btn-secondary w-50 mb-3">Cari</button>
-                    </div>
-                </form>
-                <!-- baris tabel -->
+                <h4 class="d-flex justify-content-center mb-3">Semua Prestasi Anda</h4>                
+                <!-- tabel -->
                  <div class="row px-4">
                     <table class="table table-bordered table-hover">
                         <thead>
