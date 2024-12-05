@@ -72,8 +72,8 @@ class UserModel
     {
         try {
             // $stmt = $this->executeStoredProcedure("CheckUsernameExists", [$username]);
-            $stmt = $this->executeStoredProcedure("CheckUsernameExists(?)", [$username]);
-            return sqlsrv_fetch_array($stmt) !== false;
+            $stmt = $this->executeStoredProcedure("sp_CheckUsernameExists(?)", [$username]);
+            return sqlsrv_fetch_array($stmt) === 1;
         } catch (Exception $e) {
             $this->logError($e->getMessage());
             return false;

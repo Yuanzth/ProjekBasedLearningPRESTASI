@@ -21,7 +21,6 @@ class AuthController extends Controller
             $userModel = new UserModel(); // Membuat instance UserModel
 
             $user = $userModel->login($_POST['username'], $_POST['password']);
-            var_dump($user);
             
             if ($user) {
                 session_start();
@@ -37,7 +36,7 @@ class AuthController extends Controller
                 }
                 exit();
             } else {
-                echo "Username atau password salah.";
+                echo "Username atau password s  alah.";
             }
         } else {
             AuthController::index(); // Menampilkan halaman login

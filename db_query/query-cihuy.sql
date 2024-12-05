@@ -10,9 +10,9 @@ USE db_prestasi;
 -- 2) Membuat Tabel 
 -- Tabel 1: user
 CREATE TABLE tb_user (
-    id_user INT IDENTITY(1,1) PRIMARY KEY,        -- Primary key pengguna dengan auto increment
+    id_user INT IDENTITY(1,1) PRIMARY KEY,       -- Primary key pengguna dengan auto increment
     username VARCHAR(30) NOT NULL UNIQUE,        -- Username unik
-    password_hash NVARCHAR(255) NOT NULL,        -- Hash password
+    password NVARCHAR(255) NOT NULL,        -- Hash password
     privilege CHAR(1) NOT NULL CHECK (privilege IN ('A', 'M')) -- Hak akses dengan constraint
 );
 
@@ -107,6 +107,42 @@ BEGIN
     WHERE username = @username AND privilege = 'A';
 END
 
+-- Get User By Username Login
+DROP PROCEDURE sp_GetUserByUsername;
+CREATE PROCEDURE sp_GetUserByUsername
+    @Username VARCHAR(30)
+AS
+BEGIN
+    SELECT username, password, privilege
+    FROM tb_user 
+    WHERE username = @Username;
+END;
+
+-- isUsernameExists
+DROP PROCEDURE sp_CheckUsernameExists
+CREATE PROCEDURE sp_CheckUsernameExists
+    @Username VARCHAR(30)
+AS
+BEGIN
+    SELECT 1
+    FROM tb_user
+    WHERE username = @Username;
+END;
+
+
+-- Register User
+DROP PROCEDURE sp_RegisterUser;
+CREATE PROCEDURE sp_RegisterUser
+    @Username VARCHAR(30),
+    @Password NVARCHAR(255),
+    @Privileges CHAR(1)
+AS
+BEGIN
+    INSERT INTO tb_user(username, password, privilege)
+    VALUES (@Username, @Password, @Privileges);
+END;
+
+
 -- Insert Data
 -- 1. Tambah user admin di tabel tb_user 
 INSERT INTO tb_user (username, password_hash, privilege)
@@ -125,3 +161,18 @@ VALUES (@id_user, 'Administrator');
 -- Select Data 
 SELECT * FROM tb_user;
 SELECT * FROM tb_admin;
+
+-- Hapus semua data dari tabel
+DELETE FROM tb_user;
+DROP TABLE tb_user;
+-- Reset identity seed ke 1
+DBCC CHECKIDENT ('tb_user', RESEED, 0);
+DROP PROCEDURE GetPrivileges
+CREATE PROCEDURE GetPrivileges
+AS
+BEGIN
+    SELECT privilege FROM tb_user ; -- Pastikan Anda memiliki tabel atau data terkait privilege
+END
+
+
+EXEC GetPrivileges
