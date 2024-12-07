@@ -23,12 +23,8 @@ body {
 .navbar-nav i {
     font-size: 17px;
 }
-.dropdown-menu {
-    background-color: #122246;
-    padding: 0 5px;
-}
-.dropdown-item:hover {
-    background-color: transparent;
+.nav-link:hover {
+    color: white;
 }
 /* main */
 main {
@@ -36,4 +32,8 @@ main {
     margin: 15px;
     background-color: #ffffff9d;
     border-radius: 10px;
+}
+.btn img {
+    width: 90px;
+    margin: 10px;
 }
