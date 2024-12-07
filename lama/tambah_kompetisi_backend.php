@@ -1,5 +1,5 @@
 <?php
-include 'includes/db_connect.php'; // Koneksi ke database
+include '../includes/db_connect.php'; // Koneksi ke database
 
 // Cek apakah session NIM ada
 if (!isset($_SESSION['nim'])) {

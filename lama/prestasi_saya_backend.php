@@ -1,5 +1,5 @@
 <?php
-include 'includes/db_connect.php'; // Memasukkan koneksi database
+include '../includes/db_connect.php'; // Memasukkan koneksi database
 
 // Fungsi untuk mengambil data prestasi milik mahasiswa yang login
 function prestasi_saya_backend($nim) {

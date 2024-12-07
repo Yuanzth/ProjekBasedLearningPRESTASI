@@ -1,6 +1,6 @@
 <?php
 session_start();
-include 'includes/db_connect.php'; // Menghubungkan ke database
+include '../includes/db_connect.php'; // Menghubungkan ke database
 
 // Cek apakah user sudah login
 if (!isset($_SESSION['username'])) {

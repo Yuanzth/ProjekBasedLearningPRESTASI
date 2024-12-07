@@ -1,5 +1,5 @@
 <?php
-include 'includes/db_connect.php'; // Koneksi database
+include '../includes/db_connect.php'; // Koneksi database
 
 if (!isset($_GET['id']) || !isset($_GET['file'])) {
     die("Parameter tidak lengkap.");

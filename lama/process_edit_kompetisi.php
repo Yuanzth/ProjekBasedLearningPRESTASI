@@ -1,5 +1,5 @@
 <?php
-include 'includes/db_connect.php'; // Koneksi database
+include '../includes/db_connect.php'; // Koneksi database
 
 // Pastikan koneksi ke database berhasil
 if ($conn === false) {

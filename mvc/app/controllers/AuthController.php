@@ -23,13 +23,14 @@ class AuthController extends Controller
             $user = $userModel->login($_POST['username'], $_POST['password']);
             
             if ($user) {
-                session_start();
+                // session_start();
                 $_SESSION['username'] = $user['username'];
                 $_SESSION['privilege'] = $user['privilege']; // Menyimpan privilege di session
                 // Redirect berdasarkan privilege
                 if ($_SESSION['privilege'] === "A") {
                     header('Location: ' . BASE_URL . 'admin/dashboard'); // Arahkan ke halaman dashboard admin
                 } elseif ($_SESSION['privilege'] === "M") {
+                    $_SESSION['id_user'] = $user['id_user'];    // Set session id_user
                     echo "<script>
                         alert('Berhasil login.');
                         window.location.href = '" . BASE_URL . "mahasiswa/index';
@@ -100,6 +101,20 @@ class AuthController extends Controller
     {
         session_start();
         session_destroy();
+
+        // Hapus semua cookie
+        if (ini_get("session.use_cookies")) {
+            $params = session_get_cookie_params();
+            setcookie(session_name(), '', time() - 42000,
+                $params["path"], $params["domain"],
+                $params["secure"], $params["httponly"]
+            );
+        }
+        // Header mencegah caching setelah logout
+        header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
+        header("Cache-Control: post-check=0, pre-check=0", false);
+        header("Pragma: no-cache");
+
         header('Location: ' . BASE_URL . 'auth/login'); // Arahkan kembali ke halaman login setelah logout
         exit();
     }

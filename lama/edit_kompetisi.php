@@ -1,6 +1,6 @@
 <?php
 session_start();
-include 'includes/db_connect.php'; // Koneksi ke database
+include '../includes/db_connect.php'; // Koneksi ke database
 
 // Ambil ID kompetisi yang akan diedit
 $id_kompetisi = $_GET['id'];

@@ -1,6 +1,6 @@
 <?php
 // Menghubungkan ke database
-include 'includes/db_connect.php';
+include '../includes/db_connect.php';
 
 function cek_status_validasi($nim) {
     global $conn;
