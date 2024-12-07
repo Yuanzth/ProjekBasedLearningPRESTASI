@@ -68,5 +68,22 @@
                         </tr>
                     </table>
                 </div>
+                <div class="row d-flex justify-content-center align-items-center p-4">
+                    <h4 class="text-center mb-3">Fitur yang dapat digunakan oleh Tamu:</h4>
+                    <div class="col-10 col-md-4 m-3">
+                        <a href="ind_prestasi.php" class="btn shadow btn-light">
+                            <img src="<?= BASE_URL; ?>public/assets/img/medal.png" alt="medal">
+                            <h5>Prestasi</h5>
+                            <p>Anda dapat melihat semua prestasi yang terdaftar disini</p>
+                        </a>
+                    </div>
+                    <div class="col-10 col-md-4 m-3">
+                        <a href="login.html" class="btn shadow btn-light">
+                            <img src="<?= BASE_URL; ?>public/assets/img/pc.png" alt="pc">
+                            <h5>Login</h5>
+                            <p>Anda dapat menggunakan lebih banyak fitur dengan login</p>
+                        </a>
+                    </div>
+                </div>
             </div>
         </main>

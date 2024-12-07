@@ -48,4 +48,53 @@ class MahasiswaModel
             return null;
         }
     }
+
+    public function getAllPrestasi()
+    {
+        try {
+            $stmt = $this->executeStoredProcedure('sp_GetAllPrestasi');
+            $results = [];
+            while ($row = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC)) {
+                $results[] = $row;
+            }
+            return $results;
+        } catch (Exception $e) {
+            $this->logError($e->getMessage());
+            return [];
+        }
+    }
+
+    public function getMyPrestasi($id_mahasiswa)
+    {
+        try {
+            $stmt = $this->executeStoredProcedure('sp_GetMyPrestasi', [$id_mahasiswa]);
+            $results = [];
+            while ($row = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC)) {
+                $results[] = $row;
+            }
+            return $results;
+        } catch (Exception $e) {
+            $this->logError($e->getMessage());
+            return [];
+        }
+    }
+
+    // Fungsi untuk mendapatkan status validasi kompetisi
+    public function getStatusValidasi($id_mahasiswa)
+{
+    try {
+        // Panggil stored procedure untuk mendapatkan status validasi
+        $stmt = $this->executeStoredProcedure('sp_GetStatusValidasi', [$id_mahasiswa]);
+
+        $results = [];
+        while ($row = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC)) {
+            $results[] = $row;
+        }
+
+        return $results;
+    } catch (Exception $e) {
+        $this->logError($e->getMessage());
+        return [];
+    }
+}
 }

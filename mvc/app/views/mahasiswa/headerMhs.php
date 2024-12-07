@@ -34,15 +34,15 @@
                         <li class="nav-item px-2 d-flex align-items-center justify-content-center dropdown">
                             <button class="btn nav-link dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Prestasi</button>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item nav-link" href="#">Semua Prestasi</a></li>
-                                <li><a class="dropdown-item nav-link" href="#">Prestasi Saya</a></li>
+                                <li><a class="dropdown-item nav-link" href="<?= BASE_URL; ?>mahasiswa/semuaPrestasi">Semua Prestasi</a></li>
+                                <li><a class="dropdown-item nav-link" href="<?= BASE_URL; ?>mahasiswa/prestasiSaya">Prestasi Saya</a></li>
                             </ul>
                         </li>
                         <li class="nav-item px-2 d-flex align-items-center dropdown">
                             <button class="btn nav-link dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Kompetisi</button>
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item nav-link" href="#">Pengajuan</a></li>
-                                <li><a class="dropdown-item nav-link" href="#">Status Validasi</a></li>
+                                <li><a class="dropdown-item nav-link" href="<?= BASE_URL; ?>mahasiswa/statusValidasi">Status Validasi</a></li>
                             </ul>
                         </li>
                         <li class="nav-item px-2 d-flex align-items-center dropdown">

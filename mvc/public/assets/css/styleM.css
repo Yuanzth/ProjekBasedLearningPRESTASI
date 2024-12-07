@@ -26,6 +26,13 @@ body {
 .nav-link:hover {
     color: white;
 }
+.dropdown-menu {
+    background-color: #122246;
+    padding: 0 5px;
+}
+.dropdown-item:hover {
+    background-color: transparent;
+}
 /* main */
 main {
     padding: 10px 0;

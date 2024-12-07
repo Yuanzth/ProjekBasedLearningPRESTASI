@@ -977,3 +977,118 @@ Array
         )
 
 )
+[2024-12-07 15:30:01] Array
+(
+    [0] => Array
+        (
+            [0] => 42S02
+            [SQLSTATE] => 42S02
+            [1] => 208
+            [code] => 208
+            [2] => [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]Invalid object name 'vw_AllPrestasi'.
+            [message] => [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]Invalid object name 'vw_AllPrestasi'.
+        )
+
+)
+
+[2024-12-07 15:30:01] Error executing query: vw_AllPrestasi
+[2024-12-07 15:34:45] Array
+(
+    [0] => Array
+        (
+            [0] => 42S22
+            [SQLSTATE] => 42S22
+            [1] => 207
+            [code] => 207
+            [2] => [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]Invalid column name 'id_mahasiswa'.
+            [message] => [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]Invalid column name 'id_mahasiswa'.
+        )
+
+    [1] => Array
+        (
+            [0] => 42000
+            [SQLSTATE] => 42000
+            [1] => 8180
+            [code] => 8180
+            [2] => [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]Statement(s) could not be prepared.
+            [message] => [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]Statement(s) could not be prepared.
+        )
+
+)
+
+[2024-12-07 15:34:45] Error executing query: vw_MyPrestasi
+[2024-12-07 15:34:51] Array
+(
+    [0] => Array
+        (
+            [0] => 42S22
+            [SQLSTATE] => 42S22
+            [1] => 207
+            [code] => 207
+            [2] => [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]Invalid column name 'id_mahasiswa'.
+            [message] => [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]Invalid column name 'id_mahasiswa'.
+        )
+
+    [1] => Array
+        (
+            [0] => 42000
+            [SQLSTATE] => 42000
+            [1] => 8180
+            [code] => 8180
+            [2] => [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]Statement(s) could not be prepared.
+            [message] => [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]Statement(s) could not be prepared.
+        )
+
+)
+
+[2024-12-07 15:34:51] Error executing query: vw_MyPrestasi
+[2024-12-07 15:43:51] Array
+(
+    [0] => Array
+        (
+            [0] => 42S22
+            [SQLSTATE] => 42S22
+            [1] => 207
+            [code] => 207
+            [2] => [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]Invalid column name 'id_mahasiswa'.
+            [message] => [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]Invalid column name 'id_mahasiswa'.
+        )
+
+    [1] => Array
+        (
+            [0] => 42000
+            [SQLSTATE] => 42000
+            [1] => 8180
+            [code] => 8180
+            [2] => [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]Statement(s) could not be prepared.
+            [message] => [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]Statement(s) could not be prepared.
+        )
+
+)
+
+[2024-12-07 15:43:51] Error executing query: vw_MyPrestasi
+[2024-12-07 15:50:14] Array
+(
+    [0] => Array
+        (
+            [0] => 42S22
+            [SQLSTATE] => 42S22
+            [1] => 207
+            [code] => 207
+            [2] => [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]Invalid column name 'id_mahasiswa'.
+            [message] => [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]Invalid column name 'id_mahasiswa'.
+        )
+
+    [1] => Array
+        (
+            [0] => 42000
+            [SQLSTATE] => 42000
+            [1] => 8180
+            [code] => 8180
+            [2] => [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]Statement(s) could not be prepared.
+            [message] => [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]Statement(s) could not be prepared.
+        )
+
+)
+
+[2024-12-07 15:50:14] Error executing query: vw_MyPrestasi

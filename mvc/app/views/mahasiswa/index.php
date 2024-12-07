@@ -76,5 +76,36 @@
                 </tr>
             </table>
         </div>
+        <div class="row d-flex justify-content-center align-items-center p-4">
+            <h4 class="text-center mb-3">Fitur yang dapat digunakan oleh Mahasiswa:</h4>
+            <div class="col-10 col-md-4 m-1">
+                <a href="<?= BASE_URL; ?>mahasiswa/semuaPrestasi" class="btn shadow btn-light">
+                    <img src="<?= BASE_URL; ?>public/assets/img/medal.png" alt="medal">
+                    <h5>Semua Prestasi</h5>
+                    <p>Anda dapat melihat semua prestasi yang terdaftar disini</p>
+                </a>
+            </div>
+            <div class="col-10 col-md-4 m-1">
+                <a href="<?= BASE_URL; ?>mahasiswa/prestasiSaya" class="btn shadow btn-light">
+                    <img src="<?= BASE_URL; ?>public/assets/img/sertificate.png" alt="pc">
+                    <h5>Prestasi Saya</h5>
+                    <p>Anda dapat melihat semua prestasi anda yang terdaftar disini</p>
+                </a>
+            </div>
+            <div class="col-10 col-md-4 m-1">
+                <a href="mhs_pengajuan.php" class="btn shadow btn-light">
+                    <img src="<?= BASE_URL; ?>public/assets/img/contact-form.png" alt="medal">
+                    <h5>Pengajuan</h5>
+                    <p>Anda dapat mengajukan prestasi yang anda miliki disini</p>
+                </a>
+            </div>
+            <div class="col-10 col-md-4 m-1">
+                <a href="<?= BASE_URL; ?>mahasiswa/statusValidasi" class="btn shadow btn-light">
+                    <img src="<?= BASE_URL; ?>public/assets/img/review.png" alt="pc">
+                    <h5>Status Validasi</h5>
+                    <p>Anda dapat melihat status validasi pengajuan yang anda lakukan disini</p>
+                </a>
+            </div>
+        </div>
     </div>
 </main>
