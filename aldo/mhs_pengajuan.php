@@ -76,9 +76,25 @@ while ($row = sqlsrv_fetch_array($stmt_dosen, SQLSRV_FETCH_ASSOC)) {
         </header>
         <main>
             <div class="container-fluid my-4">
-                <div class="row">
+                <?php if (isset($_GET['success'])): ?>
+                    <p class="text-success">Data kompetisi berhasil ditambahkan!</p>
+                <?php elseif (isset($_GET['error'])): ?>
+                    <p class="text-danger">Terjadi kesalahan saat menambahkan data kompetisi.</p>
+                <?php endif; ?>
+                <form action="" class="row" method="post" enctype="multipart/form-data">
+                    <div class="col">
+                        <div class="form-group">
+                            <label>Judul Kompetisi</label>
+                            <input type="text" class="form-control" id="judul_kompetisi" name="judul_kompetisi" required>
+                        </div>
+                    </div>
+                    <div class="col">
 
-                </div>
+                    </div>
+                    <div class="col">
+
+                    </div>
+                </form>
             </div>
         </main>
     </body>
