@@ -13,7 +13,7 @@
         <header class="navbar navbar-expand-lg navbar-dark sticky-top">
             <div class="container-fluid">
                 <!-- Logo -->
-                <a class="navbar-brand d-flex align-items-center" href="#">
+                <a class="navbar-brand d-flex align-items-center" href="<?=BASE_URL?>home">
                     <img src="<?= BASE_URL; ?>public/assets/img/presma.jpg" alt="Logo Polinema" width="200px" class="me-3">
                 </a>
                 <!-- Tombol Toggle -->
@@ -24,7 +24,7 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item px-2">
-                            <a class="nav-link" href="index.html">
+                            <a class="nav-link" href="<?=BASE_URL?>home">
                                 <i class="bi bi-house-door" style="font-size: 17px;"></i>
                             </a>
                         </li>

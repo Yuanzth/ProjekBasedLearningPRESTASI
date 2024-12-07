@@ -931,3 +931,49 @@ Array
         )
 
 )
+Array
+(
+    [0] => Array
+        (
+            [0] => 23000
+            [SQLSTATE] => 23000
+            [1] => 2627
+            [code] => 2627
+            [2] => [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]Violation of UNIQUE KEY constraint 'UQ__tb_user__F3DBC572AE9CFFB1'. Cannot insert duplicate key in object 'dbo.tb_user'. The duplicate key value is (admin).
+            [message] => [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]Violation of UNIQUE KEY constraint 'UQ__tb_user__F3DBC572AE9CFFB1'. Cannot insert duplicate key in object 'dbo.tb_user'. The duplicate key value is (admin).
+        )
+
+    [1] => Array
+        (
+            [0] => 01000
+            [SQLSTATE] => 01000
+            [1] => 3621
+            [code] => 3621
+            [2] => [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]The statement has been terminated.
+            [message] => [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]The statement has been terminated.
+        )
+
+)
+Array
+(
+    [0] => Array
+        (
+            [0] => 23000
+            [SQLSTATE] => 23000
+            [1] => 2627
+            [code] => 2627
+            [2] => [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]Violation of UNIQUE KEY constraint 'UQ__tb_user__F3DBC572AE9CFFB1'. Cannot insert duplicate key in object 'dbo.tb_user'. The duplicate key value is (admin).
+            [message] => [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]Violation of UNIQUE KEY constraint 'UQ__tb_user__F3DBC572AE9CFFB1'. Cannot insert duplicate key in object 'dbo.tb_user'. The duplicate key value is (admin).
+        )
+
+    [1] => Array
+        (
+            [0] => 01000
+            [SQLSTATE] => 01000
+            [1] => 3621
+            [code] => 3621
+            [2] => [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]The statement has been terminated.
+            [message] => [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]The statement has been terminated.
+        )
+
+)

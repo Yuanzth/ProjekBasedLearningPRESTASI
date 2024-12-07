@@ -1,5 +1,3 @@
-
-
 -- Database Sistem Pencatatan Prestasi Non Akademik
 
 -- 1) Membuat Database
@@ -34,7 +32,7 @@ CREATE TABLE tb_mahasiswa (
     no_telp VARCHAR(30),
     semester INT CHECK (semester > 0),
     id_user INT NOT NULL,                        -- Disesuaikan dengan tipe data di tb_user
-    id_admin INT,                                -- Disesuaikan dengan tipe data di tb_admin
+    id_admin INT,                                -- Disesuaikan dengan tipe data di tb_admin disini admin berguna untuk ketika ada data input mahasiswa 
     FOREIGN KEY (id_user) REFERENCES tb_user(id_user),
     FOREIGN KEY (id_admin) REFERENCES tb_admin(id_admin)
 );
@@ -53,7 +51,7 @@ CREATE TABLE tb_dosen (
 
 -- Tabel 5: kompetisi
 CREATE TABLE tb_kompetisi (
-    id_kompetisi INT IDENTITY(1,1) PRIMARY KEY,            -- ID kompetisi dalam format K001 - K999
+    id_kompetisi INT IDENTITY(1,1) PRIMARY KEY,            -- Auto increment
     judul_kompetisi VARCHAR(50) NOT NULL,
     tingkat_kompetisi VARCHAR(20) NOT NULL,
     tempat_kompetisi VARCHAR(50),
@@ -84,63 +82,13 @@ CREATE TABLE tb_prestasi (
 
 
 -- Tabel 7: history
-CREATE TABLE history (
-    id_log VARCHAR(10) PRIMARY KEY,
-    aktivitas VARCHAR(100) NOT NULL,
-    waktu DATETIME NOT NULL,
-    id_user VARCHAR(10) NOT NULL,
-    FOREIGN KEY (id_user) REFERENCES [user](id_user)
-);
-
-
--- stored proceudre
-DROP PROCEDURE sp_login_admin;
-CREATE PROCEDURE sp_login_admin
-    @username NVARCHAR(30)
-AS
-BEGIN
-    SET NOCOUNT ON;
-
-    -- Cari pengguna berdasarkan username
-    SELECT id_user, username, password_hash, privilege
-    FROM tb_user
-    WHERE username = @username AND privilege = 'A';
-END
-
--- Get User By Username Login
-DROP PROCEDURE sp_GetUserByUsername;
-CREATE PROCEDURE sp_GetUserByUsername
-    @Username VARCHAR(30)
-AS
-BEGIN
-    SELECT username, password, privilege
-    FROM tb_user 
-    WHERE username = @Username;
-END;
-
--- isUsernameExists
-DROP PROCEDURE sp_CheckUsernameExists
-CREATE PROCEDURE sp_CheckUsernameExists
-    @Username VARCHAR(30)
-AS
-BEGIN
-    SELECT 1
-    FROM tb_user
-    WHERE username = @Username;
-END;
-
-
--- Register User
-DROP PROCEDURE sp_RegisterUser;
-CREATE PROCEDURE sp_RegisterUser
-    @Username VARCHAR(30),
-    @Password NVARCHAR(255),
-    @Privileges CHAR(1)
-AS
-BEGIN
-    INSERT INTO tb_user(username, password, privilege)
-    VALUES (@Username, @Password, @Privileges);
-END;
+-- CREATE TABLE history (
+--     id_log VARCHAR(10) PRIMARY KEY,
+--     aktivitas VARCHAR(100) NOT NULL,
+--     waktu DATETIME NOT NULL,
+--     id_user VARCHAR(10) NOT NULL,
+--     FOREIGN KEY (id_user) REFERENCES [user](id_user)
+-- );
 
 
 -- Insert Data
@@ -149,6 +97,7 @@ INSERT INTO tb_user (username, password_hash, privilege)
 VALUES ('admin', 
         HASHBYTES('SHA2_256', 'admin123'), 
         'A');
+
 -- 2. Menambahkan admin ke tabel tb_admin
 DECLARE @id_user INT;
 SET @id_user = SCOPE_IDENTITY();  -- Ambil id_user yang baru saja dimasukkan
@@ -165,14 +114,6 @@ SELECT * FROM tb_admin;
 -- Hapus semua data dari tabel
 DELETE FROM tb_user;
 DROP TABLE tb_user;
+
 -- Reset identity seed ke 1
 DBCC CHECKIDENT ('tb_user', RESEED, 0);
-DROP PROCEDURE GetPrivileges
-CREATE PROCEDURE GetPrivileges
-AS
-BEGIN
-    SELECT privilege FROM tb_user ; -- Pastikan Anda memiliki tabel atau data terkait privilege
-END
-
-
-EXEC GetPrivileges

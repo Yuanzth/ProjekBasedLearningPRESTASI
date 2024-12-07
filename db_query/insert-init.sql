@@ -33,3 +33,39 @@ INSERT INTO kompetisi (id_kompetisi, judul_kompetisi, tingkat_kompetisi, tempat_
 INSERT INTO prestasi_non_akademik (id_prestasi_nonakademik, judul_kompetisi, tingkat_kompetisi, tempat_kompetisi, tanggal_kompetisi, role, NIM, NIP, id_kompetisi, id_admin) VALUES
 ('P001', 'Hackathon 2024', 'Nasional', 'Jakarta', '2024-12-01', 'Peserta', 'M001', 'D001', 'K001', 'A001'); -- Valid (sudah masuk prestasi)
 
+
+-- INSERT DATABASE BARU
+USE db_prestasi;
+
+-- Insert data ke tabel tb_admin
+INSERT INTO tb_admin (id_user, nama)
+SELECT id_user, 'Admin1'
+FROM tb_user
+WHERE username = 'admin';
+
+-- Insert data mahasiswa dengan id_admin 1
+
+-- Yuan
+INSERT INTO tb_mahasiswa (NIM, nama, program_studi, email, no_telp, semester, id_user, id_admin)
+SELECT '2341760050', 'Aditya Yuhanda Putra', 'Sistem Informasi Bisnis', 'adityayuhanda3001@gmail.com', '+62 896-0677-5727', 3, id_user, 1
+FROM tb_user
+WHERE username = 'yuan';
+
+-- Aldo
+INSERT INTO tb_mahasiswa (NIM, nama, program_studi, email, no_telp, semester, id_user, id_admin)
+SELECT '2341760091', 'Aldo Khrisna Wijaya', 'Sistem Informasi Bisnis', 'aldokhrisna@gmail.com', '+62 895-0359-3601', 3, id_user, 1
+FROM tb_user
+WHERE username = 'aldo';
+
+-- Icha
+INSERT INTO tb_mahasiswa (NIM, nama, program_studi, email, no_telp, semester, id_user, id_admin)
+SELECT '2341760042', 'Karina Ika Indasa', 'Sistem Informasi Bisnis', 'karinaika@gmail.com', '+62 822-5004-2722', 3, id_user, 1
+FROM tb_user
+WHERE username = 'icha';
+
+-- Naya
+INSERT INTO tb_mahasiswa (NIM, nama, program_studi, email, no_telp, semester, id_user, id_admin)
+SELECT '2341760118', 'Kanaya Abdielaramadhani Hidayat', 'Sistem Informasi Bisnis', 'kanayaabdiela@gmail.com', '+62 818-0946-0175', 3, id_user, 1
+FROM tb_user
+WHERE username = 'naya';
+

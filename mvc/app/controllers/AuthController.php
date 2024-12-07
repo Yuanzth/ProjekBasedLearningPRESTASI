@@ -30,13 +30,20 @@ class AuthController extends Controller
                 if ($_SESSION['privilege'] === "A") {
                     header('Location: ' . BASE_URL . 'admin/dashboard'); // Arahkan ke halaman dashboard admin
                 } elseif ($_SESSION['privilege'] === "M") {
-                    header('Location: ' . BASE_URL . 'mahasiswa/dashboard'); // Arahkan ke halaman dashboard mahasiswa
+                    echo "<script>
+                        alert('Berhasil login.');
+                        window.location.href = '" . BASE_URL . "mahasiswa/index';
+                    </script>";
+                    // header('Location: ' . BASE_URL . 'mahasiswa/index'); // Arahkan ke halaman dashboard mahasiswa
                 } else {
                     echo "privilege tidak valid.";
                 }
                 exit();
             } else {
-                echo "Username atau password s  alah.";
+                echo "<script>
+                        alert('Username atau password salah.');
+                        window.location.href = '" . BASE_URL . "auth/login';
+                    </script>";
             }
         } else {
             AuthController::index(); // Menampilkan halaman login
