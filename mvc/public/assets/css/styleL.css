@@ -1,0 +1,81 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+body {
+    background-image: url(http://localhost/project/public/assets/img/ts.jpg);
+}
+.col-12 {
+    position: relative;
+    backdrop-filter: blur(25px);
+    border-radius: 15px;
+    border: 2px solid white;
+    overflow: hidden;
+}
+.col-12 form {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: black;
+}
+form h2 {
+    font-weight: bolder;
+    margin-bottom: 20px;
+}
+form img {
+    width: 130px;
+    margin: 10px;
+}
+.input-group {
+    position: relative;
+    border-bottom: 2px solid black;
+    margin: 20px 0;
+}
+.input-group i {
+    position: absolute;
+    right: 0;
+    font-size: medium;
+}
+.input-group label {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    font-weight: bold;
+    pointer-events: none;
+    transition: .3s;
+}
+.input-group input {
+    background: transparent;
+    outline: none;
+    border: none;
+    width: 93%;
+    height: 90%;
+}
+.input-group input:focus~label,
+.input-group input:valid~label {
+    top: -7px;
+}
+form .btn {
+    position: relative;
+    width: 100%;
+    background-color: transparent;
+    color: black;
+    font-size: large;
+    font-weight: bolder;
+    outline: 2px solid black;
+    border: none;
+    margin: 30px 0 10px 0;
+    cursor: pointer;
+    transition: all 0.4s ease-in-out;
+}
+.btn:hover {
+    color: white;
+    outline: 2px solid white;
+}

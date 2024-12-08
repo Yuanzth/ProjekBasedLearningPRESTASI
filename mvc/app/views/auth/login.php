@@ -1,16 +1,19 @@
-<div class="card w-50 mx-auto">
-  <div class="card-body">
-    <h5 class="card-title text-center mb-5">Login</h5>
-    <form id="loginForm" method="POST" action="<?= BASE_URL; ?>auth/login">
-      <div class="form-group">
-        <label for="username">Username</label>
-        <input type="text" name="username" id="username" class="form-control" required>
+<div class="container min-vh-100 d-flex align-items-center justify-content-center">
+  <div class="col-12 col-lg-4 p-4 shadow">
+    <form action="" method="post">
+      <h2>Login</h2>
+      <img src="<?= BASE_URL; ?>public/assets/img/logo.png" alt="">
+      <div class="input-group">
+        <input type="text" name="username" class="bg-transparent" required>
+        <label>Username</label>
+        <i class="bi bi-person-fill"></i>
       </div>
-      <div class="form-group">
-        <label for="password">Password</label>
-        <input type="password" name="password" id="password" class="form-control" required>
+      <div class="input-group">
+        <input type="password" name="password" class="bg-transparent" required>
+        <label>Password</label>
+        <i class="bi bi-lock-fill"></i>
       </div>
-      <button type="submit" class="btn btn-primary">Login</button>
+      <button type="submit" class="btn" name="Login" value="Proses">Login</button>
     </form>
 
     <!-- Tempat untuk menampilkan pesan error atau sukses -->
