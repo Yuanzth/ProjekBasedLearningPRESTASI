@@ -55,8 +55,8 @@ $prestasiData = prestasi_saya_backend($nim);
                         <li class="nav-item px-2 d-flex align-items-center dropdown-center">
                             <button class="btn nav-link dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Kompetisi</button>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item nav-link" href="#">Pengajuan</a></li>
-                                <li><a class="dropdown-item nav-link" href="#">Status Validasi</a></li>
+                                <li><a class="dropdown-item nav-link" href="mhs_pengajuan.php">Pengajuan</a></li>
+                                <li><a class="dropdown-item nav-link" href="mhs_status_validasi.php">Status Validasi</a></li>
                             </ul>
                         </li>
                         <li class="nav-item px-2 d-flex align-items-center dropdown-center">

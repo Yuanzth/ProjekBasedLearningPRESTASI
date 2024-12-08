@@ -20,7 +20,7 @@ if (empty($prestasiData)) {
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-        <link rel="stylesheet" href="styleSP.css">
+        <link rel="stylesheet" href="styleSePres.css">
         <title>Prestasi | PRESMA</title>
     </head>
     <body>
@@ -52,8 +52,8 @@ if (empty($prestasiData)) {
                         <li class="nav-item px-2 d-flex align-items-center dropdown-center">
                             <button class="btn nav-link dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Kompetisi</button>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item nav-link" href="#">Pengajuan</a></li>
-                                <li><a class="dropdown-item nav-link" href="#">Status Validasi</a></li>
+                                <li><a class="dropdown-item nav-link" href="mhs_pengajuan.php">Pengajuan</a></li>
+                                <li><a class="dropdown-item nav-link" href="mhs_status_validasi.php">Status Validasi</a></li>
                             </ul>
                         </li>
                         <li class="nav-item px-2 d-flex align-items-center dropdown-center">
@@ -73,29 +73,29 @@ if (empty($prestasiData)) {
                 <!-- baris pencarian -->
                 <form action="" class="row"  method="post" enctype="multipart/form-data">
                     <div class="col-12 px-4">
-                        <div class="input-group mb-3">
+                        <div class="input-group shadow mb-3">
                             <span class="input-group-text"><i class="bi bi-search"></i></span>
                             <input type="text" class="form-control" placeholder="Ketik kata kunci">
                         </div>
                     </div>
                     <div class="col-12 col-md-6 px-4">
-                        <div class="input-group mb-3">
+                        <div class="input-group shadow mb-3">
                             <label class="input-group-text" for="inputGroupSelect01">Urutkan</label>
                             <select class="form-select" id="inputGroupSelect01">
                                 <option selected>Pilih...</option>
-                                <option value="1">Terlama</option>
-                                <option value="2">Terbaru</option>
+                                <option value="Terlama">Terlama</option>
+                                <option value="Terbaru">Terbaru</option>
                             </select>
                         </div>
                     </div>
                     <div class="col-12 col-md-6 px-4">
-                        <div class="input-group mb-3">
+                        <div class="input-group shadow mb-3">
                             <label class="input-group-text" for="inputGroupSelect01">Tingkat Kompetisi</label>
                             <select class="form-select" id="inputGroupSelect02">
                                 <option selected>Pilih...</option>
-                                <option value="1">Lokal</option>
-                                <option value="2">Nasional</option>
-                                <option value="3">Internasional</option>
+                                <option value="Lokal">Lokal</option>
+                                <option value="Nasional">Nasional</option>
+                                <option value="Internasional">Internasional</option>
                             </select>
                         </div>
                     </div>
@@ -105,32 +105,34 @@ if (empty($prestasiData)) {
                 </form>
                 <!-- baris tabel -->
                  <div class="row px-4">
-                    <table class="table table-bordered table-hover">
-                        <thead>
-                            <tr>
-                                <th>No.</th>
-                                <th>Nama Mahasiswa</th>
-                                <th>Judul Kompetisi</th>
-                                <th>Tingkat Kompetisi</th>
-                                <th>Tempat Kompetisi</th>
-                                <th>Tanggal Kompetisi</th>
-                                <th>Dosen Pendamping</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php foreach ($prestasiData as $no => $row): ?>
+                    <div class="table-responsive">
+                        <table class="table shadow table-bordered table-hover">
+                            <thead>
                                 <tr>
-                                    <td><?php echo $no + 1; ?></td>
-                                    <td><?php echo htmlspecialchars($row['mahasiswa'] ?? ''); ?></td> <!-- Mengakses mahasiswa dengan alias 'mahasiswa' -->
-                                    <td><?php echo htmlspecialchars($row['judul_kompetisi']); ?></td>
-                                    <td><?php echo htmlspecialchars($row['tingkat_kompetisi']); ?></td>
-                                    <td><?php echo htmlspecialchars($row['tempat_kompetisi']); ?></td>
-                                    <td><?php echo htmlspecialchars($row['tanggal_kompetisi']->format('d-m-Y')); ?></td> <!-- Format tanggal -->
-                                    <td><?php echo htmlspecialchars($row['dosen'] ?? ''); ?></td> <!-- Mengakses dosen dengan alias 'dosen' -->
+                                    <th>No.</th>
+                                    <th>Nama Mahasiswa</th>
+                                    <th>Judul Kompetisi</th>
+                                    <th>Tingkat Kompetisi</th>
+                                    <th>Tempat Kompetisi</th>
+                                    <th>Tanggal Kompetisi</th>
+                                    <th>Dosen Pendamping</th>
                                 </tr>
-                            <?php endforeach; ?>
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                                <?php foreach ($prestasiData as $no => $row): ?>
+                                    <tr>
+                                        <td><?php echo $no + 1; ?></td>
+                                        <td><?php echo htmlspecialchars($row['mahasiswa'] ?? ''); ?></td> <!-- Mengakses mahasiswa dengan alias 'mahasiswa' -->
+                                        <td><?php echo htmlspecialchars($row['judul_kompetisi']); ?></td>
+                                        <td><?php echo htmlspecialchars($row['tingkat_kompetisi']); ?></td>
+                                        <td><?php echo htmlspecialchars($row['tempat_kompetisi']); ?></td>
+                                        <td><?php echo htmlspecialchars($row['tanggal_kompetisi']->format('d-m-Y')); ?></td> <!-- Format tanggal -->
+                                        <td><?php echo htmlspecialchars($row['dosen'] ?? ''); ?></td> <!-- Mengakses dosen dengan alias 'dosen' -->
+                                    </tr>
+                                <?php endforeach; ?>
+                            </tbody>
+                        </table>
+                    </div>
                  </div>
             </div>
         </main>
