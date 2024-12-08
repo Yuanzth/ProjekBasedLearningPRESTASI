@@ -193,7 +193,7 @@ while ($row = sqlsrv_fetch_array($stmt_dosen, SQLSRV_FETCH_ASSOC)) {
                         <tbody>
                             <?php if (empty($kompetisi_data)): ?>
                                 <tr>
-                                    <td colspan="8" class="text-center">Tidak ada data kompetisi yang belum divalidasi.</td>
+                                    <td colspan="8" class="text-center">Tidak ada data pengajuan.</td>
                                 </tr>
                             <?php else: ?>
                                 <?php foreach ($kompetisi_data as $index => $kompetisi): ?>

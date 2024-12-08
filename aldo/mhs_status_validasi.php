@@ -1,3 +1,20 @@
+<?php
+session_start();
+include 'cek_status_validasi_backend.php'; // Memanggil backend untuk mendapatkan status validasi kompetisi
+
+// Cek apakah user sudah login
+if (!isset($_SESSION['nim'])) {
+    header("Location: login_mhs.php");
+    exit();
+}
+
+// Mendapatkan NIM mahasiswa yang login
+$nim = $_SESSION['nim'];  // Pastikan session nim berisi NIM mahasiswa
+
+// Mendapatkan data status validasi kompetisi mahasiswa
+$kompetisiData = cek_status_validasi($nim);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -6,7 +23,7 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-        <link rel="stylesheet" href="styleM.css">
+        <link rel="stylesheet" href="styleStatus.css">
         <title>Dashboard | PRESMA</title>
     </head>
     <body>
@@ -55,8 +72,49 @@
         </header>
         <main>
             <div class="container-fluid my-4">
-                <div class="row">
-                    
+                <h3 class="mb-3">Status Validasi Pengajuan Anda</h3>
+                <div class="table-responsive">
+                    <table class="table shadow table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th>No.</th>
+                                <th>Judul Kompetisi</th>
+                                <th>Tingkat Kompetisi</th>
+                                <th>Tempat Kompetisi</th>
+                                <th>Tanggal Kompetisi</th>
+                                <th>Status Validasi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php if (empty($kompetisiData)): ?>
+                                <tr>
+                                    <td colspan="6" class="text-center">Data kompetisi tidak tersedia.</td>
+                                </tr>
+                            <?php else: ?>
+                                <?php foreach ($kompetisiData as $no => $row): ?>
+                                    <tr>
+                                        <td><?php echo $no + 1; ?></td>
+                                        <td><?php echo htmlspecialchars($row['judul_kompetisi']); ?></td>
+                                        <td><?php echo htmlspecialchars($row['tingkat_kompetisi']); ?></td>
+                                        <td><?php echo htmlspecialchars($row['tempat_kompetisi']); ?></td>
+                                        <td><?php echo htmlspecialchars($row['tanggal_kompetisi']->format('d-m-Y')); ?></td>
+                                        <td>
+                                            <?php
+                                            // Menentukan status validasi
+                                            if ($row['valid'] === 'Y') {
+                                                echo 'Divalidasi';
+                                            } elseif ($row['valid'] === 'N') {
+                                                echo 'Belum Divalidasi';
+                                            } else {
+                                                echo 'Tidak Valid';
+                                            }
+                                            ?>
+                                        </td>
+                                    </tr>
+                                <?php endforeach; ?>
+                            <?php endif; ?>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </main>

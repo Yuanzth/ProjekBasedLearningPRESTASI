@@ -23,8 +23,12 @@ body {
 .navbar-nav i {
     font-size: 17px;
 }
+.nav-link:hover {
+    color: white;
+}
 .dropdown-menu {
     background-color: #122246;
+    padding: 0 5px;
 }
 .dropdown-item:hover {
     background-color: transparent;
