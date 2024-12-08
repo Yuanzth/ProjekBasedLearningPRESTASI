@@ -93,7 +93,7 @@
                 </a>
             </div>
             <div class="col-10 col-md-4 m-1">
-                <a href="mhs_pengajuan.php" class="btn shadow btn-light">
+                <a href="<?= BASE_URL; ?>mahasiswa/ajukanKompetisi" class="btn shadow btn-light">
                     <img src="<?= BASE_URL; ?>public/assets/img/contact-form.png" alt="medal">
                     <h5>Pengajuan</h5>
                     <p>Anda dapat mengajukan prestasi yang anda miliki disini</p>

@@ -9,7 +9,7 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-        <link rel="stylesheet" href="<?= BASE_URL; ?>public/assets/css/<?= $data['style']; ?>">
+        <link rel="stylesheet" href="<?= BASE_URL; ?>public/assets/css/<?= $data['style'];?>">
         <title>Dashboard Mahasiswa | PRESMA</title>
     </head>
     <body>
@@ -41,7 +41,7 @@
                         <li class="nav-item px-2 d-flex align-items-center dropdown">
                             <button class="btn nav-link dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Kompetisi</button>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item nav-link" href="#">Pengajuan</a></li>
+                                <li><a class="dropdown-item nav-link" href="<?= BASE_URL; ?>mahasiswa/ajukanKompetisi">Pengajuan</a></li>
                                 <li><a class="dropdown-item nav-link" href="<?= BASE_URL; ?>mahasiswa/statusValidasi">Status Validasi</a></li>
                             </ul>
                         </li>

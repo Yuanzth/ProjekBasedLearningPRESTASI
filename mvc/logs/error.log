@@ -1092,3 +1092,256 @@ Array
 )
 
 [2024-12-07 15:50:14] Error executing query: vw_MyPrestasi
+[2024-12-07 17:36:01] Array
+(
+    [0] => Array
+        (
+            [0] => 42S22
+            [SQLSTATE] => 42S22
+            [1] => 207
+            [code] => 207
+            [2] => [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]Invalid column name 'id_mahasiswa'.
+            [message] => [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]Invalid column name 'id_mahasiswa'.
+        )
+
+    [1] => Array
+        (
+            [0] => 42000
+            [SQLSTATE] => 42000
+            [1] => 8180
+            [code] => 8180
+            [2] => [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]Statement(s) could not be prepared.
+            [message] => [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]Statement(s) could not be prepared.
+        )
+
+)
+
+[2024-12-07 17:36:01] Error executing query: vw_MyPrestasi
+[2024-12-07 17:37:45] Array
+(
+    [0] => Array
+        (
+            [0] => 42S22
+            [SQLSTATE] => 42S22
+            [1] => 207
+            [code] => 207
+            [2] => [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]Invalid column name 'id_mahasiswa'.
+            [message] => [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]Invalid column name 'id_mahasiswa'.
+        )
+
+    [1] => Array
+        (
+            [0] => 42000
+            [SQLSTATE] => 42000
+            [1] => 8180
+            [code] => 8180
+            [2] => [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]Statement(s) could not be prepared.
+            [message] => [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]Statement(s) could not be prepared.
+        )
+
+)
+
+[2024-12-07 17:37:45] Error executing query: vw_MyPrestasi
+[2024-12-07 17:37:47] Array
+(
+    [0] => Array
+        (
+            [0] => 42S22
+            [SQLSTATE] => 42S22
+            [1] => 207
+            [code] => 207
+            [2] => [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]Invalid column name 'id_mahasiswa'.
+            [message] => [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]Invalid column name 'id_mahasiswa'.
+        )
+
+    [1] => Array
+        (
+            [0] => 42000
+            [SQLSTATE] => 42000
+            [1] => 8180
+            [code] => 8180
+            [2] => [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]Statement(s) could not be prepared.
+            [message] => [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]Statement(s) could not be prepared.
+        )
+
+)
+
+[2024-12-07 17:37:47] Error executing query: vw_MyPrestasi
+[2024-12-07 19:05:38] Array
+(
+    [0] => Array
+        (
+            [0] => 42000
+            [SQLSTATE] => 42000
+            [1] => 257
+            [code] => 257
+            [2] => [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]Implicit conversion from data type varchar(max) to varbinary(max) is not allowed. Use the CONVERT function to run this query.
+            [message] => [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]Implicit conversion from data type varchar(max) to varbinary(max) is not allowed. Use the CONVERT function to run this query.
+        )
+
+)
+
+[2024-12-07 19:05:38] Error executing stored procedure: sp_InsertKompetisi
+[2024-12-07 19:05:46] Array
+(
+    [0] => Array
+        (
+            [0] => 42000
+            [SQLSTATE] => 42000
+            [1] => 257
+            [code] => 257
+            [2] => [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]Implicit conversion from data type varchar(max) to varbinary(max) is not allowed. Use the CONVERT function to run this query.
+            [message] => [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]Implicit conversion from data type varchar(max) to varbinary(max) is not allowed. Use the CONVERT function to run this query.
+        )
+
+)
+
+[2024-12-07 19:05:46] Error executing stored procedure: sp_InsertKompetisi
+[2024-12-07 19:18:00] Array
+(
+    [0] => Array
+        (
+            [0] => 42000
+            [SQLSTATE] => 42000
+            [1] => 2812
+            [code] => 2812
+            [2] => [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]Could not find stored procedure 'sp_GetAllDosen'.
+            [message] => [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]Could not find stored procedure 'sp_GetAllDosen'.
+        )
+
+)
+
+[2024-12-07 19:19:35] Array
+(
+    [0] => Array
+        (
+            [0] => 42000
+            [SQLSTATE] => 42000
+            [1] => 257
+            [code] => 257
+            [2] => [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]Implicit conversion from data type varchar(max) to varbinary(max) is not allowed. Use the CONVERT function to run this query.
+            [message] => [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]Implicit conversion from data type varchar(max) to varbinary(max) is not allowed. Use the CONVERT function to run this query.
+        )
+
+)
+
+[2024-12-07 19:19:35] Error executing stored procedure: sp_InsertKompetisi
+[2024-12-07 19:21:15] Array
+(
+    [0] => Array
+        (
+            [0] => 42000
+            [SQLSTATE] => 42000
+            [1] => 257
+            [code] => 257
+            [2] => [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]Implicit conversion from data type varchar(max) to varbinary(max) is not allowed. Use the CONVERT function to run this query.
+            [message] => [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]Implicit conversion from data type varchar(max) to varbinary(max) is not allowed. Use the CONVERT function to run this query.
+        )
+
+)
+
+[2024-12-07 19:21:15] Error executing stored procedure: sp_InsertKompetisi
+[2024-12-07 19:22:33] Array
+(
+    [0] => Array
+        (
+            [0] => 42000
+            [SQLSTATE] => 42000
+            [1] => 257
+            [code] => 257
+            [2] => [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]Implicit conversion from data type varchar(max) to varbinary(max) is not allowed. Use the CONVERT function to run this query.
+            [message] => [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]Implicit conversion from data type varchar(max) to varbinary(max) is not allowed. Use the CONVERT function to run this query.
+        )
+
+)
+
+[2024-12-07 19:22:33] Error executing stored procedure: sp_InsertKompetisi
+[2024-12-07 19:23:30] Array
+(
+    [0] => Array
+        (
+            [0] => 42000
+            [SQLSTATE] => 42000
+            [1] => 257
+            [code] => 257
+            [2] => [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]Implicit conversion from data type varchar(max) to varbinary(max) is not allowed. Use the CONVERT function to run this query.
+            [message] => [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]Implicit conversion from data type varchar(max) to varbinary(max) is not allowed. Use the CONVERT function to run this query.
+        )
+
+)
+
+[2024-12-07 19:23:30] Error executing stored procedure: sp_InsertKompetisi
+[2024-12-07 19:24:21] Array
+(
+    [0] => Array
+        (
+            [0] => 42000
+            [SQLSTATE] => 42000
+            [1] => 257
+            [code] => 257
+            [2] => [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]Implicit conversion from data type varchar(max) to varbinary(max) is not allowed. Use the CONVERT function to run this query.
+            [message] => [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]Implicit conversion from data type varchar(max) to varbinary(max) is not allowed. Use the CONVERT function to run this query.
+        )
+
+)
+
+[2024-12-07 19:24:21] Error executing stored procedure: sp_InsertKompetisi
+[2024-12-07 19:29:11] Array
+(
+    [0] => Array
+        (
+            [0] => 42000
+            [SQLSTATE] => 42000
+            [1] => 257
+            [code] => 257
+            [2] => [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]Implicit conversion from data type varchar(max) to varbinary(max) is not allowed. Use the CONVERT function to run this query.
+            [message] => [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]Implicit conversion from data type varchar(max) to varbinary(max) is not allowed. Use the CONVERT function to run this query.
+        )
+
+)
+
+[2024-12-07 19:29:11] Error executing stored procedure: sp_InsertKompetisi
+[2024-12-07 19:38:50] Array
+(
+    [0] => Array
+        (
+            [0] => 42000
+            [SQLSTATE] => 42000
+            [1] => 257
+            [code] => 257
+            [2] => [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]Implicit conversion from data type varchar(max) to varbinary(max) is not allowed. Use the CONVERT function to run this query.
+            [message] => [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]Implicit conversion from data type varchar(max) to varbinary(max) is not allowed. Use the CONVERT function to run this query.
+        )
+
+)
+
+[2024-12-07 19:38:50] Error executing stored procedure: sp_InsertKompetisi
+[2024-12-07 19:38:53] Array
+(
+    [0] => Array
+        (
+            [0] => 42000
+            [SQLSTATE] => 42000
+            [1] => 257
+            [code] => 257
+            [2] => [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]Implicit conversion from data type varchar(max) to varbinary(max) is not allowed. Use the CONVERT function to run this query.
+            [message] => [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]Implicit conversion from data type varchar(max) to varbinary(max) is not allowed. Use the CONVERT function to run this query.
+        )
+
+)
+
+[2024-12-07 19:38:53] Error executing stored procedure: sp_InsertKompetisi
+[2024-12-07 20:04:39] Array
+(
+    [0] => Array
+        (
+            [0] => 42000
+            [SQLSTATE] => 42000
+            [1] => 2812
+            [code] => 2812
+            [2] => [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]Could not find stored procedure 'sp_GetFileKompetisi'.
+            [message] => [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]Could not find stored procedure 'sp_GetFileKompetisi'.
+        )
+
+)
+

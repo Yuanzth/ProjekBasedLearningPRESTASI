@@ -65,45 +65,38 @@ BEGIN
     WHERE id_user = @id_user;
 END;
 
--- Ambil data semua prestasi
-CREATE PROCEDURE sp_GetAllPrestasi
-AS
-BEGIN
-    SELECT 
-        p.id_prestasi,
-        m.nama AS mahasiswa,
-        k.judul_kompetisi,
-        k.tingkat_kompetisi,
-        k.tempat_kompetisi,
-        k.tanggal_kompetisi,
-        d.nama_dosen AS dosen
-    FROM tb_prestasi p
-    INNER JOIN tb_kompetisi k ON p.id_kompetisi = k.id_kompetisi
-    INNER JOIN tb_mahasiswa m ON k.id_mahasiswa = m.id_mahasiswa
-    LEFT JOIN tb_dosen d ON k.id_dosen = d.id_dosen;
-END;
+-- View untuk Semua Prestasi
+DROP VIEW vw_AllPrestasi;
+CREATE VIEW vw_AllPrestasi AS
+SELECT 
+    p.id_prestasi,
+    m.nama AS mahasiswa,
+    k.judul_kompetisi,
+    k.tingkat_kompetisi,
+    k.tempat_kompetisi,
+    k.tanggal_kompetisi,
+    d.nama_dosen AS dosen
+FROM tb_prestasi p
+INNER JOIN tb_mahasiswa m ON p.id_mahasiswa = m.id_mahasiswa
+INNER JOIN tb_kompetisi k ON p.id_kompetisi = k.id_kompetisi
+INNER JOIN tb_dosen d ON p.id_dosen = d.id_dosen;
 
-
--- Ambil data prestasi dari mahasiswa tertentu
-CREATE PROCEDURE sp_GetMyPrestasi
-    @id_mahasiswa INT
-AS
-BEGIN
-    SELECT 
-        p.id_prestasi,
-        k.judul_kompetisi,
-        k.tingkat_kompetisi,
-        k.tempat_kompetisi,
-        k.tanggal_kompetisi,
-        d.nama_dosen AS dosen
-    FROM tb_prestasi p
-    INNER JOIN tb_kompetisi k ON p.id_kompetisi = k.id_kompetisi
-    LEFT JOIN tb_dosen d ON k.id_dosen = d.id_dosen
-    WHERE k.id_mahasiswa = @id_mahasiswa;
-END;
-
-
-
+-- View untuk Prestasi Saya
+DROP VIEW IF EXISTS vw_MyPrestasi;
+CREATE VIEW vw_MyPrestasi AS
+SELECT 
+    p.id_prestasi,
+    k.judul_kompetisi,
+    k.tingkat_kompetisi,
+    k.tempat_kompetisi,
+    k.tanggal_kompetisi,
+    d.nama_dosen AS dosen,
+    k.id_mahasiswa  -- Menambahkan id_mahasiswa
+FROM tb_prestasi p
+INNER JOIN tb_kompetisi k ON p.id_kompetisi = k.id_kompetisi
+INNER JOIN tb_dosen d ON k.id_dosen = d.id_dosen;
+ 
+SELECT * FROM vw_MyPrestasi WHERE id_mahasiswa = 1;
 -- menambahkan status validasi berdasarkan nilai kolom valid pada tabel tb_kompetisi
 CREATE PROCEDURE sp_GetStatusValidasi
     @id_mahasiswa INT
@@ -122,3 +115,79 @@ BEGIN
         k.id_mahasiswa = @id_mahasiswa
 END
 
+-- Store procedure untuk menambahkan pengajuan kompetisi
+DROP PROCEDURE sp_InsertKompetisi;
+CREATE PROCEDURE sp_InsertKompetisi
+    @judul_kompetisi VARCHAR(50),
+    @tingkat_kompetisi VARCHAR(20),
+    @tempat_kompetisi VARCHAR(50),
+    @tanggal_kompetisi DATE,
+    @file_surat_tugas VARCHAR(MAX),  -- Mengubah menjadi VARCHAR untuk menerima base64 string
+    @file_sertifikat VARCHAR(MAX),   -- Mengubah menjadi VARCHAR untuk menerima base64 string
+    @role VARCHAR(10),
+    @id_mahasiswa INT,
+    @id_dosen INT
+AS
+BEGIN
+    -- Mengonversi string base64 ke VARBINARY(MAX)
+    DECLARE @file_surat_tugas_bin VARBINARY(MAX);
+    DECLARE @file_sertifikat_bin VARBINARY(MAX);
+
+    SET @file_surat_tugas_bin = CAST('' AS XML).value('xs:base64Binary(sql:variable("@file_surat_tugas"))', 'VARBINARY(MAX)');
+    SET @file_sertifikat_bin = CAST('' AS XML).value('xs:base64Binary(sql:variable("@file_sertifikat"))', 'VARBINARY(MAX)');
+
+    -- Memasukkan data ke dalam tabel
+    INSERT INTO tb_kompetisi (judul_kompetisi, tingkat_kompetisi, tempat_kompetisi, tanggal_kompetisi, 
+                              file_surat_tugas, file_sertifikat, role, id_mahasiswa, id_dosen)
+    VALUES (@judul_kompetisi, @tingkat_kompetisi, @tempat_kompetisi, @tanggal_kompetisi, 
+            @file_surat_tugas_bin, @file_sertifikat_bin, @role, @id_mahasiswa, @id_dosen);
+END;
+
+
+
+-- Mengambil data dosen yang tersedia
+CREATE PROCEDURE sp_GetAllDosen
+AS
+BEGIN
+    SELECT id_dosen, nama_dosen
+    FROM tb_dosen
+    ORDER BY nama_dosen;
+END
+
+-- Stored procedure ini akan mengembalikan file yang disimpan dalam format VARBINARY(MAX).
+DROP PROCEDURE sp_getFileKompetisi;
+CREATE PROCEDURE sp_GetFileKompetisi
+    @id_kompetisi INT
+AS
+BEGIN
+    -- Mengambil file Surat Tugas dan Sertifikat berdasarkan ID kompetisi
+    SELECT file_surat_tugas, file_sertifikat
+    FROM tb_kompetisi
+    WHERE id_kompetisi = @id_kompetisi;
+END;
+
+-- Buat stored procedure untuk mengupdate data kompetisi
+CREATE PROCEDURE sp_UpdateKompetisi
+    @id_kompetisi INT,
+    @judul_kompetisi VARCHAR(50),
+    @tingkat_kompetisi VARCHAR(20),
+    @tempat_kompetisi VARCHAR(50),
+    @tanggal_kompetisi DATE,
+    @file_surat_tugas VARBINARY(MAX) = NULL,
+    @file_sertifikat VARBINARY(MAX) = NULL,
+    @role VARCHAR(10),
+    @id_dosen INT
+AS
+BEGIN
+    UPDATE tb_kompetisi
+    SET
+        judul_kompetisi = @judul_kompetisi,
+        tingkat_kompetisi = @tingkat_kompetisi,
+        tempat_kompetisi = @tempat_kompetisi,
+        tanggal_kompetisi = @tanggal_kompetisi,
+        file_surat_tugas = CASE WHEN @file_surat_tugas IS NOT NULL THEN @file_surat_tugas ELSE file_surat_tugas END,
+        file_sertifikat = CASE WHEN @file_sertifikat IS NOT NULL THEN @file_sertifikat ELSE file_sertifikat END,
+        role = @role,
+        id_dosen = @id_dosen
+    WHERE id_kompetisi = @id_kompetisi;
+END;
