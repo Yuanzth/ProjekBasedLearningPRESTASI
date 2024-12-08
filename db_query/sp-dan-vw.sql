@@ -173,21 +173,58 @@ CREATE PROCEDURE sp_UpdateKompetisi
     @tingkat_kompetisi VARCHAR(20),
     @tempat_kompetisi VARCHAR(50),
     @tanggal_kompetisi DATE,
-    @file_surat_tugas VARBINARY(MAX) = NULL,
-    @file_sertifikat VARBINARY(MAX) = NULL,
+    @file_surat_tugas VARCHAR(MAX) = NULL,  -- Menggunakan base64 string
+    @file_sertifikat VARCHAR(MAX) = NULL,   -- Menggunakan base64 string
     @role VARCHAR(10),
     @id_dosen INT
 AS
 BEGIN
+    -- Konversi base64 ke VARBINARY(MAX)
+    DECLARE @file_surat_tugas_bin VARBINARY(MAX);
+    DECLARE @file_sertifikat_bin VARBINARY(MAX);
+
+    SET @file_surat_tugas_bin = CASE 
+                                    WHEN @file_surat_tugas IS NOT NULL 
+                                    THEN CAST('' AS XML).value('xs:base64Binary(sql:variable("@file_surat_tugas"))', 'VARBINARY(MAX)') 
+                                    ELSE NULL 
+                                END;
+
+    SET @file_sertifikat_bin = CASE 
+                                    WHEN @file_sertifikat IS NOT NULL 
+                                    THEN CAST('' AS XML).value('xs:base64Binary(sql:variable("@file_sertifikat"))', 'VARBINARY(MAX)') 
+                                    ELSE NULL 
+                                END;
+
+    -- Update data dalam tabel
     UPDATE tb_kompetisi
     SET
         judul_kompetisi = @judul_kompetisi,
         tingkat_kompetisi = @tingkat_kompetisi,
         tempat_kompetisi = @tempat_kompetisi,
         tanggal_kompetisi = @tanggal_kompetisi,
-        file_surat_tugas = CASE WHEN @file_surat_tugas IS NOT NULL THEN @file_surat_tugas ELSE file_surat_tugas END,
-        file_sertifikat = CASE WHEN @file_sertifikat IS NOT NULL THEN @file_sertifikat ELSE file_sertifikat END,
+        file_surat_tugas = COALESCE(@file_surat_tugas_bin, file_surat_tugas),
+        file_sertifikat = COALESCE(@file_sertifikat_bin, file_sertifikat),
         role = @role,
         id_dosen = @id_dosen
+    WHERE id_kompetisi = @id_kompetisi;
+END;
+
+
+-- Mengambil data kompetisi lengkap berdasarkan ID
+CREATE PROCEDURE sp_GetKompetisiById
+    @id_kompetisi INT
+AS
+BEGIN
+    SELECT 
+        id_kompetisi, 
+        judul_kompetisi, 
+        tingkat_kompetisi, 
+        tempat_kompetisi, 
+        tanggal_kompetisi, 
+        file_surat_tugas, 
+        file_sertifikat, 
+        role, 
+        id_dosen
+    FROM tb_kompetisi
     WHERE id_kompetisi = @id_kompetisi;
 END;

@@ -237,12 +237,13 @@ class MahasiswaController extends Controller
             $role = $_POST['role'];
             $id_dosen = $_POST['id_dosen'];
     
+            // Konversi file menjadi base64
             $file_surat_tugas = !empty($_FILES['file_surat_tugas']['tmp_name']) 
-                                ? file_get_contents($_FILES['file_surat_tugas']['tmp_name']) 
+                                ? base64_encode(file_get_contents($_FILES['file_surat_tugas']['tmp_name'])) 
                                 : null;
     
             $file_sertifikat = !empty($_FILES['file_sertifikat']['tmp_name']) 
-                                ? file_get_contents($_FILES['file_sertifikat']['tmp_name']) 
+                                ? base64_encode(file_get_contents($_FILES['file_sertifikat']['tmp_name'])) 
                                 : null;
     
             $result = $this->mahasiswaModel->updateKompetisi(
@@ -265,6 +266,7 @@ class MahasiswaController extends Controller
             }
         }
     }
+    
     public function editKompetisi($id_kompetisi)
     {
         if (!isset($_SESSION['id_user'])) {
@@ -281,23 +283,26 @@ class MahasiswaController extends Controller
         }
     
         // Ambil data kompetisi berdasarkan ID
-        $kompetisi = $this->mahasiswaModel->getFileKompetisi($id_kompetisi);
+        $kompetisi = $this->mahasiswaModel->getKompetisiById($id_kompetisi);
         $dosen = $this->mahasiswaModel->getDosen(); // Ambil data dosen untuk dropdown
     
         if (!$kompetisi) {
             echo "Data kompetisi tidak ditemukan.";
             exit;
         }
-    
+        
         // Siapkan data untuk view
         $data = [
             'style' => 'styleAjukan.css',
             'kompetisi' => $kompetisi,
             'dosen' => $dosen
         ];
+        // echo "<pre>";
+        // print_r($data['kompetisi']);
+        // echo "</pre>";
+        // die();
         $this->view('mahasiswa/headerMhs', $data);
         $this->view('mahasiswa/editKompetisi', $data);
         $this->view('layout/footer');
     }
-    
 }

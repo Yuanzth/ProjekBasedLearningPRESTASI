@@ -1345,3 +1345,59 @@ Array
 
 )
 
+[2024-12-08 18:37:14] Array
+(
+    [0] => Array
+        (
+            [0] => 42000
+            [SQLSTATE] => 42000
+            [1] => 257
+            [code] => 257
+            [2] => [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]Implicit conversion from data type varchar(max) to varbinary(max) is not allowed. Use the CONVERT function to run this query.
+            [message] => [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]Implicit conversion from data type varchar(max) to varbinary(max) is not allowed. Use the CONVERT function to run this query.
+        )
+
+)
+
+[2024-12-08 18:43:55] Array
+(
+    [0] => Array
+        (
+            [0] => 42000
+            [SQLSTATE] => 42000
+            [1] => 257
+            [code] => 257
+            [2] => [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]Implicit conversion from data type varchar(max) to varbinary(max) is not allowed. Use the CONVERT function to run this query.
+            [message] => [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]Implicit conversion from data type varchar(max) to varbinary(max) is not allowed. Use the CONVERT function to run this query.
+        )
+
+)
+
+[2024-12-08 18:46:56] Array
+(
+    [0] => Array
+        (
+            [0] => 42000
+            [SQLSTATE] => 42000
+            [1] => 2812
+            [code] => 2812
+            [2] => [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]Could not find stored procedure 'sp_GetFileKompetisi'.
+            [message] => [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]Could not find stored procedure 'sp_GetFileKompetisi'.
+        )
+
+)
+
+[2024-12-08 18:49:30] Array
+(
+    [0] => Array
+        (
+            [0] => 42000
+            [SQLSTATE] => 42000
+            [1] => 257
+            [code] => 257
+            [2] => [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]Implicit conversion from data type varchar(max) to varbinary(max) is not allowed. Use the CONVERT function to run this query.
+            [message] => [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]Implicit conversion from data type varchar(max) to varbinary(max) is not allowed. Use the CONVERT function to run this query.
+        )
+
+)
+

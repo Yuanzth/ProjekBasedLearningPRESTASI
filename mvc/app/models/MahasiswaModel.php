@@ -231,8 +231,8 @@ class MahasiswaModel
             $tingkat_kompetisi,
             $tempat_kompetisi,
             $tanggal_kompetisi,
-            $file_surat_tugas,
-            $file_sertifikat,
+            $file_surat_tugas,  // Kirimkan base64 string
+            $file_sertifikat,   // Kirimkan base64 string
             $role,
             $id_dosen
         ];
@@ -240,6 +240,22 @@ class MahasiswaModel
         $stmt = $this->executeStoredProcedure('sp_UpdateKompetisi', $params);
     
         return $stmt ? true : false;
+    }    
+    
+    public function getKompetisiById($id_kompetisi)
+    {
+        // Eksekusi stored procedure untuk mengambil data kompetisi
+        $params = [$id_kompetisi];
+        $stmt = $this->executeStoredProcedure('sp_GetKompetisiById', $params);
+    
+        if ($stmt === false) {
+            die(print_r(sqlsrv_errors(), true));
+        }
+    
+        // Ambil hasil query
+        $data = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC);
+    
+        return $data ?: false; // Kembalikan data atau false jika tidak ditemukan
     }
     
 }
