@@ -72,8 +72,8 @@
                 
                 <!-- Buttons -->
                 <div class="d-flex justify-content-between">
-                    <a href="<?= BASE_URL; ?>mahasiswa/updateKompetisi" class="btn btn-secondary rounded-pill px-4">Cancel</a>
-                    <button type="submit" class="btn btn-primary rounded-pill px-4">Save Changes</button>
+                    <a href="<?= BASE_URL; ?>mahasiswa/ajukanKompetisi" class="btn btn-secondary rounded-pill px-4">Batal</a>
+                    <button type="submit" class="btn btn-primary rounded-pill px-4">Simpan Perubahan</button>
                 </div>
             </form>
         </div>

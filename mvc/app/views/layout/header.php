@@ -35,10 +35,10 @@
                             <a class="nav-link" href="ind_prestasi.php">Prestasi</a>
                         </li>
                         <li class="nav-item px-2 d-flex align-items-center">
-                            <a class="nav-link" href="<?=BASE_URL?>about">About Us</a>
+                            <a class="nav-link" href="<?=BASE_URL?>about">Tentang Kami</a>
                         </li>
                         <li class="nav-item d-flex align-items-center px-2">
-                            <a href="<?=BASE_URL?>auth/login" class="nav-link">Login</a>
+                            <a href="<?=BASE_URL?>auth/login" class="nav-link">Masuk</a>
                         </li>
                     </ul>
                 </div>

@@ -78,10 +78,10 @@
                         </a>
                     </div>
                     <div class="col-10 col-md-4 m-3">
-                        <a href="login.html" class="btn shadow btn-light">
+                        <a href="<?= BASE_URL; ?>auth/login" class="btn shadow btn-light">
                             <img src="<?= BASE_URL; ?>public/assets/img/pc.png" alt="pc">
-                            <h5>Login</h5>
-                            <p>Anda dapat menggunakan lebih banyak fitur dengan login</p>
+                            <h5>Masuk</h5>
+                            <p>Anda dapat menggunakan lebih banyak fitur dengan Masuk</p>
                         </a>
                     </div>
                 </div>

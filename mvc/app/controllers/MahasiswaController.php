@@ -305,4 +305,19 @@ class MahasiswaController extends Controller
         $this->view('mahasiswa/editKompetisi', $data);
         $this->view('layout/footer');
     }
+
+    public function deleteKompetisi($id)
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+            $result = $this->mahasiswaModel->deleteKompetisi($id);
+    
+            if ($result) {
+                header('Location: ' . BASE_URL . 'mahasiswa/ajukanKompetisi');
+                exit;
+            } else {
+                echo "Gagal menghapus kompetisi.";
+            }
+        }
+    }
+    
 }

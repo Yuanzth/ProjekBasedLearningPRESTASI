@@ -84,7 +84,7 @@
                     <td><?= htmlspecialchars($k['tanggal_kompetisi']->format('Y-m-d')); ?></td>
                     <td>
                         <a href="<?= BASE_URL; ?>mahasiswa/editKompetisi/<?= $k['id_kompetisi']; ?>" class="btn btn-warning">Edit</a>
-                        <a href="hapus_kompetisi.php?id=<?= $k['id_kompetisi']; ?>" class="btn btn-delete">Hapus</a>
+                        <a href="<?= BASE_URL; ?>mahasiswa/deleteKompetisi/<?= $k['id_kompetisi']; ?>" class="btn btn-delete">Hapus</a>
                         <!-- Tombol untuk preview file surat tugas -->
                         <?php if (!empty($k['file_surat_tugas'])): ?>
                             <a href="<?= BASE_URL; ?>mahasiswa/previewFile/<?= $k['id_kompetisi']; ?>/surat_tugas" 
@@ -108,3 +108,20 @@
         <?php endif; ?>
     </tbody>
 </table>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const deleteButtons = document.querySelectorAll('.btn-delete');
+
+        deleteButtons.forEach(button => {
+            button.addEventListener('click', function (e) {
+                e.preventDefault(); // Mencegah default action link
+
+                const url = this.getAttribute('href');
+
+                if (confirm("Anda ingin menghapus data kompetisi ini?")) {
+                    window.location.href = url; // Lanjutkan ke URL jika konfirmasi "Ya"
+                }
+            });
+        });
+    });
+</script>

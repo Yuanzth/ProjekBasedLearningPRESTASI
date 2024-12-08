@@ -167,6 +167,7 @@ BEGIN
 END;
 
 -- Buat stored procedure untuk mengupdate data kompetisi
+DROP PROCEDURE sp_UpdateKompetisi;
 CREATE PROCEDURE sp_UpdateKompetisi
     @id_kompetisi INT,
     @judul_kompetisi VARCHAR(50),
@@ -226,5 +227,14 @@ BEGIN
         role, 
         id_dosen
     FROM tb_kompetisi
+    WHERE id_kompetisi = @id_kompetisi;
+END;
+
+-- menghapus data kompetisi berdasarkan id_kompetisi
+CREATE PROCEDURE sp_DeleteKompetisi
+    @id_kompetisi INT
+AS
+BEGIN
+    DELETE FROM tb_kompetisi
     WHERE id_kompetisi = @id_kompetisi;
 END;

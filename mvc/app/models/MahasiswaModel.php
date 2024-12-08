@@ -258,4 +258,22 @@ class MahasiswaModel
         return $data ?: false; // Kembalikan data atau false jika tidak ditemukan
     }
     
+    public function deleteKompetisi($id_kompetisi)
+    {
+        $params = [$id_kompetisi];
+    
+        try {
+            $stmt = $this->executeStoredProcedure('sp_DeleteKompetisi', $params);
+    
+            if (!$stmt) {
+                throw new Exception("Failed to delete kompetisi with ID: $id_kompetisi");
+            }
+    
+            return true;  // Jika berhasil
+        } catch (Exception $e) {
+            $this->logError($e->getMessage());
+            return false;  // Jika gagal
+        }
+    }
+    
 }
