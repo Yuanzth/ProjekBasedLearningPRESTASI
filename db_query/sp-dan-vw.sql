@@ -143,6 +143,50 @@ BEGIN
             @file_surat_tugas_bin, @file_sertifikat_bin, @role, @id_mahasiswa, @id_dosen);
 END;
 
+-- Insert dengan Pengecekan
+CREATE PROCEDURE sp_InsertKompetisi
+    @judul_kompetisi VARCHAR(50),
+    @tingkat_kompetisi VARCHAR(20),
+    @tempat_kompetisi VARCHAR(50),
+    @tanggal_kompetisi DATE,
+    @file_surat_tugas VARCHAR(MAX),  -- Mengubah menjadi VARCHAR untuk menerima base64 string
+    @file_sertifikat VARCHAR(MAX),   -- Mengubah menjadi VARCHAR untuk menerima base64 string
+    @role VARCHAR(10),
+    @id_mahasiswa INT,
+    @id_dosen INT
+AS
+BEGIN
+    -- Mengonversi string base64 ke VARBINARY(MAX)
+    DECLARE @file_surat_tugas_bin VARBINARY(MAX);
+    DECLARE @file_sertifikat_bin VARBINARY(MAX);
+    DECLARE @next_id INT;
+
+    SET @file_surat_tugas_bin = CAST('' AS XML).value('xs:base64Binary(sql:variable("@file_surat_tugas"))', 'VARBINARY(MAX)');
+    SET @file_sertifikat_bin = CAST('' AS XML).value('xs:base64Binary(sql:variable("@file_sertifikat"))', 'VARBINARY(MAX)');
+
+    -- Mencari ID yang kosong pertama
+    SELECT @next_id = MIN(id_kompetisi)
+    FROM tb_kompetisi
+    WHERE id_kompetisi NOT IN (SELECT id_kompetisi FROM tb_kompetisi);
+
+    -- Jika ID kosong ditemukan, gunakan ID tersebut
+    IF @next_id IS NOT NULL
+    BEGIN
+        -- Memasukkan data ke dalam tabel dengan ID kosong
+        INSERT INTO tb_kompetisi (id_kompetisi, judul_kompetisi, tingkat_kompetisi, tempat_kompetisi, tanggal_kompetisi, 
+                                  file_surat_tugas, file_sertifikat, role, id_mahasiswa, id_dosen)
+        VALUES (@next_id, @judul_kompetisi, @tingkat_kompetisi, @tempat_kompetisi, @tanggal_kompetisi, 
+                @file_surat_tugas_bin, @file_sertifikat_bin, @role, @id_mahasiswa, @id_dosen);
+    END
+    ELSE
+    BEGIN
+        -- Jika tidak ada ID kosong, masukkan data ke ID terbesar yang ada
+        INSERT INTO tb_kompetisi (judul_kompetisi, tingkat_kompetisi, tempat_kompetisi, tanggal_kompetisi, 
+                                  file_surat_tugas, file_sertifikat, role, id_mahasiswa, id_dosen)
+        VALUES (@judul_kompetisi, @tingkat_kompetisi, @tempat_kompetisi, @tanggal_kompetisi, 
+                @file_surat_tugas_bin, @file_sertifikat_bin, @role, @id_mahasiswa, @id_dosen);
+    END
+END;
 
 
 -- Mengambil data dosen yang tersedia
@@ -238,3 +282,4 @@ BEGIN
     DELETE FROM tb_kompetisi
     WHERE id_kompetisi = @id_kompetisi;
 END;
+

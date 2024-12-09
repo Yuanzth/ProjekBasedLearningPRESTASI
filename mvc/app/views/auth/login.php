@@ -1,6 +1,6 @@
 <div class="container min-vh-100 d-flex align-items-center justify-content-center">
   <div class="col-12 col-lg-4 p-4 shadow">
-    <form action="" method="post">
+    <form action="<?= BASE_URL; ?>auth/login" method="post">
       <h2>Login</h2>
       <img src="<?= BASE_URL; ?>public/assets/img/logo.png" alt="">
       <div class="input-group">

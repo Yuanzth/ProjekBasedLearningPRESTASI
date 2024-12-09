@@ -1401,3 +1401,128 @@ Array
 
 )
 
+[2024-12-08 20:42:56] Array
+(
+    [0] => Array
+        (
+            [0] => 01000
+            [SQLSTATE] => 01000
+            [1] => 7989
+            [code] => 7989
+            [2] => [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]Checking identity information: current identity value '16'.
+            [message] => [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]Checking identity information: current identity value '16'.
+        )
+
+    [1] => Array
+        (
+            [0] => 01000
+            [SQLSTATE] => 01000
+            [1] => 2528
+            [code] => 2528
+            [2] => [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]DBCC execution completed. If DBCC printed error messages, contact your system administrator.
+            [message] => [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]DBCC execution completed. If DBCC printed error messages, contact your system administrator.
+        )
+
+)
+
+[2024-12-08 20:42:56] Error executing stored procedure: sp_DeleteKompetisi
+[2024-12-08 20:54:56] Array
+(
+    [0] => Array
+        (
+            [0] => 01000
+            [SQLSTATE] => 01000
+            [1] => 7989
+            [code] => 7989
+            [2] => [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]Checking identity information: current identity value '15'.
+            [message] => [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]Checking identity information: current identity value '15'.
+        )
+
+    [1] => Array
+        (
+            [0] => 01000
+            [SQLSTATE] => 01000
+            [1] => 2528
+            [code] => 2528
+            [2] => [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]DBCC execution completed. If DBCC printed error messages, contact your system administrator.
+            [message] => [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]DBCC execution completed. If DBCC printed error messages, contact your system administrator.
+        )
+
+)
+
+[2024-12-08 20:54:56] Error executing stored procedure: sp_DeleteKompetisi
+[2024-12-09 11:26:01] Array
+(
+    [0] => Array
+        (
+            [0] => 01000
+            [SQLSTATE] => 01000
+            [1] => 7989
+            [code] => 7989
+            [2] => [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]Checking identity information: current identity value '14'.
+            [message] => [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]Checking identity information: current identity value '14'.
+        )
+
+    [1] => Array
+        (
+            [0] => 01000
+            [SQLSTATE] => 01000
+            [1] => 2528
+            [code] => 2528
+            [2] => [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]DBCC execution completed. If DBCC printed error messages, contact your system administrator.
+            [message] => [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]DBCC execution completed. If DBCC printed error messages, contact your system administrator.
+        )
+
+)
+
+[2024-12-09 11:26:01] Error executing stored procedure: sp_DeleteKompetisi
+[2024-12-09 11:45:10] Array
+(
+    [0] => Array
+        (
+            [0] => 23000
+            [SQLSTATE] => 23000
+            [1] => 2627
+            [code] => 2627
+            [2] => [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]Violation of PRIMARY KEY constraint 'PK__tb_kompe__CE58D39F2B9555B1'. Cannot insert duplicate key in object 'dbo.tb_kompetisi'. The duplicate key value is (16).
+            [message] => [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]Violation of PRIMARY KEY constraint 'PK__tb_kompe__CE58D39F2B9555B1'. Cannot insert duplicate key in object 'dbo.tb_kompetisi'. The duplicate key value is (16).
+        )
+
+    [1] => Array
+        (
+            [0] => 01000
+            [SQLSTATE] => 01000
+            [1] => 3621
+            [code] => 3621
+            [2] => [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]The statement has been terminated.
+            [message] => [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]The statement has been terminated.
+        )
+
+)
+
+[2024-12-09 11:45:10] Error executing stored procedure: sp_InsertKompetisi
+[2024-12-09 11:45:14] Array
+(
+    [0] => Array
+        (
+            [0] => 23000
+            [SQLSTATE] => 23000
+            [1] => 2627
+            [code] => 2627
+            [2] => [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]Violation of PRIMARY KEY constraint 'PK__tb_kompe__CE58D39F2B9555B1'. Cannot insert duplicate key in object 'dbo.tb_kompetisi'. The duplicate key value is (17).
+            [message] => [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]Violation of PRIMARY KEY constraint 'PK__tb_kompe__CE58D39F2B9555B1'. Cannot insert duplicate key in object 'dbo.tb_kompetisi'. The duplicate key value is (17).
+        )
+
+    [1] => Array
+        (
+            [0] => 01000
+            [SQLSTATE] => 01000
+            [1] => 3621
+            [code] => 3621
+            [2] => [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]The statement has been terminated.
+            [message] => [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]The statement has been terminated.
+        )
+
+)
+
+[2024-12-09 11:45:14] Error executing stored procedure: sp_InsertKompetisi
