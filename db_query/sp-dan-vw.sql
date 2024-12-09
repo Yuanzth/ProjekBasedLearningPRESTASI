@@ -283,3 +283,17 @@ BEGIN
     WHERE id_kompetisi = @id_kompetisi;
 END;
 
+
+-- STRORED PROCEDURE ADMIN
+-- 
+DROP PROCEDURE IF EXISTS sp_GetAdminByUserId;
+GO
+
+CREATE PROCEDURE sp_GetAdminByUserId
+    @id_user INT
+AS
+BEGIN
+    SELECT id_admin, nama
+    FROM tb_admin
+    WHERE id_user = @id_user;
+END;
