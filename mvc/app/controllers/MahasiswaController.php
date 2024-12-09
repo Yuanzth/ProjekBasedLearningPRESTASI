@@ -168,7 +168,7 @@ class MahasiswaController extends Controller
                 // Tampilkan error jika gagal
                 $data = ['error' => 'Pengajuan kompetisi gagal!'];
                 $data = [
-                    'style' => 'styleAjukan.css',
+                    'style' => 'stylePengajuan.css',
                     'kompetisi' => $kompetisi,  // Kirimkan data kompetisi yang belum divalidasi
                     'dosen' => $dosen  // Kirimkan data dosen
                 ];
@@ -179,7 +179,7 @@ class MahasiswaController extends Controller
         } else {
             // Siapkan data untuk view (termasuk kompetisi yang belum divalidasi)
             $data = [
-                'style' => 'styleAjukan.css',
+                'style' => 'stylePengajuan.css',
                 'kompetisi' => $kompetisi,  // Kirimkan data kompetisi yang belum divalidasi
                 'dosen' => $dosen  // Kirimkan data dosen
             ];
@@ -293,7 +293,7 @@ class MahasiswaController extends Controller
         
         // Siapkan data untuk view
         $data = [
-            'style' => 'styleAjukan.css',
+            'style' => 'stylePengajuan.css',
             'kompetisi' => $kompetisi,
             'dosen' => $dosen
         ];
