@@ -1,8 +1,8 @@
 <main>
     <div class="container-fluid my-4">
-        <h4 class="d-flex justify-content-center mb-3">Prestasi Saya</h4>
-        <div class="row px-4">
-            <table class="table table-bordered table-hover">
+        <h4 class="text-center">Prestasi Saya</h4>
+        <div class="table-responsive px-2">
+            <table class="table shadow table-bordered table-hover">
                 <thead>
                     <tr>
                         <th>No.</th>
