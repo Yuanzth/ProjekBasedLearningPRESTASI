@@ -44,3 +44,25 @@ main {
     width: 90px;
     margin: 10px;
 }
+/*  */
+.counter button {
+    color: white;
+}
+.counter button:hover {
+    color: white;
+}
+.counter i {
+    display: flex;
+    justify-content: end;
+    font-size: 50px;
+}
+.counter h6 {
+    display: flex;
+    justify-content: start;
+}
+.counter .badge {
+    display: flex;
+    justify-content: start;
+    font-size: large;
+
+}

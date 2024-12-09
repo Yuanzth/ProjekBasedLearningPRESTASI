@@ -51,7 +51,21 @@
         <main>
             <div class="container-fluid my-4">
                 <form action="#" method="post" enctype="multipart/form-data">
-                    <h3>Form Menambahkan Mahasiswa</h3>
+                    <h3>Mendaftarkan Mahasiswa Baru</h3>
+                    <div class="row">
+                        <div class="col-5">
+                            <div class="input-group mb-3">
+                                <label class="input-group-text shadow" for="username">Username</label>
+                                <input type="text" class="form-control shadow" id="username" name="username" required>
+                            </div>
+                        </div>
+                        <div class="col-5">
+                            <div class="input-group mb-3">
+                                <label class="input-group-text shadow" for="password">Password</label>
+                                <input type="text" class="form-control shadow" id="password" name="password" required>
+                            </div>
+                        </div>
+                    </div>
                     <div class="row">
                         <div class="col-10">
                             <div class="input-group mb-3">
@@ -98,7 +112,7 @@
                     </div>
                     <div class="row">
                         <div class="col-5">
-                            <button type="submit" class="btn btn-primary w-100">Tambah Mahasiswa</button>
+                            <button type="submit" class="btn btn-primary w-100">Daftarkan Mahasiswa</button>
                         </div>
                     </div>
                 </form>

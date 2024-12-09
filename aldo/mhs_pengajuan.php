@@ -76,6 +76,98 @@ while ($row = sqlsrv_fetch_array($stmt_dosen, SQLSRV_FETCH_ASSOC)) {
         </header>
         <main>
             <div class="container-fluid my-4">
+                <!-- tombol modal -->
+                <a class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#pengajuanModal">Ajukan Prestasi Anda</a>
+                <!-- modal -->
+                <div class="modal modal-lg fade" id="pengajuanModal" tabindex="-1" aria-labelledby="pengajuanModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="pengajuanModalLabel">Form Pengajuan Kompetisi</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="container-fluid">
+                                    <form action="#" method="POST" enctype="multipart/form-data">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <div class="input-group mb-3">
+                                                    <span class="input-group-text shadow" for="judul_kompetisi">Judul Kompetisi</i></span>
+                                                    <input type="text" class="form-control shadow" id="judul_kompetisi" name="judul_kompetisi" required>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <div class="input-group mb-3">
+                                                    <label class="input-group-text shadow" for="tingkat_kompetisi">Tingkat Kompetisi</label>
+                                                    <select class="form-select shadow" id="tingkat_kompetisi" name="tingkat_kompetisi" required>
+                                                        <option value="">Pilih...</option>
+                                                        <option value="Lokal">Lokal</option>
+                                                        <option value="Nasional">Nasional</option>
+                                                        <option value="Internasional">Internasional</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-6">
+                                                <div class="input-group mb-3">
+                                                    <label class="input-group-text shadow" for="id_dosen">Dosen Pendamping</label>
+                                                    <select class="form-control shadow" id="id_dosen" name="id_dosen" required>
+                                                        <option value="">Pilih Dosen</option>
+                                                        <?php foreach ($data['dosen'] as $dosenItem): ?>
+                                                            <option value="<?= $dosenItem['id_dosen']; ?>"><?= htmlspecialchars($dosenItem['nama_dosen']); ?></option>
+                                                        <?php endforeach; ?>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <div class="input-group mb-3">
+                                                    <label class="input-group-text shadow" for="tempat_kompetisi">Tempat Kompetisi</label>
+                                                    <input type="text" class="form-control shadow" id="tempat_kompetisi" name="tempat_kompetisi" required>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <div class="input-group mb-3">
+                                                    <label class="input-group-text shadow" for="tanggal_kompetisi">Tanggal Kompetisi</label>
+                                                    <input type="date" class="form-control shadow" id="tanggal_kompetisi" name="tanggal_kompetisi" required>
+                                                </div>
+                                            </div>
+                                            <div class="col-6">
+                                                <div class="input-group mb-3">
+                                                    <label class="input-group-text shadow" for="role">Role:</label>
+                                                    <input type="text" class="form-control shadow" id="role" name="role" required>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <div class="mb-3">
+                                                    <label class="form-label" for="file_surat_tugas" style="margin-bottom: 0;">Surat Tugas</label>
+                                                    <input type="file" class="form-control" id="file_surat_tugas" name="file_surat_tugas" required>
+                                                </div>
+                                            </div>
+                                            <div class="col-6">
+                                                <div class="mb-3">
+                                                    <label class="form-label" for="file_sertifikat" style="margin-bottom: 0;">Sertifikat</label>
+                                                    <input type="file" class="form-control" id="file_sertifikat" name="file_sertifikat" required>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-5">
+                                                <button type="submit" class="btn btn-primary w-100">Ajukan Kompetisi</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <!-- form pengajuan -->
                 <?php if (isset($_GET['success'])): ?>
                     <p class="text-success">Data kompetisi berhasil ditambahkan!</p>
