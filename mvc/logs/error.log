@@ -1526,3 +1526,29 @@ Array
 )
 
 [2024-12-09 11:45:14] Error executing stored procedure: sp_InsertKompetisi
+Array
+(
+    [0] => Array
+        (
+            [0] => 42000
+            [SQLSTATE] => 42000
+            [1] => 2812
+            [code] => 2812
+            [2] => [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]Could not find stored procedure 'sp_CheckUsernameExists'.
+            [message] => [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]Could not find stored procedure 'sp_CheckUsernameExists'.
+        )
+
+)
+Array
+(
+    [0] => Array
+        (
+            [0] => 42000
+            [SQLSTATE] => 42000
+            [1] => 2812
+            [code] => 2812
+            [2] => [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]Could not find stored procedure 'sp_RegisterUser'.
+            [message] => [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]Could not find stored procedure 'sp_RegisterUser'.
+        )
+
+)
