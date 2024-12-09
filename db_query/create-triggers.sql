@@ -1,78 +1,85 @@
 
 
-USE db_prestasi_nonakademik;
+USE db_prestasi;
 
--- 
-CREATE TRIGGER trg_kompetisi_log
-ON kompetisi
-AFTER INSERT, UPDATE, DELETE
+-- Trigger ini akan mengatur ulang id_kompetisi
+DROP TRIGGER trg_AfterDelete_Reseed;
+CREATE TRIGGER trg_AfterDelete_Reseed
+ON tb_kompetisi
+AFTER DELETE
 AS
 BEGIN
-    DECLARE @id_user VARCHAR(10), @nama_user VARCHAR(30), @aktivitas VARCHAR(100), @waktu DATETIME;
-    SET @waktu = GETDATE();
+    DECLARE @max_id INT;
+    DECLARE @next_id INT;
 
-    -- Ambil data user dari konteks (HARUS DISESUAIKAN DENGAN SISTEM LOGIN)
-    -- Misalnya, data user aktif disimpan dalam variabel SESSION saat implementasi web
-    SELECT @id_user = SUSER_NAME(); -- Placeholder untuk user ID
+    -- Mendapatkan ID terbesar yang ada di tabel setelah penghapusan
+    SELECT @max_id = MAX(id_kompetisi) FROM tb_kompetisi;
 
-    -- Ambil nama user dari tabel user
-    SELECT @nama_user = username FROM [user] WHERE id_user = @id_user;
+    -- Jika ada ID yang hilang (kosong), kita akan menyesuaikan reseed
+    WITH MissingIDs AS (
+        SELECT id_kompetisi + 1 AS missing_id
+        FROM tb_kompetisi
+        WHERE NOT EXISTS (
+            SELECT 1 FROM tb_kompetisi t2 WHERE t2.id_kompetisi = tb_kompetisi.id_kompetisi + 1
+        )
+    )
+    -- Ambil ID yang hilang pertama
+    SELECT @next_id = MIN(missing_id) FROM MissingIDs;
 
-    -- Operasi INSERT
-    IF EXISTS (SELECT * FROM INSERTED) AND NOT EXISTS (SELECT * FROM DELETED)
+    -- Jika ID yang hilang ditemukan, kita reset ID untuk ID yang hilang
+    IF @next_id IS NOT NULL
     BEGIN
-        SET @aktivitas = CONCAT('User ', @nama_user, ' menambahkan data kompetisi.');
+        -- Melakukan reseed untuk ID yang hilang
+        DBCC CHECKIDENT ('tb_kompetisi', RESEED, @next_id);
     END
-
-    -- Operasi UPDATE
-    IF EXISTS (SELECT * FROM INSERTED) AND EXISTS (SELECT * FROM DELETED)
+    ELSE
     BEGIN
-        SET @aktivitas = CONCAT('User ', @nama_user, ' memperbarui data kompetisi.');
+        -- Jika tidak ada ID yang hilang, reseed ke ID terbesar yang ada
+        DBCC CHECKIDENT ('tb_kompetisi', RESEED, @max_id);
     END
-
-    -- Operasi DELETE
-    IF EXISTS (SELECT * FROM DELETED) AND NOT EXISTS (SELECT * FROM INSERTED)
-    BEGIN
-        SET @aktivitas = CONCAT('User ', @nama_user, ' menghapus data kompetisi.');
-    END
-
-    -- Masukkan ke tabel history
-    INSERT INTO history (id_log, aktivitas, waktu, id_user)
-    VALUES (NEWID(), @aktivitas, @waktu, @id_user);
 END;
 
 
-CREATE TRIGGER trg_mahasiswa_log
-ON mahasiswa
-AFTER INSERT, UPDATE, DELETE
+CREATE PROCEDURE sp_InsertKompetisi
+    @judul_kompetisi VARCHAR(50),
+    @tingkat_kompetisi VARCHAR(20),
+    @tempat_kompetisi VARCHAR(50),
+    @tanggal_kompetisi DATE,
+    @file_surat_tugas VARCHAR(MAX),  -- Mengubah menjadi VARCHAR untuk menerima base64 string
+    @file_sertifikat VARCHAR(MAX),   -- Mengubah menjadi VARCHAR untuk menerima base64 string
+    @role VARCHAR(10),
+    @id_mahasiswa INT,
+    @id_dosen INT
 AS
 BEGIN
-    DECLARE @id_user VARCHAR(10), @nama_user VARCHAR(30), @aktivitas VARCHAR(100), @waktu DATETIME;
-    SET @waktu = GETDATE();
+    -- Mengonversi string base64 ke VARBINARY(MAX)
+    DECLARE @file_surat_tugas_bin VARBINARY(MAX);
+    DECLARE @file_sertifikat_bin VARBINARY(MAX);
+    DECLARE @next_id INT;
 
-    -- Ambil data user dari konteks
-    SELECT @id_user = SUSER_NAME(); -- Placeholder untuk user ID
-    SELECT @nama_user = username FROM [user] WHERE id_user = @id_user;
+    SET @file_surat_tugas_bin = CAST('' AS XML).value('xs:base64Binary(sql:variable("@file_surat_tugas"))', 'VARBINARY(MAX)');
+    SET @file_sertifikat_bin = CAST('' AS XML).value('xs:base64Binary(sql:variable("@file_sertifikat"))', 'VARBINARY(MAX)');
 
-    -- Operasi INSERT
-    IF EXISTS (SELECT * FROM INSERTED) AND NOT EXISTS (SELECT * FROM DELETED)
+    -- Mencari ID yang kosong pertama
+    SELECT @next_id = MIN(id_kompetisi)
+    FROM tb_kompetisi
+    WHERE id_kompetisi NOT IN (SELECT id_kompetisi FROM tb_kompetisi);
+
+    -- Jika ID kosong ditemukan, gunakan ID tersebut
+    IF @next_id IS NOT NULL
     BEGIN
-        SET @aktivitas = CONCAT('User ', @nama_user, ' menambahkan data mahasiswa.');
+        -- Memasukkan data ke dalam tabel dengan ID kosong
+        INSERT INTO tb_kompetisi (id_kompetisi, judul_kompetisi, tingkat_kompetisi, tempat_kompetisi, tanggal_kompetisi, 
+                                  file_surat_tugas, file_sertifikat, role, id_mahasiswa, id_dosen)
+        VALUES (@next_id, @judul_kompetisi, @tingkat_kompetisi, @tempat_kompetisi, @tanggal_kompetisi, 
+                @file_surat_tugas_bin, @file_sertifikat_bin, @role, @id_mahasiswa, @id_dosen);
     END
-
-    -- Operasi UPDATE
-    IF EXISTS (SELECT * FROM INSERTED) AND EXISTS (SELECT * FROM DELETED)
+    ELSE
     BEGIN
-        SET @aktivitas = CONCAT('User ', @nama_user, ' memperbarui data mahasiswa.');
+        -- Jika tidak ada ID kosong, masukkan data ke ID terbesar yang ada
+        INSERT INTO tb_kompetisi (judul_kompetisi, tingkat_kompetisi, tempat_kompetisi, tanggal_kompetisi, 
+                                  file_surat_tugas, file_sertifikat, role, id_mahasiswa, id_dosen)
+        VALUES (@judul_kompetisi, @tingkat_kompetisi, @tempat_kompetisi, @tanggal_kompetisi, 
+                @file_surat_tugas_bin, @file_sertifikat_bin, @role, @id_mahasiswa, @id_dosen);
     END
-
-    -- Operasi DELETE
-    IF EXISTS (SELECT * FROM DELETED) AND NOT EXISTS (SELECT * FROM INSERTED)
-    BEGIN
-        SET @aktivitas = CONCAT('User ', @nama_user, ' menghapus data mahasiswa.');
-    END
-
-    -- Masukkan ke tabel history
-    INSERT INTO history (id_log, aktivitas, waktu, id_user)
-    VALUES (NEWID(), @aktivitas, @waktu, @id_user);
 END;
