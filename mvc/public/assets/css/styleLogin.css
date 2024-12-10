@@ -8,6 +8,25 @@
 body {
     background-image: url(http://localhost/ProjekBasedLearningPRESTASI/mvc/public/assets/img/ts.jpg);
 }
+/* navbar */
+.navbar { /* mengatur style navigation bar */
+    background-color: #c9c1c17f;
+}
+.navbar-toggler{ /* mengatur style tombol menu saat layar diperkecil */
+    background-color: #122246;
+    border-radius: 25px;
+}
+.navbar-nav { /* mengatur style navigasi pada navbar */
+    background-color: #122246;
+    border-radius: 25px;
+}
+.navbar-nav i {
+    font-size: 17px;
+}
+.nav-link:hover {
+    color: white;
+}
+/* login */
 .col-12 {
     position: relative;
     backdrop-filter: blur(25px);

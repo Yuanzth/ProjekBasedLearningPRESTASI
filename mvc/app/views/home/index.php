@@ -3,25 +3,29 @@
                 <div class="row">
                     <!-- kolom bagian kiri -->
                     <div class="col-12 col-md-6 mb-3 px-4 d-flex justify-content-center align-items-center">
-                        <div id="carouselExampleCaptions" class="carousel slide">
+                        <div id="carouselExampleCaptions" class="carousel carousel-dark slide">
                             <div class="carousel-indicators">
                                 <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
                                 <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="3" aria-label="Slide 4"></button>
+                                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="4" aria-label="Slide 5"></button>
                             </div>
                             <div class="carousel-inner">
                                 <div class="carousel-item active">
-                                    <img src="<?= BASE_URL; ?>public/assets/img/ts.jpg" class="d-block img-fluid border border-black border-5 rounded" alt="...">
-                                    <div class="carousel-caption d-none d-md-block">
-                                        <h5>First slide label</h5>
-                                        <p>Some representative placeholder content for the first slide.</p>
-                                    </div>
+                                    <img src="<?= BASE_URL; ?>public/assets/img/presemu.png" class="d-block img-fluid border border-black border-5 rounded" alt="...">
                                 </div>
                                 <div class="carousel-item">
-                                    <img src="<?= BASE_URL; ?>public/assets/img/ts.jpg" class="d-block img-fluid border border-black border-5 rounded" alt="...">
-                                    <div class="carousel-caption d-none d-md-block">
-                                        <h5>Second slide label</h5>
-                                        <p>Some representative placeholder content for the second slide.</p>
-                                    </div>
+                                    <img src="<?= BASE_URL; ?>public/assets/img/presaya.png" class="d-block img-fluid border border-black border-5 rounded" alt="...">
+                                </div>
+                                <div class="carousel-item">
+                                    <img src="<?= BASE_URL; ?>public/assets/img/pengajuan.png" class="d-block img-fluid border border-black border-5 rounded" alt="...">
+                                </div>
+                                <div class="carousel-item">
+                                    <img src="<?= BASE_URL; ?>public/assets/img/inpenga.png" class="d-block img-fluid border border-black border-5 rounded" alt="...">
+                                </div>
+                                <div class="carousel-item">
+                                    <img src="<?= BASE_URL; ?>public/assets/img/validasi.png" class="d-block img-fluid border border-black border-5 rounded" alt="...">
                                 </div>
                             </div>
                             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
