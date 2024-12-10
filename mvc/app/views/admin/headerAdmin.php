@@ -28,14 +28,19 @@
                                 <i class="bi bi-house-door"></i>
                             </a>
                         </li>
-                        <li class="nav-item px-2 d-flex align-items-center">
-                            <a class="nav-link" href="adm_validasi.html">Validasi Kompetisi</a>
+                        <li class="nav-item px-2 d-flex align-items-center dropdown">
+                            <button class="btn nav-link dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Manage</i></button>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item nav-link" href="#">Manage User</a></li>
+                                <li><a class="dropdown-item nav-link" href="#">Manage Mahasiswa</a></li>
+                                <li><a class="dropdown-item nav-link" href="#">Manage Dosen</a></li>
+                            </ul>
                         </li>
                         <li class="nav-item px-2 d-flex align-items-center">
-                            <a class="nav-link" href="adm_kelola_dosen.html">Kelola Dosen</a>
+                            <a class="nav-link" href="#">Validasi Kompetisi</a>
                         </li>
                         <li class="nav-item px-2 d-flex align-items-center">
-                            <a class="nav-link" href="adm_kelola_mahasiswa.html">Kelola Mahasiswa</a>
+                            <a class="nav-link" href="#">Prestasi</a>
                         </li>
                         <li class="nav-item px-2 d-flex align-items-center dropdown">
                             <button class="btn nav-link dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-person-circle"></i></button>
