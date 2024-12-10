@@ -298,18 +298,25 @@ class AdminModel
     }
 
     // Menu: Lihat Prestasi
-    public function getAllPrestasi()
-{
-    try {
-        $stmt = $this->executeStoredProcedure('sp_GetAllPrestasi');
-        $result = [];
-        while ($row = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC)) {
-            $result[] = $row;
+    public function getAllPrestasi() {
+        try {
+            $query = "SELECT * FROM vw_AllPrestasi";
+            $stmt = sqlsrv_query($this->db, $query);
+    
+            if (!$stmt) {
+                $this->logError(print_r(sqlsrv_errors(), true));
+                throw new Exception("Error executing query: vw_AllPrestasi");
+            }
+    
+            $results = [];
+            while ($row = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC)) {
+                $results[] = $row;
+            }
+    
+            return $results;
+        } catch (Exception $e) {
+            $this->logError($e->getMessage());
+            return [];
         }
-        return $result;
-    } catch (Exception $e) {
-        $this->logError($e->getMessage());
-        return [];
     }
-}
 }
