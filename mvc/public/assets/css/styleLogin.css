@@ -7,6 +7,8 @@
 }
 body {
     background-image: url(http://localhost/ProjekBasedLearningPRESTASI/mvc/public/assets/img/ts.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 /* navbar */
 .navbar { /* mengatur style navigation bar */
