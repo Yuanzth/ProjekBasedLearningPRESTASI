@@ -48,6 +48,57 @@ class AdminModel
             return null;
         }
     }
+    
+    public function getKompetisiById($id_kompetisi)
+    {
+        try {
+            $stmt = $this->executeStoredProcedure('sp_GetKompetisiById', [$id_kompetisi]);
+            $result = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC);
+            return $result;
+        } catch (Exception $e) {
+            $this->logError($e->getMessage());
+            return null;
+        }
+    }
+
+    public function getFileKompetisi($id_kompetisi)
+    {
+        // Eksekusi stored procedure untuk mengambil file
+        $params = [$id_kompetisi];
+        $stmt = $this->executeStoredProcedure('sp_GetFileKompetisi', $params);
+    
+        if ($stmt === false) {
+            die(print_r(sqlsrv_errors(), true));
+        }
+    
+        // Ambil hasil query
+        $data = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC);
+    
+        return $data ?: false; // Kembalikan data atau false jika tidak ditemukan
+    }
+    
+    public function updateKompetisiValidasi($id_kompetisi, $valid)
+    {
+        try {
+            $stmt = $this->executeStoredProcedure('sp_UpdateKompetisiValidasi', [$id_kompetisi, $valid]);
+            return $stmt;
+        } catch (Exception $e) {
+            $this->logError($e->getMessage());
+            return false;
+        }
+    }
+    
+    public function insertPrestasi($id_kompetisi, $id_admin)
+    {
+        try {
+            $stmt = $this->executeStoredProcedure('sp_InsertPrestasi', [$id_kompetisi, $id_admin]);
+            return $stmt;
+        } catch (Exception $e) {
+            $this->logError($e->getMessage());
+            return false;
+        }
+    }
+
     // Menu: Manage User
     public function getAllUsers()
     {
@@ -131,6 +182,25 @@ class AdminModel
     }
 
     // Menu: Validasi Kompetisi
+    // Belum 
+    public function getUnvalidatedKompetisi()
+    {
+        try {
+            $stmt = $this->executeStoredProcedure('sp_GetUnvalidatedKompetisi');
+            $data = [];
+            while ($row = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC)) {
+                $data[] = $row;
+            }
+            return $data;
+        } catch (Exception $e) {
+            $this->logError($e->getMessage());
+            return [];
+        }
+    }
+
+    // sudah 
+
+
     public function getAllKompetisiForValidation()
     {
         try {
