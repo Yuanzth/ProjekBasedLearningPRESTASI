@@ -24,7 +24,7 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item px-2">
-                            <a class="nav-link" href="admin.html">
+                            <a class="nav-link" href="<?= BASE_URL; ?>admin/index">
                                 <i class="bi bi-house-door"></i>
                             </a>
                         </li>

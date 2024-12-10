@@ -283,6 +283,21 @@ BEGIN
     WHERE id_kompetisi = @id_kompetisi;
 END;
 
+CREATE PROCEDURE sp_GetKompetisiCountByStatus
+    @id_mahasiswa INT
+AS
+BEGIN
+    SET NOCOUNT ON;
+    
+    SELECT 
+        SUM(CASE WHEN status_validasi = 'tervalidasi' THEN 1 ELSE 0 END) AS count_tervalidasi,
+        SUM(CASE WHEN status_validasi = 'pending' THEN 1 ELSE 0 END) AS count_pending,
+        SUM(CASE WHEN status_validasi = 'tidak valid' THEN 1 ELSE 0 END) AS count_tidak_valid
+    FROM tb_kompetisi
+    WHERE id_mahasiswa = @id_mahasiswa;
+END;
+
+
 
 -- STRORED PROCEDURE ADMIN
 -- 
