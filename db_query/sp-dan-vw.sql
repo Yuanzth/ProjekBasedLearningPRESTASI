@@ -328,7 +328,7 @@ BEGIN
         k.tanggal_kompetisi,
         k.role,
         m.nama AS nama_mahasiswa,
-        d.nama AS nama_dosen,
+        d.nama_dosen AS nama_dosen,
         k.file_surat_tugas,
         k.file_sertifikat
     FROM tb_kompetisi k
@@ -351,7 +351,7 @@ BEGIN
         k.tanggal_kompetisi,
         k.role,
         m.nama AS nama_mahasiswa,
-        d.nama AS nama_dosen,
+        d.nama_dosen AS nama_dosen,
         k.file_surat_tugas,
         k.file_sertifikat
     FROM tb_kompetisi k
