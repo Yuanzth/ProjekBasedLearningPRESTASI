@@ -76,6 +76,31 @@
                 </tr>
             </table>
         </div>
+        <!-- counter -->
+        <div class="row counter d-flex justify-content-center align-items-center p-4">
+            <div class="col-6 col-lg-3">
+                <button type="button" class="btn shadow w-100" style="background-color: #198754;">
+                    <i class="bi bi-check2-circle"></i>
+                    <h6>Tervalidasi</h6>
+                    <span class="badge">4</span>
+                </button>
+            </div>
+            <div class="col-6 col-lg-3">
+                <button type="button" class="btn shadow w-100" style="background-color: #ffc107;">
+                    <i class="bi bi-stopwatch"></i>
+                    <h6>Pending</h6>
+                    <span class="badge">4</span>
+                </button>
+            </div>
+            <div class="col-6 col-lg-3">
+                <button type="button" class="btn shadow w-100" style="background-color: #dc3545;">
+                    <i class="bi bi-x-circle"></i>
+                    <h6>Tidak Valid</h6>
+                    <span class="badge">4</span>
+                </button>
+            </div>
+        </div>
+         <!-- fitur -->
         <div class="row d-flex justify-content-center align-items-center p-4">
             <h4 class="text-center mb-3">Fitur yang dapat digunakan oleh Mahasiswa:</h4>
             <div class="col-10 col-md-4 m-1">
