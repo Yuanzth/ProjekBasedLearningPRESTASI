@@ -2,7 +2,7 @@
 
 require_once '../app/models/AdminModel.php'; 
 
-class AdminController {
+class AdminController extends Controller{
     private $adminModel;
 
     public function __construct() {
@@ -12,8 +12,25 @@ class AdminController {
 
     // Dashboard Admin
     public function index() {
-        // Menampilkan Dashboard Admin
-        include 'views/admin/dashboard.php';
+        
+        // Periksa apakah session id_user tersedia
+        if (!isset($_SESSION['id_user']) || $_SESSION['privilege'] !== 'A') {
+            // Redirect ke halaman login jika belum login atau bukan admin
+            header('Location: ' . BASE_URL . 'auth/login');
+            exit;
+        }
+
+        // Ambil id_user dari session
+        $id_user = $_SESSION['id_user'];
+
+        $admin = $this->adminModel->getAdminByUserId($id_user);
+        $data = [
+            'title' => 'Dashboard | Admin',
+            'style' => 'styleAdmin.css',
+            'admin' => $admin,
+        ];
+        $this->view('admin/headerAdmin', $data);
+        $this->view('admin/dashboard', $data);
     }
 
     // Manage User - Menampilkan daftar pengguna
