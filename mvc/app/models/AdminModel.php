@@ -37,6 +37,17 @@ class AdminModel
         return $stmt;
     }
 
+    public function getAdminByUserId($id_user)
+    {
+        try {
+            $stmt = $this->executeStoredProcedure('sp_GetAdminByUserId', [$id_user]);
+            $result = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC);
+            return $result;
+        } catch (Exception $e) {
+            $this->logError($e->getMessage());
+            return null;
+        }
+    }
     // Menu: Manage User
     public function getAllUsers()
     {

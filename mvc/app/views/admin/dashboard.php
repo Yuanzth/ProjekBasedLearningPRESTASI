@@ -18,14 +18,14 @@
                         </div>
                         <div class="carousel-inner">
                             <div class="carousel-item active">
-                                <img src="<?= BASE_URL; ?>public/assets/img/admin_1.jpg" class="d-block img-fluid border border-black border-5 rounded" alt="...">
+                                <img src="<?= BASE_URL; ?>public/assets/img/ts.jpg" class="d-block img-fluid border border-black border-5 rounded" alt="...">
                                 <div class="carousel-caption d-none d-md-block">
                                     <h5>Manajemen Data</h5>
                                     <p>Kelola data user, mahasiswa, dan dosen di sini.</p>
                                 </div>
                             </div>
                             <div class="carousel-item">
-                                <img src="<?= BASE_URL; ?>public/assets/img/admin_2.jpg" class="d-block img-fluid border border-black border-5 rounded" alt="...">
+                                <img src="<?= BASE_URL; ?>public/assets/img/ts.jpg" class="d-block img-fluid border border-black border-5 rounded" alt="...">
                                 <div class="carousel-caption d-none d-md-block">
                                     <h5>Validasi Kompetisi</h5>
                                     <p>Periksa dan validasi kompetisi yang diajukan mahasiswa.</p>

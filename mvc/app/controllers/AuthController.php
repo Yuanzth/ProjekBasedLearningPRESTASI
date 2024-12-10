@@ -28,7 +28,12 @@ class AuthController extends Controller
                 $_SESSION['privilege'] = $user['privilege']; // Menyimpan privilege di session
                 // Redirect berdasarkan privilege
                 if ($_SESSION['privilege'] === "A") {
-                    header('Location: ' . BASE_URL . 'admin/dashboard'); // Arahkan ke halaman dashboard admin
+                    $_SESSION['id_user'] = $user['id_user'];
+                    echo "<script>
+                        alert('Berhasil login sebagai admin.');
+                        window.location.href = '" . BASE_URL . "admin/index';
+                    </script>";
+                    // header('Location: ' . BASE_URL . 'admin/dashboard'); 
                 } elseif ($_SESSION['privilege'] === "M") {
                     $_SESSION['id_user'] = $user['id_user'];    // Set session id_user
                     echo "<script>
