@@ -63,19 +63,19 @@ class AdminController extends Controller
             $id_kompetisi = $_POST['id_kompetisi'];
             $valid = $_POST['valid'];
             $id_admin = $_SESSION['id_admin']; // Ambil id_admin dari session
-    
+
             // Update validasi kompetisi
             $this->adminModel->updateKompetisiValidasi($id_kompetisi, $valid);
-    
+
             if ($valid === 'Y') {
                 // Masukkan ke tb_prestasi menggunakan stored procedure
                 $this->adminModel->insertPrestasi($id_kompetisi, $id_admin);
             }
-    
+
             header('Location: ' . BASE_URL . 'admin/validasiKompetisi');
         }
     }
-    
+
     public function detailKompetisi($id_kompetisi)
     {
         // Cek apakah admin sudah login
@@ -106,18 +106,18 @@ class AdminController extends Controller
         if (!in_array($file_type, ['surat_tugas', 'sertifikat'])) {
             die("Parameter 'file' tidak valid.");
         }
-    
+
         // Ambil file dari database
         $file = $this->adminModel->getFileKompetisi($id_kompetisi);
-    
+
         if (!$file) {
             die("Data kompetisi tidak ditemukan.");
         }
-    
+
         // Tentukan file yang akan ditampilkan
         $file_data = null;
         $file_name = null;
-    
+
         if ($file_type === 'surat_tugas') {
             $file_data = $file['file_surat_tugas'];
             $file_name = "surat_tugas_$id_kompetisi.pdf";
@@ -125,11 +125,11 @@ class AdminController extends Controller
             $file_data = $file['file_sertifikat'];
             $file_name = "sertifikat_$id_kompetisi.pdf";
         }
-    
+
         if ($file_data === null) {
             die("File tidak ditemukan.");
         }
-    
+
         // Kirim file ke browser untuk pratinjau
         header("Content-Disposition: inline; filename=$file_name");
         header("Content-Type: application/pdf");
@@ -139,27 +139,54 @@ class AdminController extends Controller
     // Manage User - Menampilkan daftar pengguna
     public function manageUser()
     {
+        // Periksa apakah session id_user tersedia
+        if (!isset($_SESSION['id_user']) || $_SESSION['privilege'] !== 'A') {
+            // Redirect ke halaman login jika belum login atau bukan admin
+            header('Location: ' . BASE_URL . 'auth/login');
+            exit;
+        }
+
+        // Ambil data semua pengguna
         $users = $this->adminModel->getAllUsers();
-        include 'views/admin/manageUser.php';
+        $data = [
+            'title' => 'Manage User',
+            'style' => 'styleAdmin.css',
+            'users' => $users,
+        ];
+
+        // Tampilkan view
+        $this->view('admin/headerAdmin', $data);
+        $this->view('admin/manageUser', $data);
     }
+
+
 
     // Tambah Pengguna
     public function addUser()
     {
-        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            // Menambah pengguna baru
+        // Periksa apakah form telah dikirim
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $username = $_POST['username'];
-            $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
-            $privilege = $_POST['privilege'];
+            $password = $_POST['password'];
+            $privilege = $_POST['privilege']; // Ambil huruf pertama privilege
 
-            $this->adminModel->createUser($username, $password, $privilege);
-            header("Location: index.php?action=manageUser");
-        } else {
-            // Menampilkan form tambah pengguna
-            include 'views/admin/add_user.php';
+            $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
+
+            if ($this->adminModel->isUsernameExists($username)) {
+                $data = ['error' => 'Username sudah digunakan.'];
+                $this->view('admin/error', $data);
+                return;
+            }
+
+            if ($this->adminModel->register($username, $hashedPassword, $privilege)) {
+                header('Location: ' . BASE_URL . 'admin/manageUser');
+                exit;
+            } else {
+                $data = ['error' => 'Gagal menambahkan user'];
+                $this->view('admin/error', $data);
+            }
         }
     }
-
     // Hapus Pengguna
     public function deleteUser($id_user)
     {

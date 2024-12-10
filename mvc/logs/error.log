@@ -1651,3 +1651,123 @@ Array
 
 )
 
+[2024-12-10 13:53:01] Array
+(
+    [0] => Array
+        (
+            [0] => 42000
+            [SQLSTATE] => 42000
+            [1] => 0
+            [code] => 0
+            [2] => [Microsoft][ODBC Driver 17 for SQL Server]Syntax error, permission violation, or other nonspecific error
+            [message] => [Microsoft][ODBC Driver 17 for SQL Server]Syntax error, permission violation, or other nonspecific error
+        )
+
+)
+
+[2024-12-10 13:53:01] Error preparing stored procedure: sp_CheckUsernameExists(?)
+[2024-12-10 13:53:01] Array
+(
+    [0] => Array
+        (
+            [0] => 42000
+            [SQLSTATE] => 42000
+            [1] => 0
+            [code] => 0
+            [2] => [Microsoft][ODBC Driver 17 for SQL Server]Syntax error, permission violation, or other nonspecific error
+            [message] => [Microsoft][ODBC Driver 17 for SQL Server]Syntax error, permission violation, or other nonspecific error
+        )
+
+)
+
+[2024-12-10 13:53:01] Error preparing stored procedure: sp_RegisterUser(?, ?, ?)
+[2024-12-10 13:53:48] Array
+(
+    [0] => Array
+        (
+            [0] => 42000
+            [SQLSTATE] => 42000
+            [1] => 0
+            [code] => 0
+            [2] => [Microsoft][ODBC Driver 17 for SQL Server]Syntax error, permission violation, or other nonspecific error
+            [message] => [Microsoft][ODBC Driver 17 for SQL Server]Syntax error, permission violation, or other nonspecific error
+        )
+
+)
+
+[2024-12-10 13:53:48] Error preparing stored procedure: sp_CheckUsernameExists(?)
+[2024-12-10 13:53:48] Array
+(
+    [0] => Array
+        (
+            [0] => 42000
+            [SQLSTATE] => 42000
+            [1] => 0
+            [code] => 0
+            [2] => [Microsoft][ODBC Driver 17 for SQL Server]Syntax error, permission violation, or other nonspecific error
+            [message] => [Microsoft][ODBC Driver 17 for SQL Server]Syntax error, permission violation, or other nonspecific error
+        )
+
+)
+
+[2024-12-10 13:53:48] Error preparing stored procedure: sp_RegisterUser(?, ?, ?)
+[2024-12-10 13:58:06] Array
+(
+    [0] => Array
+        (
+            [0] => 42000
+            [SQLSTATE] => 42000
+            [1] => 0
+            [code] => 0
+            [2] => [Microsoft][ODBC Driver 17 for SQL Server]Syntax error, permission violation, or other nonspecific error
+            [message] => [Microsoft][ODBC Driver 17 for SQL Server]Syntax error, permission violation, or other nonspecific error
+        )
+
+)
+
+[2024-12-10 13:58:06] Error preparing stored procedure: sp_CheckUsernameExists(?)
+[2024-12-10 13:58:06] Array
+(
+    [0] => Array
+        (
+            [0] => 42000
+            [SQLSTATE] => 42000
+            [1] => 0
+            [code] => 0
+            [2] => [Microsoft][ODBC Driver 17 for SQL Server]Syntax error, permission violation, or other nonspecific error
+            [message] => [Microsoft][ODBC Driver 17 for SQL Server]Syntax error, permission violation, or other nonspecific error
+        )
+
+)
+
+[2024-12-10 13:58:06] Error preparing stored procedure: sp_RegisterUser(?, ?, ?)
+[2024-12-10 14:01:24] Array
+(
+    [0] => Array
+        (
+            [0] => 42000
+            [SQLSTATE] => 42000
+            [1] => 0
+            [code] => 0
+            [2] => [Microsoft][ODBC Driver 17 for SQL Server]Syntax error, permission violation, or other nonspecific error
+            [message] => [Microsoft][ODBC Driver 17 for SQL Server]Syntax error, permission violation, or other nonspecific error
+        )
+
+)
+
+[2024-12-10 14:01:24] Error preparing stored procedure: sp_RegisterUser(?, ?, ?)
+[2024-12-10 14:09:57] Array
+(
+    [0] => Array
+        (
+            [0] => 42000
+            [SQLSTATE] => 42000
+            [1] => 2812
+            [code] => 2812
+            [2] => [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]Could not find stored procedure 'sp_GetAllMahasiswa'.
+            [message] => [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]Could not find stored procedure 'sp_GetAllMahasiswa'.
+        )
+
+)
+
+[2024-12-10 14:09:57] Error executing stored procedure: sp_GetAllMahasiswa
