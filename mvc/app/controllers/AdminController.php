@@ -3,11 +3,68 @@
 require_once '../app/models/AdminModel.php'; 
 
 class AdminController {
-    private $adminmodel;
+    private $adminModel;
 
     public function __construct() {
-        $this->adminmodel = new AdminModel();
+        // Inisialisasi AdminModel
+        $this->adminModel = new AdminModel();
     }
 
-    // Method index untuk menampilkan view dashboard admin
+    // Dashboard Admin
+    public function index() {
+        // Menampilkan Dashboard Admin
+        include 'views/admin/dashboard.php';
+    }
+
+    // Manage User - Menampilkan daftar pengguna
+    public function manageUser() {
+        $users = $this->adminModel->getAllUsers();
+        include 'views/admin/manage_user.php';
+    }
+
+    // Tambah Pengguna
+    public function addUser() {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            // Menambah pengguna baru
+            $username = $_POST['username'];
+            $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+            $privilege = $_POST['privilege'];
+
+            $this->adminModel->createUser($username, $password, $privilege);
+            header("Location: index.php?action=manageUser");
+        } else {
+            // Menampilkan form tambah pengguna
+            include 'views/admin/add_user.php';
+        }
+    }
+
+    // Hapus Pengguna
+    public function deleteUser($id_user) {
+        $this->adminModel->deleteUser($id_user);
+        header("Location: index.php?action=manageUser");
+    }
+
+    // Manage Mahasiswa - Menampilkan daftar mahasiswa
+    public function manageMahasiswa() {
+        $mahasiswa = $this->adminModel->getAllMahasiswa();
+        include 'views/admin/manage_mahasiswa.php';
+    }
+
+    // Manage Dosen - Menampilkan daftar dosen
+    public function manageDosen() {
+        $dosen = $this->adminModel->getAllDosen();
+        include 'views/admin/manage_dosen.php';
+    }
+
+    // Validasi Kompetisi - Menampilkan daftar kompetisi yang belum tervalidasi
+    public function validateCompetition() {
+        $competitions = $this->adminModel->getKompetisiForValidation();
+        include 'views/admin/validate_competition.php';
+    }
+
+    // Lihat Prestasi - Menampilkan daftar prestasi
+    public function viewAchievements() {
+        $achievements = $this->adminModel->getAllAchievements();
+        include 'views/admin/view_achievements.php';
+    }
 }
