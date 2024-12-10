@@ -283,24 +283,21 @@ BEGIN
     WHERE id_kompetisi = @id_kompetisi;
 END;
 
-CREATE PROCEDURE sp_GetKompetisiCountByStatus
+-- menghitung jumlah kompetisi berdasarkan status validasi mahasiswa yang sedang login
+CREATE PROCEDURE sp_GetStatusCountByMahasiswaId
     @id_mahasiswa INT
 AS
 BEGIN
-    SET NOCOUNT ON;
-    
     SELECT 
-        SUM(CASE WHEN status_validasi = 'tervalidasi' THEN 1 ELSE 0 END) AS count_tervalidasi,
-        SUM(CASE WHEN status_validasi = 'pending' THEN 1 ELSE 0 END) AS count_pending,
-        SUM(CASE WHEN status_validasi = 'tidak valid' THEN 1 ELSE 0 END) AS count_tidak_valid
+        SUM(CASE WHEN valid = 'Y' THEN 1 ELSE 0 END) AS count_valid,
+        SUM(CASE WHEN valid = 'N' THEN 1 ELSE 0 END) AS count_pending,
+        SUM(CASE WHEN valid = 'X' THEN 1 ELSE 0 END) AS count_invalid
     FROM tb_kompetisi
     WHERE id_mahasiswa = @id_mahasiswa;
 END;
 
-
-
 -- STRORED PROCEDURE ADMIN
--- 
+
 DROP PROCEDURE IF EXISTS sp_GetAdminByUserId;
 GO
 
@@ -311,4 +308,99 @@ BEGIN
     SELECT id_admin, nama
     FROM tb_admin
     WHERE id_user = @id_user;
+END;
+
+CREATE PROCEDURE sp_GetAllUsers
+AS
+BEGIN
+	SELECT * FROM tb_user;
+END;
+
+DROP PROCEDURE sp_GetKompetisi
+CREATE PROCEDURE sp_GetKompetisi
+AS
+BEGIN
+    SELECT 
+        k.id_kompetisi,
+        k.judul_kompetisi,
+        k.tingkat_kompetisi,
+        k.tempat_kompetisi,
+        k.tanggal_kompetisi,
+        k.role,
+        m.nama AS nama_mahasiswa,
+        d.nama AS nama_dosen,
+        k.file_surat_tugas,
+        k.file_sertifikat
+    FROM tb_kompetisi k
+    LEFT JOIN tb_mahasiswa m ON k.id_mahasiswa = m.id_mahasiswa
+    LEFT JOIN tb_dosen d ON k.id_dosen = d.id_dosen
+    WHERE k.valid = 'N';
+END;
+
+
+DROP PROCEDURE sp_GetDetailKompetisi;
+CREATE PROCEDURE sp_GetDetailKompetisi
+    @id_kompetisi INT
+AS
+BEGIN
+    SELECT 
+        k.id_kompetisi,
+        k.judul_kompetisi,
+        k.tingkat_kompetisi,
+        k.tempat_kompetisi,
+        k.tanggal_kompetisi,
+        k.role,
+        m.nama AS nama_mahasiswa,
+        d.nama AS nama_dosen,
+        k.file_surat_tugas,
+        k.file_sertifikat
+    FROM tb_kompetisi k
+    LEFT JOIN tb_mahasiswa m ON k.id_mahasiswa = m.id_mahasiswa
+    LEFT JOIN tb_dosen d ON k.id_dosen = d.id_dosen
+    WHERE k.id_kompetisi = @id_kompetisi AND k.valid = 'N';
+END;
+
+
+-- validasi kompetisi
+CREATE PROCEDURE sp_GetUnvalidatedKompetisi
+AS
+BEGIN
+    SELECT 
+        id_kompetisi,
+        judul_kompetisi,
+        tingkat_kompetisi,
+        tempat_kompetisi,
+        tanggal_kompetisi,
+        role,
+        id_mahasiswa,
+        id_dosen
+    FROM tb_kompetisi
+    WHERE valid = 'N';
+END;
+
+--sudah
+CREATE PROCEDURE sp_UpdateKompetisiValidasi
+    @id_kompetisi INT,
+    @valid CHAR(1)
+AS
+BEGIN
+    UPDATE tb_kompetisi
+    SET valid = @valid
+    WHERE id_kompetisi = @id_kompetisi;
+END;
+
+CREATE PROCEDURE sp_InsertPrestasi
+    @id_kompetisi INT,
+    @id_admin INT
+AS
+BEGIN
+    INSERT INTO tb_prestasi (id_kompetisi, role, id_mahasiswa, id_dosen, id_admin)
+    SELECT 
+        id_kompetisi,
+        role,
+        id_mahasiswa,
+        id_dosen,
+        @id_admin
+    FROM tb_kompetisi
+    WHERE id_kompetisi = @id_kompetisi AND valid = 'Y';
 END;

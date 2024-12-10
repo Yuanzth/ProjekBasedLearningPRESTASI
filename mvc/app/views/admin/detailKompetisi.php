@@ -3,12 +3,11 @@
         <h3 class="mb-4">Detail Kompetisi</h3>
         <table class="table table-bordered">
             <tr>
-                <th>ID Kompetisi</th>
-                <td><?= htmlspecialchars($data['kompetisi']['id_kompetisi']); ?></td>
+                <th>Mahasiswa</th>
+                <td><?= htmlspecialchars($data['kompetisi']['nama_mahasiswa']); ?></td>
             </tr>
-            <tr>
-                <th>Judul Kompetisi</th>
-                <td><?= htmlspecialchars($data['kompetisi']['judul_kompetisi']); ?></td>
+            <th>Judul Kompetisi</th>
+            <td><?= htmlspecialchars($data['kompetisi']['judul_kompetisi']); ?></td>
             </tr>
             <tr>
                 <th>Tingkat Kompetisi</th>
@@ -28,7 +27,7 @@
             </tr>
             <tr>
                 <th>Dosen Pembimbing</th>
-                <td><?= htmlspecialchars($data['kompetisi']['id_dosen']); ?></td>
+                <td><?= htmlspecialchars($data['kompetisi']['nama_dosen']); ?></td>
             </tr>
             <tr>
                 <th>File Surat Tugas</th>

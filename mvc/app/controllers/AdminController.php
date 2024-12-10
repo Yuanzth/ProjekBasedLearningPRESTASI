@@ -46,7 +46,7 @@ class AdminController extends Controller
         }
 
         // Ambil kompetisi yang belum divalidasi
-        $kompetisi = $this->adminModel->getUnvalidatedKompetisi();
+        $kompetisi = $this->adminModel->getKompetisiWithDetails();
         $data = [
             'title' => 'Validasi Kompetisi',
             'style' => 'styleAdmin.css',
@@ -85,7 +85,7 @@ class AdminController extends Controller
         }
 
         // Ambil data detail kompetisi
-        $kompetisi = $this->adminModel->getKompetisiById($id_kompetisi);
+        $kompetisi = $this->adminModel->getDetailKompetisi($id_kompetisi);
         if (!$kompetisi) {
             die("Kompetisi tidak ditemukan.");
         }

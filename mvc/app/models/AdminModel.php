@@ -99,6 +99,36 @@ class AdminModel
         }
     }
 
+    public function getKompetisiWithDetails()
+    {
+        $stmt = $this->executeStoredProcedure('sp_GetKompetisi');
+        $data = [];
+        while ($row = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC)) {
+            $data[] = $row;
+        }
+        return $data;
+    }
+    
+    public function getDetailKompetisi($id_kompetisi)
+    {
+        try {
+            // Menjalankan stored procedure untuk mengambil detail kompetisi
+            $stmt = $this->executeStoredProcedure('sp_GetDetailKompetisi', [$id_kompetisi]);
+            
+            // Mengambil hasil query sebagai array asosiatif
+            $result = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC);
+            
+            // Mengembalikan hasil jika ada, atau null jika tidak ada
+            return $result ?: null;
+        } catch (Exception $e) {
+            // Menangani error dan mencatat log error
+            $this->logError($e->getMessage());
+            return null;
+        }
+    }
+    
+    
+    
     // Menu: Manage User
     public function getAllUsers()
     {
