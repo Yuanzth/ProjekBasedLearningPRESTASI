@@ -1,37 +1,39 @@
 <main>
-    <div class="container my-4">
-        <h2 class="text-center mb-4">Daftar Prestasi Mahasiswa</h2>
-
-        <!-- Tabel prestasi -->
-        <table class="table table-striped table-bordered">
-            <thead class="table-dark">
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Nama Mahasiswa</th>
-                    <th scope="col">Program Studi</th>
-                    <th scope="col">Nama Prestasi</th>
-                    <th scope="col">Kategori</th>
-                    <th scope="col">Tanggal Prestasi</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php if (empty($data['prestasi'])): ?>
+    <div class="container-fluid my-4">
+        <h4 class="text-center">Semua Prestasi Mahasiswa</h4>
+        <div class="table-responsive px-2">
+            <table class="table shadow table-bordered table-hover">
+                <thead>
                     <tr>
-                        <td colspan="6" class="text-center">Belum ada data prestasi.</td>
+                        <th>No.</th>
+                        <th>Nama Mahasiswa</th>
+                        <th>Judul Kompetisi</th>
+                        <th>Tingkat Kompetisi</th>
+                        <th>Tempat Kompetisi</th>
+                        <th>Tanggal Kompetisi</th>
+                        <th>Dosen Pendamping</th>
                     </tr>
-                <?php else: ?>
-                    <?php foreach ($data['prestasi'] as $index => $prestasi): ?>
+                </thead>
+                <tbody>
+                    <?php if (!empty($data['prestasiData'])): ?>
+                        <?php foreach ($data['prestasiData'] as $no => $row): ?>
+                            <tr>
+                                <td><?= $no + 1; ?></td>
+                                <td><?= htmlspecialchars($row['mahasiswa']); ?></td>
+                                <td><?= htmlspecialchars($row['judul_kompetisi']); ?></td>
+                                <td><?= htmlspecialchars($row['tingkat_kompetisi']); ?></td>
+                                <td><?= htmlspecialchars($row['tempat_kompetisi']); ?></td>
+                                <td><?= htmlspecialchars($row['tanggal_kompetisi']->format('d-m-Y')); ?></td>
+                                <td><?= htmlspecialchars($row['dosen']); ?></td>
+                            </tr>
+                        <?php endforeach; ?>
+                    <?php else: ?>
                         <tr>
-                            <td><?= $index + 1; ?></td>
-                            <td><?= htmlspecialchars($prestasi['nama_mahasiswa']); ?></td>
-                            <td><?= htmlspecialchars($prestasi['program_studi']); ?></td>
-                            <td><?= htmlspecialchars($prestasi['nama_prestasi']); ?></td>
-                            <td><?= htmlspecialchars($prestasi['kategori']); ?></td>
-                            <td><?= date('d-m-Y', strtotime($prestasi['tanggal_prestasi'])); ?></td>
+                            <td colspan="7" class="text-center">Tidak ada data prestasi ditemukan</td>
                         </tr>
-                    <?php endforeach; ?>
-                <?php endif; ?>
-            </tbody>
-        </table>
+                    <?php endif; ?>
+                </tbody>
+            </table>
+        </div>
     </div>
 </main>
