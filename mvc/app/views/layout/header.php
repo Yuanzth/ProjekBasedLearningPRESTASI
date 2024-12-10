@@ -32,7 +32,7 @@
                             </a>
                         </li>
                         <li class="nav-item px-2 d-flex align-items-center">
-                            <a class="nav-link" href="ind_prestasi.php">Prestasi</a>
+                            <a class="nav-link" href="<?= BASE_URL; ?>home/semuaPrestasi">Prestasi</a>
                         </li>
                         <li class="nav-item px-2 d-flex align-items-center">
                             <a class="nav-link" href="<?=BASE_URL?>about">Tentang Kami</a>
