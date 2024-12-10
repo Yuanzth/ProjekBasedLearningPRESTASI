@@ -1,7 +1,7 @@
 <?php
 class Database
 {
-    private $serverName = "LAPTOP-8EBEE6AE"; // Nama server SQL Server
+    private $serverName = "LAPTOP-BCLGTLTG"; // Nama server SQL Server
     private $connectionOptions = [
         "Database" => "db_prestasi",   // Nama database
         "Uid" => "",                 // Username SQL Server

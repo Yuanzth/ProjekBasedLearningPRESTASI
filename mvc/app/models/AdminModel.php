@@ -48,7 +48,7 @@ class AdminModel
             return null;
         }
     }
-    
+
     public function getKompetisiById($id_kompetisi)
     {
         try {
@@ -66,17 +66,17 @@ class AdminModel
         // Eksekusi stored procedure untuk mengambil file
         $params = [$id_kompetisi];
         $stmt = $this->executeStoredProcedure('sp_GetFileKompetisi', $params);
-    
+
         if ($stmt === false) {
             die(print_r(sqlsrv_errors(), true));
         }
-    
+
         // Ambil hasil query
         $data = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC);
-    
+
         return $data ?: false; // Kembalikan data atau false jika tidak ditemukan
     }
-    
+
     public function updateKompetisiValidasi($id_kompetisi, $valid)
     {
         try {
@@ -87,7 +87,7 @@ class AdminModel
             return false;
         }
     }
-    
+
     public function insertPrestasi($id_kompetisi, $id_admin)
     {
         try {
@@ -108,16 +108,16 @@ class AdminModel
         }
         return $data;
     }
-    
+
     public function getDetailKompetisi($id_kompetisi)
     {
         try {
             // Menjalankan stored procedure untuk mengambil detail kompetisi
             $stmt = $this->executeStoredProcedure('sp_GetDetailKompetisi', [$id_kompetisi]);
-            
+
             // Mengambil hasil query sebagai array asosiatif
             $result = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC);
-            
+
             // Mengembalikan hasil jika ada, atau null jika tidak ada
             return $result ?: null;
         } catch (Exception $e) {
@@ -126,31 +126,42 @@ class AdminModel
             return null;
         }
     }
-    
-    
-    
+
+
+
     // Menu: Manage User
     public function getAllUsers()
     {
         try {
             $stmt = $this->executeStoredProcedure('sp_GetAllUsers');
-            $users = [];
+            $results = [];
             while ($row = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC)) {
-                $users[] = $row;
+                $results[] = $row;
             }
-            return $users;
+            return $results;
         } catch (Exception $e) {
             $this->logError($e->getMessage());
             return [];
         }
     }
 
-    public function createUser($username, $password, $privilege)
+    public function register($username, $hashedPassword, $privilege)
     {
         try {
-            $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
-            $this->executeStoredProcedure('sp_CreateUser', [$username, $hashedPassword, $privilege]);
+            $this->executeStoredProcedure("sp_RegisterUser", [$username, $hashedPassword, $privilege]);
             return true;
+        } catch (Exception $e) {
+            $this->logError($e->getMessage());
+            return false;
+        }
+    }
+
+    public function isUsernameExists($username)
+    {
+        try {
+            $stmt = $this->executeStoredProcedure("sp_CheckUsernameExists", [$username]);
+            $result = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC);
+            return $result !== null; // Jika ada data, berarti username sudah ada
         } catch (Exception $e) {
             $this->logError($e->getMessage());
             return false;

@@ -9,7 +9,7 @@ class AuthController extends Controller
     {
         // Tampilkan halaman login sebagai halaman default
         $data['judul']='Masuk | Presma'; 
-        $data['style']='styleL.css';
+        $data['style']='styleLogin.css';
         $this->view('layout/header', $data);
         $this->view('auth/login');
         $this->view('layout/footer');

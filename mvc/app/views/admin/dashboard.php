@@ -9,7 +9,6 @@
                 <p class="fw-semibold">Dashboard Administrasi Sistem</p>
             </div>
         </div>
-        <div class="container-fluid my-4">
             <div class="row">
                 <!-- kolom bagian kiri -->
                 <div class="col-12 col-md-6 mb-3 px-4 d-flex justify-content-center align-items-center">
@@ -65,35 +64,35 @@
             <!-- Menu Admin -->
             <div class="row d-flex justify-content-center align-items-center p-4">
                 <h4 class="text-center mb-3">Fitur yang dapat digunakan oleh Admin:</h4>
-                <div class="col-10 col-md-4 m-1">
+                <div class="col-10 col-md-3 m-1">
                     <a href="<?= BASE_URL; ?>admin/manageUser" class="btn shadow btn-light">
                         <img src="<?= BASE_URL; ?>public/assets/img/team-management.png" alt="medal">
                         <h5>Manage User</h5>
                         <p>Kelola data pengguna, daftar user baru, dan lihat tabel user di sini.</p>
                     </a>
                 </div>
-                <div class="col-10 col-md-4 m-1">
+                <div class="col-10 col-md-3 m-1">
                     <a href="<?= BASE_URL; ?>admin/manageMahasiswa" class="btn shadow btn-light">
                         <img src="<?= BASE_URL; ?>public/assets/img/team-management.png" alt="medal">
                         <h5>Manage Mahasiswa</h5>
                         <p>Kelola data mahasiswa dan koneksikan user ke mahasiswa tertentu.</p>
                     </a>
                 </div>
-                <div class="col-10 col-md-4 m-1">
+                <div class="col-10 col-md-3 m-1">
                     <a href="<?= BASE_URL; ?>admin/manageDosen" class="btn shadow btn-light">
                         <img src="<?= BASE_URL; ?>public/assets/img/management.png" alt="medal">
                         <h5>Manage Dosen</h5>
                         <p>Kelola data dosen untuk tiap kompetisi.</p>
                     </a>
                 </div>
-                <div class="col-10 col-md-4 m-1">
+                <div class="col-10 col-md-3 m-1">
                     <a href="<?= BASE_URL; ?>admin/validasiKompetisi" class="btn shadow btn-light">
                         <img src="<?= BASE_URL; ?>public/assets/img/review.png" alt="pc">
                         <h5>Validasi Kompetisi</h5>
                         <p>Periksa dan validasi kompetisi mahasiswa di sini.</p>
                     </a>
                 </div>
-                <div class="col-10 col-md-4 m-1">
+                <div class="col-10 col-md-3 m-1">
                     <a href="<?= BASE_URL; ?>admin/lihatPrestasi" class="btn shadow btn-light">
                         <img src="<?= BASE_URL; ?>public/assets/img/medal.png" alt="medal">
                         <h5>Lihat Prestasi</h5>
@@ -101,6 +100,5 @@
                     </a>
                 </div>
             </div>
-        </div>
     </div>
 </main>
