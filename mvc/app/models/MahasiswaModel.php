@@ -276,4 +276,26 @@ class MahasiswaModel
         }
     }
     
+    //metode untuk memanggil prosedur ini dan mengembalikan data ke controller
+    public function getStatusCounts($id_mahasiswa)
+    {
+        try {
+            $stmt = $this->executeStoredProcedure('sp_GetStatusCountByMahasiswaId', [$id_mahasiswa]);
+            $result = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC);
+            return [
+                'count_valid' => $result['count_valid'] ?? 0,
+                'count_pending' => $result['count_pending'] ?? 0,
+                'count_invalid' => $result['count_invalid'] ?? 0,
+            ];
+        } catch (Exception $e) {
+            $this->logError($e->getMessage());
+            return [
+                'count_valid' => 0,
+                'count_pending' => 0,
+                'count_invalid' => 0,
+            ];
+        }
+    }
+    
 }
+

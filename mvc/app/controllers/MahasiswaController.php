@@ -20,36 +20,37 @@ class MahasiswaController extends Controller
     {
         // Periksa apakah session id_user tersedia
         if (!isset($_SESSION['id_user']) || $_SESSION['privilege'] !== 'M') {
-            // Redirect ke halaman login jika belum login atau bukan mahasiswa
             header('Location: ' . BASE_URL . 'auth/login');
             exit;
         }
-
-        // Ambil id_user dari session
+    
         $id_user = $_SESSION['id_user'];
-
+    
         // Ambil data mahasiswa berdasarkan ID User
         $mahasiswa = $this->mahasiswaModel->getMahasiswaByUserId($id_user);
-
-        // Jika data mahasiswa tidak ditemukan, beri nilai default
+    
         if (!$mahasiswa) {
             $mahasiswa = [
                 'nama' => 'Tidak Diketahui',
                 'program_studi' => 'Tidak Diketahui'
             ];
         }
-
+    
+        // Ambil status validasi kompetisi
+        $statusCounts = $this->mahasiswaModel->getStatusCounts($mahasiswa['id_mahasiswa']);
+    
         // Kirim data ke view
         $data = [
             'style' => 'styleM.css',
-            'mahasiswa' => $mahasiswa
+            'mahasiswa' => $mahasiswa,
+            'statusCounts' => $statusCounts
         ];
-
+    
         $this->view('mahasiswa/headerMhs', $data);
         $this->view('mahasiswa/index', $data);
         $this->view('layout/footer');
     }
-
+    
     public function semuaPrestasi()
     {
         $prestasiData = $this->mahasiswaModel->getAllPrestasi();
@@ -319,5 +320,6 @@ class MahasiswaController extends Controller
             }
         }
     }
+    
     
 }
