@@ -299,17 +299,16 @@ class AdminModel
 
     // Menu: Lihat Prestasi
     public function getAllPrestasi()
-    {
-        try {
-            $stmt = $this->executeStoredProcedure('sp_GetAllPrestasi');
-            $prestasi = [];
-            while ($row = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC)) {
-                $prestasi[] = $row;
-            }
-            return $prestasi;
-        } catch (Exception $e) {
-            $this->logError($e->getMessage());
-            return [];
+{
+    try {
+        $stmt = $this->executeStoredProcedure('sp_GetAllPrestasi');
+        $result = [];
+        while ($row = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC)) {
+            $result[] = $row;
         }
+        return $result;
+    } catch (Exception $e) {
+        $this->logError($e->getMessage());
+        return [];
     }
 }

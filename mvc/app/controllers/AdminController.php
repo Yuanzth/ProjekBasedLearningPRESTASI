@@ -247,9 +247,24 @@ class AdminController extends Controller
 
 
     // Lihat Prestasi - Menampilkan daftar prestasi
-    public function viewAchievements()
-    {
-        $achievements = $this->adminModel->getAllAchievements();
-        include 'views/admin/view_achievements.php';
+    public function lihatPrestasi()
+{
+    // Periksa apakah session id_user tersedia
+    if (!isset($_SESSION['id_user']) || $_SESSION['privilege'] !== 'A') {
+        header('Location: ' . BASE_URL . 'auth/login');
+        exit;
     }
+
+    // Ambil data prestasi dari model
+    $prestasi = $this->adminModel->getAllPrestasi();
+
+    $data = [
+        'title' => 'Lihat Prestasi | Admin',
+        'style' => 'styleAdmin.css',
+        'prestasi' => $prestasi,
+    ];
+    $this->view('admin/headerAdmin', $data);
+    $this->view('admin/lihatPrestasi', $data);
+}
+
 }
