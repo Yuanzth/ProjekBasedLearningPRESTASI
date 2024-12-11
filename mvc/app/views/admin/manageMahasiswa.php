@@ -6,6 +6,40 @@
                 <a class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#tambahUser">Tambahkan Mahasiswa</a>
             </div>
         </div>
+        
+        <!-- Tabel daftar mahasiswa -->
+         <h2 class="mt-3">Daftar Mahasiswa</h2>
+         <div class="table-responsive">
+             <table class="table table-sm shadow table-bordered table-hover">
+                 <thead>
+                     <tr>
+                         <th>NIM</th>
+                         <th>Nama</th>
+                         <th>Program Studi</th>
+                         <th>Email</th>
+                         <th>No. Telp</th>
+                         <th>Semester</th>
+                         <th>Aksi</th>
+                     </tr>
+                 </thead>
+                 <tbody>
+                     <?php foreach ($data['mahasiswa'] as $m): ?>
+                         <tr>
+                             <td><?= $m['NIM']; ?></td>
+                             <td><?= $m['nama']; ?></td>
+                             <td><?= $m['program_studi']; ?></td>
+                             <td><?= $m['email']; ?></td>
+                             <td><?= $m['no_telp']; ?></td>
+                             <td><?= $m['semester']; ?></td>
+                             <td>
+                                 <!-- <a href="<?= BASE_URL; ?>admin/editMahasiswa/<?= $m['id_mahasiswa']; ?>" class="btn btn-outline-warning"><i class="bi bi-pencil-square"></i></a> -->
+                                 <a href="<?= BASE_URL; ?>admin/deleteMahasiswa/<?= $m['id_mahasiswa']; ?>" class="btn btn-outline-danger" onclick="return confirm('Yakin ingin menghapus data ini?');"><i class="bi bi-trash"></i></a>
+                             </td>
+                         </tr>
+                     <?php endforeach; ?>
+                 </tbody>
+             </table>
+         </div>
 
         <!-- Modal tambah mahasiswa -->
         <div class="modal modal-lg fade" id="tambahUser" tabindex="-1" aria-labelledby="tambahUserModalLabel" aria-hidden="true">
@@ -33,12 +67,14 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-8">
+                                    <div class="col">
                                         <div class="input-group mb-3">
                                             <span class="input-group-text shadow" for="nama">Nama</span>
                                             <input type="text" class="form-control shadow" id="nama" name="nama" required>
                                         </div>
                                     </div>
+                                </div>
+                                <div class="row">
                                     <div class="col">
                                         <div class="input-group mb-3">
                                             <label class="input-group-text shadow" for="program_studi">Program Studi</label>
@@ -47,6 +83,12 @@
                                                 <option value="Teknik Informatika">Teknik Informatika</option>
                                                 <option value="Sistem Informasi Bisnis">Sistem Informasi Bisnis</option>
                                             </select>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="input-group mb-3">
+                                            <span class="input-group-text shadow" for="semester">Semester</span>
+                                            <input type="number" class="form-control shadow" id="semester" name="semester" min="1" required>
                                         </div>
                                     </div>
                                 </div>
@@ -64,14 +106,6 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col">
-                                        <div class="input-group mb-3">
-                                            <span class="input-group-text shadow" for="semester">Semester</span>
-                                            <input type="number" class="form-control shadow" id="semester" name="semester" min="1" required>
-                                        </div>
-                                    </div>
-                                </div>
                                 <button type="submit" class="btn btn-primary w-100">Tambahkan Mahasiswa</button>
                             </form>
                         </div>
@@ -80,35 +114,5 @@
             </div>
         </div>
 
-        <!-- Tabel daftar mahasiswa -->
-        <table class="table table-striped mt-4">
-            <thead>
-                <tr>
-                    <th>NIM</th>
-                    <th>Nama</th>
-                    <th>Program Studi</th>
-                    <th>Email</th>
-                    <th>No. Telp</th>
-                    <th>Semester</th>
-                    <th>Aksi</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php foreach ($data['mahasiswa'] as $m): ?>
-                    <tr>
-                        <td><?= $m['NIM']; ?></td>
-                        <td><?= $m['nama']; ?></td>
-                        <td><?= $m['program_studi']; ?></td>
-                        <td><?= $m['email']; ?></td>
-                        <td><?= $m['no_telp']; ?></td>
-                        <td><?= $m['semester']; ?></td>
-                        <td>
-                            <a href="<?= BASE_URL; ?>admin/editMahasiswa/<?= $m['id_mahasiswa']; ?>" class="btn btn-warning btn-sm">Edit</a>
-                            <a href="<?= BASE_URL; ?>admin/deleteMahasiswa/<?= $m['id_mahasiswa']; ?>" class="btn btn-danger btn-sm" onclick="return confirm('Yakin ingin menghapus data ini?');">Hapus</a>
-                        </td>
-                    </tr>
-                <?php endforeach; ?>
-            </tbody>
-        </table>
     </div>
 </main>

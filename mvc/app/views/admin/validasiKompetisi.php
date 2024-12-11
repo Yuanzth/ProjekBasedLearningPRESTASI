@@ -1,8 +1,8 @@
 <main>
     <div class="container-fluid my-4">
-        <h3 class="mb-4">Validasi Kompetisi</h3>
+        <h3 class="mt-3">Validasi Kompetisi</h3>
         <?php if (!empty($data['kompetisi'])): ?>
-        <div class="table-responsive-sm">
+        <div class="table-responsive">
             <table class="table table-sm shadow table-bordered table-hover">
                 <thead>
                     <tr>

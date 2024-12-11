@@ -44,4 +44,9 @@ main {
     width: 90px;
     margin: 10px;
 }
-/* table */
+.row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}

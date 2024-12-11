@@ -5,7 +5,7 @@
                 <button class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#tambahUser">Tambahkan User</button>
             </div>
         </div>
-        <h3>Manage User</h3>
+        <h2 class="mt-3">Daftar User</h2>
         <table class="table table-bordered">
             <thead>
                 <tr>
@@ -48,8 +48,8 @@
                             <div class="input-group mb-3">
                                 <label class="input-group-text">Privilege</label>
                                 <select class="form-select" name="privilege" required>
-                                    <option value="admin">Admin</option>
-                                    <option value="mahasiswa">Mahasiswa</option>
+                                    <option value="A">Admin</option>
+                                    <option value="M">Mahasiswa</option>
                                 </select>
                             </div>
                         </div>
