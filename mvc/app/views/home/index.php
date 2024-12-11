@@ -52,7 +52,7 @@
                 </div>
                 <!-- baris bawah -->
                 <div class="p-3">
-                    <h2 class="fw-semibold">About</h2>
+                    <h2 class="fw-semibold">Tentang</h2>
                     <table class="table table-sm table-borderless">
                         <tr>
                             <td class="bg-transparent"><i class="bi bi-dot"></i></td>

@@ -248,7 +248,7 @@ class AdminController extends Controller
         } else {
             $data = [
                 'title' => 'Tambah Mahasiswa | Admin',
-                'style' => 'styleAdmin.css'
+                'style' => 'styleAd.css'
             ];
             $this->view('admin/headerAdmin', $data);
             $this->view('admin/addMahasiswa', $data);
@@ -290,7 +290,7 @@ class AdminController extends Controller
         $dosen = $this->adminModel->getAllDosen();
         $data = [
             'title' => 'Kelola Dosen | Admin',
-            'style' => 'styleAdmin.css',
+            'style' => 'styleAd.css',
             'dosen' => $dosen
         ];
 
