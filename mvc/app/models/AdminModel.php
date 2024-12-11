@@ -248,15 +248,40 @@ class AdminModel
     public function getAllDosen()
     {
         try {
-            $stmt = $this->executeStoredProcedure('sp_GetAllDosen');
-            $dosen = [];
+            $stmt = $this->executeStoredProcedure('sp_GetAllDosenDetails');
+            $result = [];
             while ($row = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC)) {
-                $dosen[] = $row;
+                $result[] = $row;
             }
-            return $dosen;
+            return $result;
         } catch (Exception $e) {
             $this->logError($e->getMessage());
             return [];
+        }
+    }
+
+    public function addDosen($data)
+    {
+        try {
+            $stmt = $this->executeStoredProcedure(
+                'sp_AddDosen', 
+                [$data['NIP'], $data['nama_dosen'], $data['email'], $data['no_telp'], $data['id_admin']]
+            );
+            return true;
+        } catch (Exception $e) {
+            $this->logError($e->getMessage());
+            return false;
+        }
+    }
+
+    public function deleteDosen($id_dosen)
+    {
+        try {
+            $stmt = $this->executeStoredProcedure('sp_DeleteDosen', [$id_dosen]);
+            return true;
+        } catch (Exception $e) {
+            $this->logError($e->getMessage());
+            return false;
         }
     }
 

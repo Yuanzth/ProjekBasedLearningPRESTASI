@@ -203,18 +203,18 @@ class AdminController extends Controller
             header('Location: ' . BASE_URL . 'auth/login');
             exit;
         }
-    
+
         $mahasiswa = $this->adminModel->getAllMahasiswa();
         $data = [
             'title' => 'Manage Mahasiswa | Admin',
             'style' => 'styleAd.css',
             'mahasiswa' => $mahasiswa
         ];
-    
+
         $this->view('admin/headerAdmin', $data);
         $this->view('admin/manageMahasiswa', $data);
     }
-    
+
     // Tambah Mahasiswa
     public function addMahasiswa()
     {
@@ -226,7 +226,7 @@ class AdminController extends Controller
                     die("Field {$field} harus diisi!");
                 }
             }
-    
+
             $data = [
                 'NIM' => $_POST['NIM'],
                 'nama' => $_POST['nama'],
@@ -237,7 +237,7 @@ class AdminController extends Controller
                 'username' => $_POST['username'], // Username untuk mencari id_user
                 'id_admin' => $_SESSION['id_admin'] // Ambil dari session admin
             ];
-    
+
             if ($this->adminModel->addMahasiswaByUsername($data)) {
                 header('Location: ' . BASE_URL . 'admin/manageMahasiswa');
                 exit;
@@ -253,7 +253,7 @@ class AdminController extends Controller
             $this->view('admin/headerAdmin', $data);
             $this->view('admin/addMahasiswa', $data);
         }
-    }    
+    }
 
     public function deleteMahasiswa($id_mahasiswa)
     {
@@ -276,16 +276,73 @@ class AdminController extends Controller
             }
         }
     }
-    
+
 
 
     // Manage Dosen - Menampilkan daftar dosen
     public function manageDosen()
     {
+        if (!isset($_SESSION['id_user']) || $_SESSION['privilege'] !== 'A') {
+            header('Location: ' . BASE_URL . 'auth/login');
+            exit;
+        }
+
         $dosen = $this->adminModel->getAllDosen();
-        include 'views/admin/manage_dosen.php';
+        $data = [
+            'title' => 'Kelola Dosen | Admin',
+            'style' => 'styleAdmin.css',
+            'dosen' => $dosen
+        ];
+
+        $this->view('admin/headerAdmin', $data);
+        $this->view('admin/manageDosen', $data);
     }
 
+    public function addDosen()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $requiredFields = ['NIP', 'nama_dosen', 'email', 'no_telp'];
+            foreach ($requiredFields as $field) {
+                if (empty($_POST[$field])) {
+                    die("Field {$field} harus diisi!");
+                }
+            }
+
+            $data = [
+                'NIP' => $_POST['NIP'],
+                'nama_dosen' => $_POST['nama_dosen'],
+                'email' => $_POST['email'],
+                'no_telp' => $_POST['no_telp'],
+                'id_admin' => $_SESSION['id_admin']
+            ];
+
+            if ($this->adminModel->addDosen($data)) {
+                header('Location: ' . BASE_URL . 'admin/manageDosen');
+                exit;
+            } else {
+                $data = ['error' => 'Gagal menambahkan dosen'];
+                $this->view('admin/error', $data);
+            }
+        }
+    }
+
+    public function deleteDosen($id_dosen)
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+            if (isset($id_dosen) && is_numeric($id_dosen)) {
+                if ($this->adminModel->deleteDosen($id_dosen)) {
+                    header('Location: ' . BASE_URL . 'admin/manageDosen?success=Data berhasil dihapus');
+                    exit;
+                } else {
+                    header('Location: ' . BASE_URL . 'admin/manageDosen?error=Gagal menghapus data');
+                    exit;
+                }
+            } else {
+                header('Location: ' . BASE_URL . 'admin/manageDosen?error=ID tidak valid');
+                exit;
+            }
+        }
+    }
 
     // Lihat Prestasi - Menampilkan daftar prestasi
     public function lihatPrestasi()
