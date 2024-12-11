@@ -10,8 +10,8 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
         <link rel="stylesheet" href="<?= BASE_URL; ?>public/assets/css/<?= $data['style'];?>">
-        <title>Dashboard Mahasiswa | PRESMA</title>
-    </head>
+        <title>Mahasiswa | PRESMA</title>
+    </head> 
     <body>
         <header class="navbar navbar-expand-lg navbar-dark sticky-top">
             <div class="container-fluid">
@@ -48,7 +48,6 @@
                         <li class="nav-item px-2 d-flex align-items-center dropdown">
                             <button class="btn nav-link dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-person-circle"></i></button>
                             <ul class="dropdown-menu dropdown-menu-end">
-                                <li><a class="dropdown-item nav-link" href="#">Profil</a></li>
                                 <li><a class="dropdown-item nav-link" href="<?=BASE_URL;?>auth/logout">Keluar</a></li>
                             </ul>
                         </li>

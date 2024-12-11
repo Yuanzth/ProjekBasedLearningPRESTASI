@@ -169,7 +169,7 @@ class AdminController extends Controller
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $username = $_POST['username'];
             $password = $_POST['password'];
-            $privilege = $_POST['privilege']; // Ambil huruf pertama privilege
+            $privilege = $_POST['privilege'];
 
             $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
 

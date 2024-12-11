@@ -6,7 +6,7 @@
                 <h2 class="fw-bold">Selamat Datang,
                     <?= isset($data['admin']['nama']) ? htmlspecialchars($data['admin']['nama']) : 'Admin'; ?>!
                 </h2>
-                <p class="fw-semibold">Dashboard Administrasi Sistem</p>
+                <p class="fw-semibold">Beranda Administrasi Sistem</p>
             </div>
         </div>
         <div class="row">
@@ -25,7 +25,7 @@
                                 class="d-block img-fluid border border-black border-5 rounded" alt="...">
                             <div class="carousel-caption d-none d-md-block">
                                 <h5>Manajemen Data</h5>
-                                <p>Kelola data user, mahasiswa, dan dosen di sini.</p>
+                                <p>Kelola data pengguna, mahasiswa, dan dosen di sini.</p>
                             </div>
                         </div>
                         <div class="carousel-item">
@@ -52,9 +52,9 @@
             <!-- kolom bagian kanan -->
             <div class="col-12 col-md-6 d-flex align-items-center px-4">
                 <div class="flex-column">
-                    <h1 class="fw-bolder">Dashboard Admin</h1>
+                    <h1 class="fw-bolder">Beranda Admin</h1>
                     <p>
-                        Dashboard ini memungkinkan Anda untuk mengelola data user, mahasiswa, dosen, validasi
+                        Tampilan Beranda ini memungkinkan Anda untuk mengelola data pengguna, mahasiswa, dosen, validasi
                         kompetisi, dan melihat prestasi mahasiswa. Gunakan menu di bawah untuk navigasi cepat ke
                         fitur yang tersedia.
                     </p>
@@ -67,21 +67,21 @@
             <div class="col-10 col-md-3 m-1">
                 <a href="<?= BASE_URL; ?>admin/manageUser" class="btn shadow btn-light">
                     <img src="<?= BASE_URL; ?>public/assets/img/team-management.png" alt="medal">
-                    <h5>Manage User</h5>
-                    <p>Kelola data pengguna, daftar user baru, dan lihat tabel user di sini.</p>
+                    <h5>Kelola Pengguna</h5>
+                    <p>Kelola data pengguna, daftar pengguna baru, dan lihat tabel pengguna di sini.</p>
                 </a>
             </div>
             <div class="col-10 col-md-3 m-1">
                 <a href="<?= BASE_URL; ?>admin/manageMahasiswa" class="btn shadow btn-light">
                     <img src="<?= BASE_URL; ?>public/assets/img/team-management.png" alt="medal">
-                    <h5>Manage Mahasiswa</h5>
-                    <p>Kelola data mahasiswa dan koneksikan user ke mahasiswa tertentu.</p>
+                    <h5>Kelola Mahasiswa</h5>
+                    <p>Kelola data mahasiswa dan koneksikan pengguna ke mahasiswa tertentu.</p>
                 </a>
             </div>
             <div class="col-10 col-md-3 m-1">
                 <a href="<?= BASE_URL; ?>admin/manageDosen" class="btn shadow btn-light">
                     <img src="<?= BASE_URL; ?>public/assets/img/management.png" alt="medal">
-                    <h5>Manage Dosen</h5>
+                    <h5>Kelola Dosen</h5>
                     <p>Kelola data dosen untuk tiap kompetisi.</p>
                 </a>
             </div>

@@ -19,7 +19,7 @@
             <div class="col-6 col-lg-3">
                 <button type="button" class="btn shadow w-100" style="background-color: #ffc107;">
                     <i class="bi bi-stopwatch"></i>
-                    <h6>Pending</h6>
+                    <h6>Belum Tervalidasi</h6>
                     <span class="badge"><?= $data['statusCounts']['count_pending'] ?? 0; ?></span>
                 </button>
             </div>

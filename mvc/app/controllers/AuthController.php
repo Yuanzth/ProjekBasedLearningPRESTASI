@@ -30,14 +30,14 @@ class AuthController extends Controller
                 if ($_SESSION['privilege'] === "A") {
                     $_SESSION['id_user'] = $user['id_user'];
                     echo "<script>
-                        alert('Berhasil login sebagai admin.');
+                        alert('Berhasil masuk sebagai admin.');
                         window.location.href = '" . BASE_URL . "admin/index';
                     </script>";
                     // header('Location: ' . BASE_URL . 'admin/dashboard'); 
                 } elseif ($_SESSION['privilege'] === "M") {
                     $_SESSION['id_user'] = $user['id_user'];    // Set session id_user
                     echo "<script>
-                        alert('Berhasil login.');
+                        alert('Berhasil masuk.');
                         window.location.href = '" . BASE_URL . "mahasiswa/index';
                     </script>";
                     // header('Location: ' . BASE_URL . 'mahasiswa/index'); // Arahkan ke halaman dashboard mahasiswa

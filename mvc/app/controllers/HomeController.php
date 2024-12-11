@@ -17,7 +17,7 @@ class HomeController extends Controller
 
     public function index()
     {
-        $data['judul'] = 'Dashboard | Presma'; 
+        $data['judul'] = 'Beranda Utama | Presma'; 
         $data['style'] = 'styleI.css';
         $this->view('layout/header', $data);
         $this->view('home/index');

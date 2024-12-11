@@ -29,11 +29,11 @@
                             </a>
                         </li>
                         <li class="nav-item px-2 d-flex align-items-center dropdown">
-                            <button class="btn nav-link dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Manage</i></button>
+                            <button class="btn nav-link dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Kelola</i></button>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item nav-link" href="<?= BASE_URL; ?>admin/manageUser">Manage User</a></li>
-                                <li><a class="dropdown-item nav-link" href="<?= BASE_URL; ?>admin/manageMahasiswa">Manage Mahasiswa</a></li>
-                                <li><a class="dropdown-item nav-link" href="#">Manage Dosen</a></li>
+                                <li><a class="dropdown-item nav-link" href="<?= BASE_URL; ?>admin/manageUser">Kelola User</a></li>
+                                <li><a class="dropdown-item nav-link" href="<?= BASE_URL; ?>admin/manageMahasiswa">Kelola Mahasiswa</a></li>
+                                <li><a class="dropdown-item nav-link" href="#">Kelola Dosen</a></li>
                             </ul>
                         </li>
                         <li class="nav-item px-2 d-flex align-items-center">
@@ -46,7 +46,7 @@
                             <button class="btn nav-link dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-person-circle"></i></button>
                             <ul class="dropdown-menu dropdown-menu-end">
                                 <!-- <li><a class="dropdown-item nav-link" href="#">Profil</a></li> -->
-                                <li><a class="dropdown-item nav-link" href="<?=BASE_URL;?>auth/logout">LogOut</a></li>
+                                <li><a class="dropdown-item nav-link" href="<?=BASE_URL;?>auth/logout">Keluar</a></li>
                             </ul>
                         </li>
                     </ul>
