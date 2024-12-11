@@ -12,29 +12,51 @@
         <div class="row">
             <!-- kolom bagian kiri -->
             <div class="col-12 col-md-6 mb-3 px-4 d-flex justify-content-center align-items-center">
-                <div id="carouselExampleCaptions" class="carousel slide">
+                <div id="carouselExampleCaptions" class="carousel carousel-dark slide">
                     <div class="carousel-indicators">
                         <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0"
                             class="active" aria-current="true" aria-label="Slide 1"></button>
                         <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
                             aria-label="Slide 2"></button>
+                        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
+                            aria-label="Slide 3"></button>
+                        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="3"
+                            aria-label="Slide 4"></button>
+                        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="4"
+                            aria-label="Slide 5"></button>
+                        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="5"
+                            aria-label="Slide 6"></button>
+                        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="6"
+                            aria-label="Slide 7"></button>
                     </div>
                     <div class="carousel-inner">
                         <div class="carousel-item active">
-                            <img src="<?= BASE_URL; ?>public/assets/img/ts.jpg"
+                            <img src="<?= BASE_URL; ?>public/assets/img/user.png"
                                 class="d-block img-fluid border border-black border-5 rounded" alt="...">
-                            <div class="carousel-caption d-none d-md-block">
-                                <h5>Manajemen Data</h5>
-                                <p>Kelola data pengguna, mahasiswa, dan dosen di sini.</p>
-                            </div>
                         </div>
                         <div class="carousel-item">
-                            <img src="<?= BASE_URL; ?>public/assets/img/ts.jpg"
+                            <img src="<?= BASE_URL; ?>public/assets/img/inUser.png"
                                 class="d-block img-fluid border border-black border-5 rounded" alt="...">
-                            <div class="carousel-caption d-none d-md-block">
-                                <h5>Validasi Kompetisi</h5>
-                                <p>Periksa dan validasi kompetisi yang diajukan mahasiswa.</p>
-                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <img src="<?= BASE_URL; ?>public/assets/img/mahasiswa.png"
+                                class="d-block img-fluid border border-black border-5 rounded" alt="...">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="<?= BASE_URL; ?>public/assets/img/inMahasiswa.png"
+                                class="d-block img-fluid border border-black border-5 rounded" alt="...">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="<?= BASE_URL; ?>public/assets/img/dosen.png"
+                                class="d-block img-fluid border border-black border-5 rounded" alt="...">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="<?= BASE_URL; ?>public/assets/img/inDosen.png"
+                                class="d-block img-fluid border border-black border-5 rounded" alt="...">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="<?= BASE_URL; ?>public/assets/img/adminValidasi.png"
+                                class="d-block img-fluid border border-black border-5 rounded" alt="...">
                         </div>
                     </div>
                     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"

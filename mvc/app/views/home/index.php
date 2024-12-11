@@ -9,23 +9,19 @@
                                 <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
                                 <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
                                 <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="3" aria-label="Slide 4"></button>
-                                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="4" aria-label="Slide 5"></button>
                             </div>
                             <div class="carousel-inner">
                                 <div class="carousel-item active">
-                                    <img src="<?= BASE_URL; ?>public/assets/img/presemu.png" class="d-block img-fluid border border-black border-5 rounded" alt="...">
-                                </div>
-                                <div class="carousel-item">
                                     <img src="<?= BASE_URL; ?>public/assets/img/presaya.png" class="d-block img-fluid border border-black border-5 rounded" alt="...">
                                 </div>
                                 <div class="carousel-item">
                                     <img src="<?= BASE_URL; ?>public/assets/img/pengajuan.png" class="d-block img-fluid border border-black border-5 rounded" alt="...">
                                 </div>
                                 <div class="carousel-item">
-                                    <img src="<?= BASE_URL; ?>public/assets/img/inpenga.png" class="d-block img-fluid border border-black border-5 rounded" alt="...">
+                                    <img src="<?= BASE_URL; ?>public/assets/img/inpengajuan.png" class="d-block img-fluid border border-black border-5 rounded" alt="...">
                                 </div>
                                 <div class="carousel-item">
-                                    <img src="<?= BASE_URL; ?>public/assets/img/validasi.png" class="d-block img-fluid border border-black border-5 rounded" alt="...">
+                                    <img src="<?= BASE_URL; ?>public/assets/img/status.png" class="d-block img-fluid border border-black border-5 rounded" alt="...">
                                 </div>
                             </div>
                             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
@@ -75,7 +71,7 @@
                 <div class="row d-flex justify-content-center align-items-center p-4">
                     <h4 class="text-center mb-3">Fitur yang dapat digunakan oleh Tamu:</h4>
                     <div class="col-10 col-md-4 m-3">
-                        <a href="ind_prestasi.php" class="btn shadow btn-light">
+                        <a href="<?= BASE_URL; ?>home/semuaPrestasi" class="btn shadow btn-light">
                             <img src="<?= BASE_URL; ?>public/assets/img/medal.png" alt="medal">
                             <h5>Prestasi</h5>
                             <p>Anda dapat melihat semua prestasi yang terdaftar disini</p>
