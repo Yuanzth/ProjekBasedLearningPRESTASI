@@ -1,8 +1,9 @@
 <main>
-    <div class="container my-4">
+    <div class="container-fluid my-4">
         <h3 class="mb-4">Validasi Kompetisi</h3>
         <?php if (!empty($data['kompetisi'])): ?>
-            <table class="table table-striped">
+        <div class="table-responsive-sm">
+            <table class="table table-sm shadow table-bordered table-hover">
                 <thead>
                     <tr>
                         <th>Nama Mahasiswa</th>
@@ -29,20 +30,21 @@
                                 <form action="<?= BASE_URL; ?>admin/setValidasiKompetisi" method="POST" class="d-inline">
                                     <input type="hidden" name="id_kompetisi" value="<?= $k['id_kompetisi']; ?>">
                                     <input type="hidden" name="valid" value="Y">
-                                    <button type="submit" class="btn btn-success btn-sm">Validasi</button>
+                                    <button type="submit" class="btn btn-sm btn-outline-success"><i class="bi bi-check-lg"></i></button>
                                 </form>
                                 <form action="<?= BASE_URL; ?>admin/setValidasiKompetisi" method="POST" class="d-inline">
                                     <input type="hidden" name="id_kompetisi" value="<?= $k['id_kompetisi']; ?>">
                                     <input type="hidden" name="valid" value="X">
-                                    <button type="submit" class="btn btn-danger btn-sm">Tolak</button>
+                                    <button type="submit" class="btn btn-sm btn-outline-danger"><i class="bi bi-x-lg"></i></button>
                                 </form>
                                 <a href="<?= BASE_URL; ?>admin/detailKompetisi/<?= $k['id_kompetisi']; ?>"
-                                    class="btn btn-info btn-sm">Detail</a>
+                                    class="btn btn-sm btn-outline-info"><i class="bi bi-eye"></i></a>
                             </td>
                         </tr>
                     <?php endforeach; ?>
                 </tbody>
             </table>
+        </div>
         <?php else: ?>
             <p>Tidak ada kompetisi yang perlu divalidasi.</p>
         <?php endif; ?>

@@ -29,7 +29,7 @@ class AdminController extends Controller
         $admin = $this->adminModel->getAdminByUserId($id_user);
         $data = [
             'title' => 'Dashboard | Admin',
-            'style' => 'styleAdmin.css',
+            'style' => 'styleAd.css',
             'admin' => $admin,
         ];
         $this->view('admin/headerAdmin', $data);
@@ -49,7 +49,7 @@ class AdminController extends Controller
         $kompetisi = $this->adminModel->getKompetisiWithDetails();
         $data = [
             'title' => 'Validasi Kompetisi',
-            'style' => 'styleAdmin.css',
+            'style' => 'styleAd.css',
             'kompetisi' => $kompetisi,
         ];
 
@@ -92,7 +92,7 @@ class AdminController extends Controller
 
         $data = [
             'title' => 'Detail Kompetisi',
-            'style' => 'styleAdmin.css',
+            'style' => 'styleAd.css',
             'kompetisi' => $kompetisi,
         ];
 
@@ -150,7 +150,7 @@ class AdminController extends Controller
         $users = $this->adminModel->getAllUsers();
         $data = [
             'title' => 'Manage User',
-            'style' => 'styleAdmin.css',
+            'style' => 'styleAd.css',
             'users' => $users,
         ];
 
@@ -206,7 +206,7 @@ class AdminController extends Controller
         $mahasiswa = $this->adminModel->getAllMahasiswa();
         $data = [
             'title' => 'Manage Mahasiswa | Admin',
-            'style' => 'styleAdmin.css',
+            'style' => 'styleAd.css',
             'mahasiswa' => $mahasiswa
         ];
     
@@ -260,7 +260,7 @@ class AdminController extends Controller
 
     $data = [
         'title' => 'Lihat Prestasi | Admin',
-        'style' => 'styleAdmin.css',
+        'style' => 'styleAd.css',
         'prestasi' => $prestasi,
     ];
     $this->view('admin/headerAdmin', $data);

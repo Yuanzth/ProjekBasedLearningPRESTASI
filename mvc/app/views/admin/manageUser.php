@@ -1,5 +1,10 @@
 <main>
     <div class="container-fluid my-4">
+        <div class="row my-3">
+            <div class="col-5">
+                <button class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#tambahUser">Tambahkan User</button>
+            </div>
+        </div>
         <h3>Manage User</h3>
         <table class="table table-bordered">
             <thead>
@@ -21,11 +26,6 @@
         </table>
 
         <!-- Tombol Modal Tambah User -->
-        <div class="row my-3">
-            <div class="col-5">
-                <button class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#tambahUser">Tambahkan User</button>
-            </div>
-        </div>
 
         <!-- Modal Tambah User -->
         <div class="modal fade" id="tambahUser" tabindex="-1" aria-labelledby="tambahUserModalLabel" aria-hidden="true">
