@@ -49,41 +49,6 @@ form h3 {
     justify-content: center;
     align-items: center;
 }
-/* Styling untuk tombol di dalam tabel (edit, hapus, preview) */
-.table .btn {
-    font-size: 14px;
-    padding: 6px 12px;
-    border-radius: 4px;
-    cursor: pointer;
-    border: none;
-}
-
-.table .btn-edit {
-    background-color: #ffc107;
-    color: white;
-}
-
-.table .btn-edit:hover {
-    background-color: #e0a800;
-}
-
-.table .btn-delete {
-    background-color: #dc3545;
-    color: white;
-}
-
-.table .btn-delete:hover {
-    background-color: #c82333;
-}
-
-.table .btn-preview {
-    background-color: #28a745;
-    color: white;
-}
-
-.table .btn-preview:hover {
-    background-color: #218838;
-}
 /* Styling untuk alert/error messages */
 .alert {
     padding: 10px;
