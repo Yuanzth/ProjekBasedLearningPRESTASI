@@ -6,12 +6,12 @@
                 <a class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#pengajuanModal">Ajukan Prestasi Anda</a>
             </div>
          </div>
-        <!-- Tabel Kompetisi yang Belum Divalidasi -->
-        <h2 class="mt-3">Data Pengajuan</h2>
-        <div class="table-responsive px-2">
-            <table class="table shadow table-bordered table-hover">
-                <thead>
-                    <tr>
+         <!-- Tabel Kompetisi yang Belum Divalidasi -->
+         <h2 class="mt-3">Data Pengajuan</h2>
+         <div class="table-responsive px-2">
+             <table class="table shadow table-bordered table-hover">
+                 <thead>
+                     <tr>
                         <th>Judul Kompetisi</th>
                         <th>Tingkat Kompetisi</th>
                         <th>Tempat Kompetisi</th>
@@ -29,7 +29,7 @@
                                 <td><?= htmlspecialchars($k['tanggal_kompetisi']->format('Y-m-d')); ?></td>
                                 <td>
                                     <a href="<?= BASE_URL; ?>mahasiswa/editKompetisi/<?= $k['id_kompetisi']; ?>" class="btn btn-outline-warning"><i class="bi bi-pencil-square"></i></a>
-                                    <a href="<?= BASE_URL; ?>mahasiswa/deleteKompetisi/<?= $k['id_kompetisi']; ?>" class="btn btn-outline-danger"><i class="bi bi-trash"></i></a>
+                                    <a class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#hapusModal"><i class="bi bi-trash"></i></a>
                                     <!-- Tombol untuk preview file surat tugas -->
                                     <?php if (!empty($k['file_surat_tugas'])): ?>
                                         <a href="<?= BASE_URL; ?>mahasiswa/previewFile/<?= $k['id_kompetisi']; ?>/surat_tugas" 
@@ -52,6 +52,27 @@
                 </tbody>
             </table>
         </div>
+        <!-- Modal Hapus -->
+         <div class="modal fade" id="hapusModal" tabindex="-1" aria-labelledby="hapusModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="hapusModalLabel">Perhatian!</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="container-fluid">
+                            <h6>Apakah anda yakin akan menghapus?</h6>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                        <a href="<?= BASE_URL; ?>mahasiswa/deleteKompetisi/<?= $k['id_kompetisi']; ?>" class="btn btn-danger">Hapus</a>
+                        <!-- <button type="button" class="btn btn-danger">Hapus</button> -->
+                    </div>
+                </div>
+            </div>
+         </div>
         <!-- Modal Pengajuan -->
         <div class="modal modal-lg fade" id="pengajuanModal" tabindex="-1" aria-labelledby="pengajuanModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">

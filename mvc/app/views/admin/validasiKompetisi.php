@@ -27,7 +27,7 @@
                             <td><?= htmlspecialchars($k['role']); ?></td>
                             <td><?= htmlspecialchars($k['nama_dosen']); ?></td>
                             <td>
-                                <form action="<?= BASE_URL; ?>admin/setValidasiKompetisi" method="POST" class="d-inline">
+                                <!-- <form action="<?= BASE_URL; ?>admin/setValidasiKompetisi" method="POST" class="d-inline">
                                     <input type="hidden" name="id_kompetisi" value="<?= $k['id_kompetisi']; ?>">
                                     <input type="hidden" name="valid" value="Y">
                                     <button type="submit" class="btn btn-sm btn-outline-success"><i class="bi bi-check-lg"></i></button>
@@ -36,9 +36,9 @@
                                     <input type="hidden" name="id_kompetisi" value="<?= $k['id_kompetisi']; ?>">
                                     <input type="hidden" name="valid" value="X">
                                     <button type="submit" class="btn btn-sm btn-outline-danger"><i class="bi bi-x-lg"></i></button>
-                                </form>
+                                </form> -->
                                 <a href="<?= BASE_URL; ?>admin/detailKompetisi/<?= $k['id_kompetisi']; ?>"
-                                    class="btn btn-sm btn-outline-info"><i class="bi bi-eye"></i></a>
+                                    class="btn btn-outline-info"><i class="bi bi-eye"></i></a>
                             </td>
                         </tr>
                     <?php endforeach; ?>

@@ -28,14 +28,33 @@
                             <td><?= $d['email']; ?></td>
                             <td><?= $d['no_telp']; ?></td>
                             <td>
-                                <a href="<?= BASE_URL; ?>admin/deleteDosen/<?= $d['id_dosen']; ?>" class="btn btn-outline-danger" onclick="return confirm('Yakin ingin menghapus data ini?');"><i class="bi bi-trash"></i></a>
+                                <a class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#hapusModal"><i class="bi bi-trash"></i></a>
                             </td>
-                        </tr>
-                    <?php endforeach; ?>
+                            </tr>
+                            <?php endforeach; ?>
                 </tbody>
             </table>
         </div>
-
+        <!-- Modal Hapus -->
+        <div class="modal fade" id="hapusModal" tabindex="-1" aria-labelledby="hapusModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="hapusModalLabel">Perhatian!</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="container-fluid">
+                            <h6>Apakah anda yakin akan menghapus?</h6>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                        <a href="<?= BASE_URL; ?>admin/deleteDosen/<?= $d['id_dosen']; ?>" class="btn btn-danger">Hapus</a>
+                    </div>
+                </div>
+            </div>
+        </div>
         <!-- Modal tambah dosen -->
         <div class="modal fade" id="tambahDosen" tabindex="-1" aria-labelledby="tambahDosenModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
