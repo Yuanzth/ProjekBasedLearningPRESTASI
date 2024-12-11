@@ -184,27 +184,56 @@ class AdminModel
     {
         try {
             $stmt = $this->executeStoredProcedure('sp_GetAllMahasiswa');
-            $mahasiswa = [];
+            $result = [];
             while ($row = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC)) {
-                $mahasiswa[] = $row;
+                $result[] = $row;
             }
-            return $mahasiswa;
+            return $result;
         } catch (Exception $e) {
             $this->logError($e->getMessage());
             return [];
         }
     }
-
-    public function linkMahasiswaToUser($id_mahasiswa, $id_user)
+    
+    public function addMahasiswa($data)
     {
         try {
-            $this->executeStoredProcedure('sp_LinkMahasiswaToUser', [$id_mahasiswa, $id_user]);
+            $stmt = $this->executeStoredProcedure(
+                'sp_AddMahasiswa', 
+                [$data['NIM'], $data['nama'], $data['program_studi'], $data['email'], $data['no_telp'], $data['semester'], $data['id_user'], $data['id_admin']]
+            );
             return true;
         } catch (Exception $e) {
             $this->logError($e->getMessage());
             return false;
         }
     }
+    
+    public function deleteMahasiswa($id_mahasiswa)
+    {
+        try {
+            $stmt = $this->executeStoredProcedure('sp_DeleteMahasiswa', [$id_mahasiswa]);
+            return true;
+        } catch (Exception $e) {
+            $this->logError($e->getMessage());
+            return false;
+        }
+    }
+    
+    public function updateMahasiswa($data)
+    {
+        try {
+            $stmt = $this->executeStoredProcedure(
+                'sp_UpdateMahasiswa',
+                [$data['id_mahasiswa'], $data['NIM'], $data['nama'], $data['program_studi'], $data['email'], $data['no_telp'], $data['semester'], $data['id_user'], $data['id_admin']]
+            );
+            return true;
+        } catch (Exception $e) {
+            $this->logError($e->getMessage());
+            return false;
+        }
+    }
+    
 
     // Menu: Manage Dosen
     public function getAllDosen()
@@ -269,15 +298,22 @@ class AdminModel
     }
 
     // Menu: Lihat Prestasi
-    public function getAllPrestasi()
-    {
+    public function getAllPrestasi() {
         try {
-            $stmt = $this->executeStoredProcedure('sp_GetAllPrestasi');
-            $prestasi = [];
-            while ($row = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC)) {
-                $prestasi[] = $row;
+            $query = "SELECT * FROM vw_AllPrestasi";
+            $stmt = sqlsrv_query($this->db, $query);
+    
+            if (!$stmt) {
+                $this->logError(print_r(sqlsrv_errors(), true));
+                throw new Exception("Error executing query: vw_AllPrestasi");
             }
-            return $prestasi;
+    
+            $results = [];
+            while ($row = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC)) {
+                $results[] = $row;
+            }
+    
+            return $results;
         } catch (Exception $e) {
             $this->logError($e->getMessage());
             return [];

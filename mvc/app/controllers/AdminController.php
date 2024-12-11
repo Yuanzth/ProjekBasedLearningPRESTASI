@@ -187,6 +187,7 @@ class AdminController extends Controller
             }
         }
     }
+
     // Hapus Pengguna
     public function deleteUser($id_user)
     {
@@ -197,9 +198,45 @@ class AdminController extends Controller
     // Manage Mahasiswa - Menampilkan daftar mahasiswa
     public function manageMahasiswa()
     {
+        if (!isset($_SESSION['id_user']) || $_SESSION['privilege'] !== 'A') {
+            header('Location: ' . BASE_URL . 'auth/login');
+            exit;
+        }
+    
         $mahasiswa = $this->adminModel->getAllMahasiswa();
-        include 'views/admin/manage_mahasiswa.php';
+        $data = [
+            'title' => 'Manage Mahasiswa | Admin',
+            'style' => 'styleAdmin.css',
+            'mahasiswa' => $mahasiswa
+        ];
+    
+        $this->view('admin/headerAdmin', $data);
+        $this->view('admin/manageMahasiswa', $data);
     }
+    
+    // Tambah Mahasiswa
+    public function addMahasiswa()
+{
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $data = [
+            'NIM' => $_POST['nim'],
+            'nama' => $_POST['nama_mahasiswa'],
+            'program_studi' => $_POST['program_studi'],
+            'email' => $_POST['email_mahasiswa'],
+            'no_telp' => $_POST['no_telp_mahasiswa'],
+            'semester' => 1, // Set default semester
+            'id_user' => $_POST['id_user'] ?? null,
+            'id_admin' => $_SESSION['id_admin']
+        ];
+
+        if ($this->adminModel->addMahasiswa($data)) {
+            header('Location: ' . BASE_URL . 'admin/manageMahasiswa');
+        } else {
+            die('Gagal menambahkan mahasiswa.');
+        }
+    }
+}
+
 
     // Manage Dosen - Menampilkan daftar dosen
     public function manageDosen()
@@ -210,9 +247,24 @@ class AdminController extends Controller
 
 
     // Lihat Prestasi - Menampilkan daftar prestasi
-    public function viewAchievements()
-    {
-        $achievements = $this->adminModel->getAllAchievements();
-        include 'views/admin/view_achievements.php';
+    public function lihatPrestasi()
+{
+    // Periksa apakah session id_user tersedia
+    if (!isset($_SESSION['id_user']) || $_SESSION['privilege'] !== 'A') {
+        header('Location: ' . BASE_URL . 'auth/login');
+        exit;
     }
+
+    // Ambil data prestasi dari model
+    $prestasi = $this->adminModel->getAllPrestasi();
+
+    $data = [
+        'title' => 'Lihat Prestasi | Admin',
+        'style' => 'styleAdmin.css',
+        'prestasi' => $prestasi,
+    ];
+    $this->view('admin/headerAdmin', $data);
+    $this->view('admin/lihatPrestasi', $data);
+}
+
 }

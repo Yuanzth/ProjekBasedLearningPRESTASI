@@ -404,3 +404,87 @@ BEGIN
     FROM tb_kompetisi
     WHERE id_kompetisi = @id_kompetisi AND valid = 'Y';
 END;
+
+-- mendapatkan semua data mahasiswa
+CREATE PROCEDURE sp_GetAllMahasiswa
+AS
+BEGIN
+    SELECT 
+        id_mahasiswa, 
+        NIM, 
+        nama, 
+        program_studi, 
+        email, 
+        no_telp, 
+        semester, 
+        id_user, 
+        id_admin
+    FROM tb_mahasiswa;
+END;
+
+-- menambahkan data mahasiswa baru
+CREATE PROCEDURE sp_AddMahasiswa
+    @NIM VARCHAR(10),
+    @nama VARCHAR(50),
+    @program_studi VARCHAR(30),
+    @email VARCHAR(50),
+    @no_telp VARCHAR(30),
+    @semester INT,
+    @id_user INT,
+    @id_admin INT
+AS
+BEGIN
+    INSERT INTO tb_mahasiswa (NIM, nama, program_studi, email, no_telp, semester, id_user, id_admin)
+    VALUES (@NIM, @nama, @program_studi, @email, @no_telp, @semester, @id_user, @id_admin);
+END;
+
+-- menghapus data mahasiswa berdasarkan id_mahasiswa
+CREATE PROCEDURE sp_DeleteMahasiswa
+    @id_mahasiswa INT
+AS
+BEGIN
+    DELETE FROM tb_mahasiswa
+    WHERE id_mahasiswa = @id_mahasiswa;
+END;
+
+-- memperbarui data mahasisawa berdasarkan id_mahasiswa
+CREATE PROCEDURE sp_UpdateMahasiswa
+    @id_mahasiswa INT,
+    @NIM VARCHAR(10),
+    @nama VARCHAR(50),
+    @program_studi VARCHAR(30),
+    @email VARCHAR(50),
+    @no_telp VARCHAR(30),
+    @semester INT,
+    @id_user INT,
+    @id_admin INT
+AS
+BEGIN
+    UPDATE tb_mahasiswa
+    SET 
+        NIM = @NIM,
+        nama = @nama,
+        program_studi = @program_studi,
+        email = @email,
+        no_telp = @no_telp,
+        semester = @semester,
+        id_user = @id_user,
+        id_admin = @id_admin
+    WHERE id_mahasiswa = @id_mahasiswa;
+END;
+
+-- getAllPrestasi
+CREATE PROCEDURE sp_GetAllPrestasi
+AS
+BEGIN
+    SELECT 
+        p.id_prestasi,
+        p.nama_prestasi,
+        p.kategori,
+        p.tanggal_prestasi,
+        m.nama AS nama_mahasiswa,
+        m.program_studi
+    FROM tb_prestasi p
+    INNER JOIN tb_mahasiswa m ON p.id_mahasiswa = m.id_mahasiswa
+    ORDER BY p.tanggal_prestasi DESC;
+END;
