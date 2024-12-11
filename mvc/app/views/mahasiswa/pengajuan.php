@@ -28,8 +28,8 @@
                                 <td><?= htmlspecialchars($k['tempat_kompetisi']); ?></td>
                                 <td><?= htmlspecialchars($k['tanggal_kompetisi']->format('Y-m-d')); ?></td>
                                 <td>
-                                    <a href="<?= BASE_URL; ?>mahasiswa/editKompetisi/<?= $k['id_kompetisi']; ?>" class="btn btn-warning">Edit</a>
-                                    <a href="<?= BASE_URL; ?>mahasiswa/deleteKompetisi/<?= $k['id_kompetisi']; ?>" class="btn btn-delete">Hapus</a>
+                                    <a href="<?= BASE_URL; ?>mahasiswa/editKompetisi/<?= $k['id_kompetisi']; ?>" class="btn btn-outline-warning"><i class="bi bi-pencil-square"></i></a>
+                                    <a href="<?= BASE_URL; ?>mahasiswa/deleteKompetisi/<?= $k['id_kompetisi']; ?>" class="btn btn-outline-danger"><i class="bi bi-trash"></i></a>
                                     <!-- Tombol untuk preview file surat tugas -->
                                     <?php if (!empty($k['file_surat_tugas'])): ?>
                                         <a href="<?= BASE_URL; ?>mahasiswa/previewFile/<?= $k['id_kompetisi']; ?>/surat_tugas" 

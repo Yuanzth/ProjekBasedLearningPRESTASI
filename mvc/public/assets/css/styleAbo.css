@@ -6,9 +6,7 @@
     font-family: 'Poppins', sans-serif;
 }
 body {
-    background-image: url(http://localhost/project/public/assets/img/ts.jpg);
-    background-size: cover;
-    background-repeat: no-repeat;
+    background-color: #362FD930;
 }
 /* navigasi bar */
 .navbar { /* mengatur style navigation bar */
