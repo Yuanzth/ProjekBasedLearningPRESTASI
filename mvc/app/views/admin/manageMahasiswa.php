@@ -21,18 +21,24 @@
                                 <div class="row">
                                     <div class="col">
                                         <div class="input-group mb-3">
-                                            <span class="input-group-text shadow" for="nim">NIM</span>
-                                            <input type="text" class="form-control shadow" id="nim" name="nim" required>
+                                            <span class="input-group-text shadow" for="username">Username</span>
+                                            <input type="text" class="form-control shadow" id="username" name="username" required>
                                         </div>
                                     </div>
                                     <div class="col">
                                         <div class="input-group mb-3">
-                                            <span class="input-group-text shadow" for="nama_mahasiswa">Nama</span>
-                                            <input type="text" class="form-control shadow" id="nama_mahasiswa" name="nama_mahasiswa" required>
+                                            <span class="input-group-text shadow" for="NIM">NIM</span>
+                                            <input type="text" class="form-control shadow" id="NIM" name="NIM" required>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
+                                    <div class="col-8">
+                                        <div class="input-group mb-3">
+                                            <span class="input-group-text shadow" for="nama">Nama</span>
+                                            <input type="text" class="form-control shadow" id="nama" name="nama" required>
+                                        </div>
+                                    </div>
                                     <div class="col">
                                         <div class="input-group mb-3">
                                             <label class="input-group-text shadow" for="program_studi">Program Studi</label>
@@ -43,20 +49,22 @@
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="col">
-                                        <div class="input-group mb-3">
-                                            <span class="input-group-text shadow" for="no_telp_mahasiswa">No. Telp</span>
-                                            <input type="text" class="form-control shadow" id="no_telp_mahasiswa" name="no_telp_mahasiswa" required>
-                                        </div>
-                                    </div>
                                 </div>
                                 <div class="row">
                                     <div class="col">
                                         <div class="input-group mb-3">
-                                            <span class="input-group-text shadow" for="email_mahasiswa">Email</span>
-                                            <input type="text" class="form-control shadow" id="email_mahasiswa" name="email_mahasiswa" required>
+                                            <span class="input-group-text shadow" for="no_telp">No. Telp</span>
+                                            <input type="text" class="form-control shadow" id="no_telp" name="no_telp" required>
                                         </div>
                                     </div>
+                                    <div class="col">
+                                        <div class="input-group mb-3">
+                                            <span class="input-group-text shadow" for="email">Email</span>
+                                            <input type="email" class="form-control shadow" id="email" name="email" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
                                     <div class="col">
                                         <div class="input-group mb-3">
                                             <span class="input-group-text shadow" for="semester">Semester</span>
@@ -87,18 +95,18 @@
             </thead>
             <tbody>
                 <?php foreach ($data['mahasiswa'] as $m): ?>
-                <tr>
-                    <td><?= $m['NIM']; ?></td>
-                    <td><?= $m['nama']; ?></td>
-                    <td><?= $m['program_studi']; ?></td>
-                    <td><?= $m['email']; ?></td>
-                    <td><?= $m['no_telp']; ?></td>
-                    <td><?= $m['semester']; ?></td>
-                    <td>
-                        <a href="<?= BASE_URL; ?>admin/editMahasiswa/<?= $m['id_mahasiswa']; ?>" class="btn btn-warning btn-sm">Edit</a>
-                        <a href="<?= BASE_URL; ?>admin/deleteMahasiswa/<?= $m['id_mahasiswa']; ?>" class="btn btn-danger btn-sm" onclick="return confirm('Yakin ingin menghapus data ini?');">Hapus</a>
-                    </td>
-                </tr>
+                    <tr>
+                        <td><?= $m['NIM']; ?></td>
+                        <td><?= $m['nama']; ?></td>
+                        <td><?= $m['program_studi']; ?></td>
+                        <td><?= $m['email']; ?></td>
+                        <td><?= $m['no_telp']; ?></td>
+                        <td><?= $m['semester']; ?></td>
+                        <td>
+                            <a href="<?= BASE_URL; ?>admin/editMahasiswa/<?= $m['id_mahasiswa']; ?>" class="btn btn-warning btn-sm">Edit</a>
+                            <a href="<?= BASE_URL; ?>admin/deleteMahasiswa/<?= $m['id_mahasiswa']; ?>" class="btn btn-danger btn-sm" onclick="return confirm('Yakin ingin menghapus data ini?');">Hapus</a>
+                        </td>
+                    </tr>
                 <?php endforeach; ?>
             </tbody>
         </table>

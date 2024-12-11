@@ -127,7 +127,7 @@ class AdminModel
         }
     }
 
-
+    
 
     // Menu: Manage User
     public function getAllUsers()
@@ -195,12 +195,21 @@ class AdminModel
         }
     }
     
-    public function addMahasiswa($data)
+    public function addMahasiswaByUsername($data)
     {
         try {
-            $stmt = $this->executeStoredProcedure(
-                'sp_AddMahasiswa', 
-                [$data['NIM'], $data['nama'], $data['program_studi'], $data['email'], $data['no_telp'], $data['semester'], $data['id_user'], $data['id_admin']]
+            $this->executeStoredProcedure(
+                'sp_AddMahasiswaByUsername',
+                [
+                    $data['NIM'],
+                    $data['nama'],
+                    $data['program_studi'],
+                    $data['email'],
+                    $data['no_telp'],
+                    $data['semester'],
+                    $data['username'],
+                    $data['id_admin']
+                ]
             );
             return true;
         } catch (Exception $e) {

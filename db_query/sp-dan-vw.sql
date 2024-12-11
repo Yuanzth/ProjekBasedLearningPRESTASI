@@ -443,8 +443,21 @@ CREATE PROCEDURE sp_DeleteMahasiswa
     @id_mahasiswa INT
 AS
 BEGIN
-    DELETE FROM tb_mahasiswa
-    WHERE id_mahasiswa = @id_mahasiswa;
+    BEGIN TRY
+        BEGIN TRANSACTION;
+        
+        -- Hapus data mahasiswa berdasarkan ID
+        DELETE FROM tb_mahasiswa
+        WHERE id_mahasiswa = @id_mahasiswa;
+
+        COMMIT TRANSACTION;
+    END TRY
+    BEGIN CATCH
+        ROLLBACK TRANSACTION;
+
+        -- Lempar error jika terjadi masalah
+        THROW;
+    END CATCH
 END;
 
 -- memperbarui data mahasisawa berdasarkan id_mahasiswa
@@ -487,4 +500,35 @@ BEGIN
     FROM tb_prestasi p
     INNER JOIN tb_mahasiswa m ON p.id_mahasiswa = m.id_mahasiswa
     ORDER BY p.tanggal_prestasi DESC;
+END;
+
+CREATE PROCEDURE sp_AddMahasiswaByUsername
+    @NIM VARCHAR(10),
+    @nama VARCHAR(50),
+    @program_studi VARCHAR(30),
+    @email VARCHAR(50),
+    @no_telp VARCHAR(30),
+    @semester INT,
+    @username VARCHAR(30),
+    @id_admin INT
+AS
+BEGIN
+    DECLARE @id_user INT;
+
+    -- Ambil id_user berdasarkan username
+    SELECT @id_user = id_user
+    FROM tb_user
+    WHERE username = @username AND privilege = 'M';
+
+    -- Jika id_user ditemukan, tambahkan mahasiswa
+    IF @id_user IS NOT NULL
+    BEGIN
+        INSERT INTO tb_mahasiswa (NIM, nama, program_studi, email, no_telp, semester, id_user, id_admin)
+        VALUES (@NIM, @nama, @program_studi, @email, @no_telp, @semester, @id_user, @id_admin);
+    END
+    ELSE
+    BEGIN
+        -- Jika username tidak ditemukan, kembalikan error
+        THROW 50000, 'Username tidak valid atau bukan privilege mahasiswa.', 1;
+    END
 END;
