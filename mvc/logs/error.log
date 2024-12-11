@@ -1771,3 +1771,118 @@ Array
 )
 
 [2024-12-10 14:09:57] Error executing stored procedure: sp_GetAllMahasiswa
+[2024-12-11 01:59:48] Array
+(
+    [0] => Array
+        (
+            [0] => 42000
+            [SQLSTATE] => 42000
+            [1] => 2812
+            [code] => 2812
+            [2] => [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]Could not find stored procedure 'sp_GetAllMahasiswa'.
+            [message] => [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]Could not find stored procedure 'sp_GetAllMahasiswa'.
+        )
+
+)
+
+[2024-12-11 01:59:48] Error executing stored procedure: sp_GetAllMahasiswa
+[2024-12-11 01:59:55] Array
+(
+    [0] => Array
+        (
+            [0] => 42000
+            [SQLSTATE] => 42000
+            [1] => 2812
+            [code] => 2812
+            [2] => [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]Could not find stored procedure 'sp_GetAllMahasiswa'.
+            [message] => [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]Could not find stored procedure 'sp_GetAllMahasiswa'.
+        )
+
+)
+
+[2024-12-11 01:59:55] Error executing stored procedure: sp_GetAllMahasiswa
+[2024-12-11 02:00:02] Array
+(
+    [0] => Array
+        (
+            [0] => 42000
+            [SQLSTATE] => 42000
+            [1] => 2812
+            [code] => 2812
+            [2] => [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]Could not find stored procedure 'sp_GetAllMahasiswa'.
+            [message] => [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]Could not find stored procedure 'sp_GetAllMahasiswa'.
+        )
+
+)
+
+[2024-12-11 02:00:02] Error executing stored procedure: sp_GetAllMahasiswa
+[2024-12-11 02:08:57] Array
+(
+    [0] => Array
+        (
+            [0] => 42000
+            [SQLSTATE] => 42000
+            [1] => 2812
+            [code] => 2812
+            [2] => [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]Could not find stored procedure 'sp_GetAllMahasiswa'.
+            [message] => [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]Could not find stored procedure 'sp_GetAllMahasiswa'.
+        )
+
+)
+
+[2024-12-11 02:08:57] Error executing stored procedure: sp_GetAllMahasiswa
+[2024-12-11 02:09:25] Array
+(
+    [0] => Array
+        (
+            [0] => 42000
+            [SQLSTATE] => 42000
+            [1] => 2812
+            [code] => 2812
+            [2] => [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]Could not find stored procedure 'sp_GetAllMahasiswa'.
+            [message] => [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]Could not find stored procedure 'sp_GetAllMahasiswa'.
+        )
+
+)
+
+[2024-12-11 02:09:25] Error executing stored procedure: sp_GetAllMahasiswa
+[2024-12-11 02:09:39] Array
+(
+    [0] => Array
+        (
+            [0] => 42000
+            [SQLSTATE] => 42000
+            [1] => 2812
+            [code] => 2812
+            [2] => [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]Could not find stored procedure 'sp_GetAllMahasiswa'.
+            [message] => [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]Could not find stored procedure 'sp_GetAllMahasiswa'.
+        )
+
+)
+
+[2024-12-11 02:09:39] Error executing stored procedure: sp_GetAllMahasiswa
+[2024-12-11 02:37:56] Array
+(
+    [0] => Array
+        (
+            [0] => 23000
+            [SQLSTATE] => 23000
+            [1] => 515
+            [code] => 515
+            [2] => [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]Cannot insert the value NULL into column 'NIM', table 'db_prestasi.dbo.tb_mahasiswa'; column does not allow nulls. INSERT fails.
+            [message] => [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]Cannot insert the value NULL into column 'NIM', table 'db_prestasi.dbo.tb_mahasiswa'; column does not allow nulls. INSERT fails.
+        )
+
+    [1] => Array
+        (
+            [0] => 01000
+            [SQLSTATE] => 01000
+            [1] => 3621
+            [code] => 3621
+            [2] => [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]The statement has been terminated.
+            [message] => [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]The statement has been terminated.
+        )
+
+)
+
+[2024-12-11 02:37:56] Error executing stored procedure: sp_AddMahasiswaByUsername
