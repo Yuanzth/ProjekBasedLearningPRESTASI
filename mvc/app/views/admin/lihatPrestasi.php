@@ -15,8 +15,8 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <?php if (!empty($data['prestasiData'])): ?>
-                        <?php foreach ($data['prestasiData'] as $no => $row): ?>
+                    <?php if (!empty($data['prestasi'])): ?>
+                        <?php foreach ($data['prestasi'] as $no => $row): ?>
                             <tr>
                                 <td><?= $no + 1; ?></td>
                                 <td><?= htmlspecialchars($row['mahasiswa']); ?></td>
