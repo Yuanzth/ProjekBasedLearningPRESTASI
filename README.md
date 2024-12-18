@@ -51,7 +51,7 @@ Sistem Informasi Prestasi Mahasiswa ini dibuat untuk memudahkan pengelolaan data
   - `sp_AddMahasiswaByUsername`: Menambahkan data mahasiswa berdasarkan username.
   - `sp_DeleteMahasiswa`: Menghapus data mahasiswa dari database.
   
-- **View**: Digunakan untuk menyajikan data dalam format tertentu.
+- **View**: Digunakan untuk menyajikan data dalam format tertentu sesuai dengan kebutuhan tanpa merubah struktur tabel yang sudah ada.
   
-- **Trigger**: Untuk otomatisasi, seperti yang digunakan untuk mencatat log perubahan data.
+- **Trigger**: Untuk otomatisasi, seperti yang digunakan untuk backup ketika data user dihapus.
 
