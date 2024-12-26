@@ -149,3 +149,19 @@ SELECT * FROM kompetisi;
 SELECT * FROM prestasi_non_akademik;
 
 SELECT * FROM dosen;
+
+-- 5) Membuat Tabel Backup
+CREATE TABLE tb_kompetisi_backup (
+    id_kompetisi INT,
+    judul_kompetisi VARCHAR(50),
+    tingkat_kompetisi VARCHAR(20),
+    tempat_kompetisi VARCHAR(50),
+    tanggal_kompetisi DATE,
+    file_surat_tugas VARBINARY(MAX),
+    file_sertifikat VARBINARY(MAX),
+    role VARCHAR(10),
+    id_mahasiswa INT,
+    id_dosen INT,
+    valid CHAR(1),
+    deleted_at DATETIME DEFAULT GETDATE()  -- Menyimpan waktu penghapusan
+);
