@@ -91,35 +91,52 @@ ON tb_kompetisi
 INSTEAD OF DELETE
 AS
 BEGIN
-    -- Insert data yang akan dihapus ke tabel backup
-    INSERT INTO tb_kompetisi_backup (
-        id_kompetisi,
-        judul_kompetisi,
-        tingkat_kompetisi,
-        tempat_kompetisi,
-        tanggal_kompetisi,
-        file_surat_tugas,
-        file_sertifikat,
-        role,
-        id_mahasiswa,
-        id_dosen,
-        valid
-    )
-    SELECT
-        id_kompetisi,
-        judul_kompetisi,
-        tingkat_kompetisi,
-        tempat_kompetisi,
-        tanggal_kompetisi,
-        file_surat_tugas,
-        file_sertifikat,
-        role,
-        id_mahasiswa,
-        id_dosen,
-        valid
-    FROM DELETED;
+    -- Mulai blok transaksi untuk memastikan atomisitas
+    BEGIN TRANSACTION;
 
-    -- Lanjutkan penghapusan dari tb_kompetisi
-    DELETE FROM tb_kompetisi
-    WHERE id_kompetisi IN (SELECT id_kompetisi FROM DELETED);
+    BEGIN TRY
+        -- Masukkan data yang akan dihapus ke tabel backup
+        INSERT INTO tb_kompetisi_backup (
+            id_kompetisi,          
+            judul_kompetisi,       
+            tingkat_kompetisi,     
+            tempat_kompetisi,      
+            tanggal_kompetisi,     
+            file_surat_tugas,      
+            file_sertifikat,       
+            role,                  
+            id_mahasiswa,          
+            id_dosen,              
+            valid,                 
+            deleted_at             
+        )
+        SELECT
+            id_kompetisi,
+            judul_kompetisi,
+            tingkat_kompetisi,
+            tempat_kompetisi,
+            tanggal_kompetisi,
+            file_surat_tugas,
+            file_sertifikat,
+            role,
+            id_mahasiswa,
+            id_dosen,
+            valid,
+            GETDATE()              -- Timestamp untuk mencatat waktu penghapusan
+        FROM DELETED;
+
+        -- Lanjutkan penghapusan data dari tabel utama
+        DELETE FROM tb_kompetisi
+        WHERE id_kompetisi IN (SELECT id_kompetisi FROM DELETED);
+
+        -- Komit transaksi jika semuanya berhasil
+        COMMIT TRANSACTION;
+    END TRY
+    BEGIN CATCH
+        -- Rollback transaksi jika terjadi kesalahan
+        ROLLBACK TRANSACTION;
+
+        -- Menampilkan pesan error
+        THROW;
+    END CATCH;
 END;
