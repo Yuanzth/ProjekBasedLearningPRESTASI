@@ -80,6 +80,22 @@ CREATE TABLE tb_prestasi (
     FOREIGN KEY (id_admin) REFERENCES tb_admin(id_admin)              -- Relasi ke tb_admin
 );
 
+-- Tabel 7: backup
+CREATE TABLE tb_kompetisi_backup (
+    id_kompetisi INT,
+    judul_kompetisi VARCHAR(50),
+    tingkat_kompetisi VARCHAR(20),
+    tempat_kompetisi VARCHAR(50),
+    tanggal_kompetisi DATE,
+    file_surat_tugas VARBINARY(MAX),
+    file_sertifikat VARBINARY(MAX),
+    role VARCHAR(10),
+    id_mahasiswa INT,
+    id_dosen INT,
+    valid CHAR(1),
+    deleted_at DATETIME -- Timestamp penghapusan, diisi oleh trigger
+);
+
 
 -- Tabel 7: history
 -- CREATE TABLE history (
