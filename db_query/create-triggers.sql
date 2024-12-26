@@ -85,16 +85,16 @@ BEGIN
 END;
 
 -- Trigger untuk membuat backup data sebelum penghapusan
+DROP TRIGGER trg_backup_tb_kompetisi;
 CREATE TRIGGER trg_backup_tb_kompetisi
 ON tb_kompetisi
 INSTEAD OF DELETE
 AS
 BEGIN
-    -- Mulai blok transaksi untuk memastikan atomisitas
     BEGIN TRANSACTION;
 
     BEGIN TRY
-        -- Masukkan data yang akan dihapus ke tabel backup
+        -- Backup data yang akan dihapus ke tabel backup
         INSERT INTO tb_kompetisi_backup (
             id_kompetisi,          
             judul_kompetisi,       
@@ -121,21 +121,19 @@ BEGIN
             id_mahasiswa,
             id_dosen,
             valid,
-            GETDATE()              -- Timestamp untuk mencatat waktu penghapusan
+            GETDATE() -- Timestamp penghapusan
         FROM DELETED;
 
-        -- Lanjutkan penghapusan data dari tabel utama
-        DELETE FROM tb_kompetisi
-        WHERE id_kompetisi IN (SELECT id_kompetisi FROM DELETED);
+        -- **TIDAK PERLU DELETE LAGI** karena trigger sudah INSTEAD OF DELETE
 
-        -- Komit transaksi jika semuanya berhasil
+        -- Commit jika semua berhasil
         COMMIT TRANSACTION;
     END TRY
     BEGIN CATCH
-        -- Rollback transaksi jika terjadi kesalahan
+        -- Rollback jika ada error
         ROLLBACK TRANSACTION;
 
-        -- Menampilkan pesan error
+        -- Lempar error untuk debug
         THROW;
     END CATCH;
 END;
