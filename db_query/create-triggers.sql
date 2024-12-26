@@ -91,49 +91,35 @@ ON tb_kompetisi
 INSTEAD OF DELETE
 AS
 BEGIN
-    BEGIN TRANSACTION;
+    -- Insert data yang akan dihapus ke tabel backup
+    INSERT INTO tb_kompetisi_backup (
+        id_kompetisi,
+        judul_kompetisi,
+        tingkat_kompetisi,
+        tempat_kompetisi,
+        tanggal_kompetisi,
+        file_surat_tugas,
+        file_sertifikat,
+        role,
+        id_mahasiswa,
+        id_dosen,
+        valid
+    )
+    SELECT
+        id_kompetisi,
+        judul_kompetisi,
+        tingkat_kompetisi,
+        tempat_kompetisi,
+        tanggal_kompetisi,
+        file_surat_tugas,
+        file_sertifikat,
+        role,
+        id_mahasiswa,
+        id_dosen,
+        valid
+    FROM DELETED;
 
-    BEGIN TRY
-        -- Backup data yang akan dihapus ke tabel backup
-        INSERT INTO tb_kompetisi_backup (
-            id_kompetisi,          
-            judul_kompetisi,       
-            tingkat_kompetisi,     
-            tempat_kompetisi,      
-            tanggal_kompetisi,     
-            file_surat_tugas,      
-            file_sertifikat,       
-            role,                  
-            id_mahasiswa,          
-            id_dosen,              
-            valid,                 
-            deleted_at             
-        )
-        SELECT
-            id_kompetisi,
-            judul_kompetisi,
-            tingkat_kompetisi,
-            tempat_kompetisi,
-            tanggal_kompetisi,
-            file_surat_tugas,
-            file_sertifikat,
-            role,
-            id_mahasiswa,
-            id_dosen,
-            valid,
-            GETDATE() -- Timestamp penghapusan
-        FROM DELETED;
-
-        -- **TIDAK PERLU DELETE LAGI** karena trigger sudah INSTEAD OF DELETE
-
-        -- Commit jika semua berhasil
-        COMMIT TRANSACTION;
-    END TRY
-    BEGIN CATCH
-        -- Rollback jika ada error
-        ROLLBACK TRANSACTION;
-
-        -- Lempar error untuk debug
-        THROW;
-    END CATCH;
+    -- Lanjutkan penghapusan dari tb_kompetisi
+    DELETE FROM tb_kompetisi
+    WHERE id_kompetisi IN (SELECT id_kompetisi FROM DELETED);
 END;
